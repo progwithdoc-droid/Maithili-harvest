@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import WorldPresence from "@/components/WorldPresence";
 
 const contactDetails = [
   { Icon: Phone, label: "Phone", value: "+91 XXXXX XXXXX" },
@@ -11,18 +12,25 @@ const contactDetails = [
 ];
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const [sent, setSent] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.name && form.email && form.message) {
-      setSent(true);
-    }
+    if (form.name && form.email && form.message) setSent(true);
   };
 
   return (
@@ -38,7 +46,10 @@ export default function ContactPage() {
         }}
       >
         <div className="section-container">
-          <p className="brand-tag" style={{ color: "var(--color-aged-gold)", marginBottom: "1.25rem" }}>
+          <p
+            className="brand-tag"
+            style={{ color: "var(--color-aged-gold)", marginBottom: "1.25rem" }}
+          >
             Get in Touch
           </p>
           <h1
@@ -67,12 +78,13 @@ export default function ContactPage() {
               maxWidth: "440px",
             }}
           >
-            Whether it's a wholesale enquiry, a partnership idea, or just a question about our products — write to us.
+            Whether it's a wholesale enquiry, a partnership idea, or a question
+            about our products — write to us.
           </p>
         </div>
       </section>
 
-      {/* ── Main content ── */}
+      {/* ── Contact form + details ── */}
       <section style={{ paddingTop: "5rem", paddingBottom: "6rem" }}>
         <div
           className="section-container"
@@ -83,14 +95,13 @@ export default function ContactPage() {
             alignItems: "start",
           }}
         >
-
-          {/* Left — contact info */}
+          {/* LEFT — contact info */}
           <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
             <div>
               <p className="brand-tag" style={{ marginBottom: "1rem" }}>
                 Contact Details
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
                 {contactDetails.map(({ Icon, label, value }, i) => (
                   <div
                     key={label}
@@ -99,7 +110,10 @@ export default function ContactPage() {
                       alignItems: "flex-start",
                       gap: "1rem",
                       padding: "1.25rem 0",
-                      borderBottom: i < contactDetails.length - 1 ? "0.5px solid var(--color-border-gold)" : "none",
+                      borderBottom:
+                        i < contactDetails.length - 1
+                          ? "0.5px solid var(--color-border-gold)"
+                          : "none",
                     }}
                   >
                     <div
@@ -169,13 +183,16 @@ export default function ContactPage() {
                 "We believe great relationships — like great food — are built on
                 honest conversation and shared values."
               </p>
-              <p className="brand-tag" style={{ marginTop: "0.75rem" }}>
+              <p
+                className="brand-tag"
+                style={{ marginTop: "0.75rem" }}
+              >
                 — Amit Kumar, Founder
               </p>
             </div>
           </div>
 
-          {/* Right — form */}
+          {/* RIGHT — form */}
           <div>
             <p className="brand-tag" style={{ marginBottom: "2rem" }}>
               Send a Message
@@ -213,72 +230,65 @@ export default function ContactPage() {
                   }}
                 >
                   Thank you, {form.name}. We'll get back to you at{" "}
-                  <span style={{ color: "var(--color-aged-gold)" }}>{form.email}</span>{" "}
+                  <span style={{ color: "var(--color-aged-gold)" }}>
+                    {form.email}
+                  </span>{" "}
                   within 24 hours.
                 </p>
               </div>
             ) : (
               <form
                 onSubmit={handleSubmit}
-                style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1.25rem",
+                }}
               >
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                  <div>
-                    <label
-                      htmlFor="contact-name"
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontWeight: 500,
-                        fontSize: "10px",
-                        letterSpacing: "0.22em",
-                        textTransform: "uppercase",
-                        color: "var(--color-aged-gold)",
-                        display: "block",
-                        marginBottom: "6px",
-                      }}
-                    >
-                      Name
-                    </label>
-                    <input
-                      id="contact-name"
-                      name="name"
-                      type="text"
-                      required
-                      className="brand-input"
-                      placeholder="Your name"
-                      value={form.name}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="contact-email"
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontWeight: 500,
-                        fontSize: "10px",
-                        letterSpacing: "0.22em",
-                        textTransform: "uppercase",
-                        color: "var(--color-aged-gold)",
-                        display: "block",
-                        marginBottom: "6px",
-                      }}
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="contact-email"
-                      name="email"
-                      type="email"
-                      required
-                      className="brand-input"
-                      placeholder="your@email.com"
-                      value={form.email}
-                      onChange={handleChange}
-                    />
-                  </div>
+                {/* Name + Email row */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "1rem",
+                  }}
+                  className="grid-cols-1 sm:grid-cols-2"
+                >
+                  {[
+                    { id: "contact-name", name: "name", label: "Name", type: "text", placeholder: "Your name" },
+                    { id: "contact-email", name: "email", label: "Email", type: "email", placeholder: "your@email.com" },
+                  ].map((field) => (
+                    <div key={field.id}>
+                      <label
+                        htmlFor={field.id}
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontWeight: 500,
+                          fontSize: "10px",
+                          letterSpacing: "0.22em",
+                          textTransform: "uppercase",
+                          color: "var(--color-aged-gold)",
+                          display: "block",
+                          marginBottom: "6px",
+                        }}
+                      >
+                        {field.label}
+                      </label>
+                      <input
+                        id={field.id}
+                        name={field.name}
+                        type={field.type}
+                        required
+                        className="brand-input"
+                        placeholder={field.placeholder}
+                        value={form[field.name as keyof typeof form]}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  ))}
                 </div>
 
+                {/* Subject */}
                 <div>
                   <label
                     htmlFor="contact-subject"
@@ -312,6 +322,7 @@ export default function ContactPage() {
                   </select>
                 </div>
 
+                {/* Message */}
                 <div>
                   <label
                     htmlFor="contact-message"
@@ -334,7 +345,7 @@ export default function ContactPage() {
                     required
                     rows={5}
                     className="brand-input"
-                    placeholder="Tell us how we can help..."
+                    placeholder="Tell us how we can help…"
                     value={form.message}
                     onChange={handleChange}
                     style={{ resize: "vertical", minHeight: "130px" }}
@@ -353,6 +364,9 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* ── World Map — "We Are Available All Around the World" ── */}
+      <WorldPresence variant="dark" />
     </main>
   );
 }

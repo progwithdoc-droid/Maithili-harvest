@@ -1,64 +1,64 @@
-import { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Products — Maithili Harvest",
-  description:
-    "Browse our full range of authentic artisan food products from Mithila — spices, rice, oils, and traditional sweets. Sourced directly from Bihar's farmers.",
-};
+import { useState, useMemo } from "react";
+import SearchBar from "@/components/products/SearchBar";
+import CategoryFilter from "@/components/products/CategoryFilter";
+import ProductGrid from "@/components/products/ProductGrid";
+import { products } from "@/components/products/data";
 
-const products = [
-  {
-    category: "Spices",
-    name: "Stone-Ground Turmeric",
-    description: "Traditionally milled from single-origin Mithila rhizomes. Deep colour, earthy fragrance.",
-    price: "₹ 180",
-    unit: "200g",
-    badge: "Bestseller",
-  },
-  {
-    category: "Oils",
-    name: "Cold-Pressed Mustard Oil",
-    description: "Kachi ghani extraction. Pungent, pure, and preservative-free.",
-    price: "₹ 320",
-    unit: "1 Litre",
-    badge: null,
-  },
-  {
-    category: "Rice & Grains",
-    name: "Sona Masuri Rice",
-    description: "Heirloom variety grown on the Darbhanga plains. Low glycaemic, soft-cooking.",
-    price: "₹ 140",
-    unit: "1 kg",
-    badge: null,
-  },
-  {
-    category: "Sweets",
-    name: "Handmade Thekua",
-    description: "Festive fried wheat pastry with jaggery and fennel. Made the old way.",
-    price: "₹ 220",
-    unit: "500g",
-    badge: "Seasonal",
-  },
-  {
-    category: "Spices",
-    name: "Black Cardamom Pods",
-    description: "Smoked large cardamom. Intense, resinous aroma for biryanis and dals.",
-    price: "₹ 260",
-    unit: "100g",
-    badge: null,
-  },
-  {
-    category: "Oils",
-    name: "Cultured Desi Ghee",
-    description: "Slow-simmered from grass-fed cow milk curd. Golden, granular texture.",
-    price: "₹ 680",
-    unit: "500ml",
-    badge: "New",
-  },
-];
-
+/**
+ * Products page — orchestrates search + category filtering.
+ *
+ * Filtering logic (ANDed):
+ *  1. If a category is active (not "All"), keep only products in that category.
+ *  2. If search query is non-empty, further filter by:
+ *     - product.name  (case-insensitive)
+ *     - product.category (case-insensitive)
+ *     - product.taste (case-insensitive)
+ *
+ * useMemo ensures this runs only when search or category changes,
+ * not on every render.
+ */
 export default function ProductsPage() {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  /* ── Derive unique categories from data (preserves insertion order) ── */
+  const categories = useMemo<string[]>(() => {
+    const seen = new Set<string>();
+    return products
+      .map((p) => p.category)
+      .filter((cat) => {
+        if (seen.has(cat)) return false;
+        seen.add(cat);
+        return true;
+      });
+  }, []); // products array is static — runs once
+
+  /* ── Combined filter ── */
+  const filteredProducts = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+
+    return products.filter((product) => {
+      // Step 1 — category gate
+      const categoryMatch =
+        activeCategory === "All" || product.category === activeCategory;
+
+      if (!categoryMatch) return false;
+
+      // Step 2 — search gate (only runs if there's a query)
+      if (!query) return true;
+
+      return (
+        product.name.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query) ||
+        product.taste.toLowerCase().includes(query)
+      );
+    });
+  }, [searchQuery, activeCategory]);
+
+  const resultCount = filteredProducts.length;
+
   return (
     <main style={{ backgroundColor: "var(--color-linen-white)" }}>
 
@@ -72,7 +72,10 @@ export default function ProductsPage() {
         }}
       >
         <div className="section-container">
-          <p className="brand-tag" style={{ color: "var(--color-aged-gold)", marginBottom: "1.25rem" }}>
+          <p
+            className="brand-tag"
+            style={{ color: "var(--color-aged-gold)", marginBottom: "1.25rem" }}
+          >
             Our Products
           </p>
           <h1
@@ -101,196 +104,82 @@ export default function ProductsPage() {
               maxWidth: "480px",
             }}
           >
-            Every item is traceable, FSSAI-registered, and sourced with intention from Bihar's farming communities.
+            Every item is traceable, FSSAI-registered, and sourced with
+            intention from Bihar's farming communities.
           </p>
         </div>
       </section>
 
-      {/* ── Product grid ── */}
+      {/* ── Search & Filter Bar ── */}
       <section
         style={{
-          paddingTop: "5rem",
-          paddingBottom: "6rem",
+          backgroundColor: "var(--color-linen-white)",
+          borderBottom: "0.5px solid var(--color-border-gold)",
+          padding: "2rem 0",
+          position: "sticky",
+          top: "72px",
+          zIndex: 30,
         }}
       >
         <div className="section-container">
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: "1px",
-              border: "0.5px solid var(--color-border-gold)",
-            }}
-          >
-            {products.map((p) => (
-              <div
-                key={p.name}
-                style={{
-                  backgroundColor: "var(--color-linen-white)",
-                  borderRight: "0.5px solid var(--color-border-gold)",
-                  borderBottom: "0.5px solid var(--color-border-gold)",
-                  padding: "2.25rem 2rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.75rem",
-                  transition: "background-color 0.2s ease",
-                }}
-              >
-                {/* Category tag */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontWeight: 500,
-                      fontSize: "10px",
-                      letterSpacing: "0.28em",
-                      textTransform: "uppercase",
-                      color: "var(--color-aged-gold)",
-                    }}
-                  >
-                    {p.category}
-                  </p>
-                  {p.badge && (
-                    <span
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontWeight: 500,
-                        fontSize: "10px",
-                        letterSpacing: "0.2em",
-                        textTransform: "uppercase",
-                        color: "var(--color-ivory-cream)",
-                        backgroundColor: "var(--color-spice-mahogany)",
-                        padding: "3px 10px",
-                        borderRadius: "2px",
-                      }}
-                    >
-                      {p.badge}
-                    </span>
-                  )}
-                </div>
-
-                {/* Name */}
-                <h2
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 400,
-                    fontSize: "1.15rem",
-                    letterSpacing: "0.03em",
-                    color: "var(--color-deep-cacao)",
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {p.name}
-                </h2>
-
-                {/* Description */}
-                <p
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontWeight: 300,
-                    fontSize: "0.875rem",
-                    letterSpacing: "0.04em",
-                    lineHeight: 1.85,
-                    color: "var(--color-text-muted)",
-                    flex: 1,
-                  }}
-                >
-                  {p.description}
-                </p>
-
-                {/* Price row */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    paddingTop: "1rem",
-                    borderTop: "0.5px solid var(--color-border-gold)",
-                    marginTop: "0.5rem",
-                  }}
-                >
-                  <div>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-editorial)",
-                        fontWeight: 500,
-                        fontSize: "1.2rem",
-                        letterSpacing: "0.02em",
-                        color: "var(--color-aged-gold)",
-                      }}
-                    >
-                      {p.price}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontWeight: 300,
-                        fontSize: "11px",
-                        letterSpacing: "0.08em",
-                        color: "var(--color-text-muted)",
-                        marginLeft: "6px",
-                      }}
-                    >
-                      / {p.unit}
-                    </span>
-                  </div>
-                  <button
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontWeight: 400,
-                      fontSize: "10px",
-                      letterSpacing: "0.16em",
-                      textTransform: "uppercase",
-                      backgroundColor: "var(--color-deep-cacao)",
-                      color: "var(--color-ivory-cream)",
-                      border: "none",
-                      padding: "10px 18px",
-                      borderRadius: 0,
-                      cursor: "pointer",
-                      transition: "background-color 0.2s ease",
-                    }}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Coming soon notice */}
-          <div
-            style={{
-              marginTop: "4rem",
-              padding: "2rem",
-              border: "0.5px solid var(--color-border-gold)",
               display: "flex",
-              alignItems: "center",
-              gap: "1.5rem",
-              flexWrap: "wrap",
+              flexDirection: "column",
+              gap: "1rem",
             }}
           >
-            <div style={{ flex: 1 }}>
-              <p className="brand-tag" style={{ marginBottom: "0.5rem" }}>
-                More Coming Soon
-              </p>
+            {/* Search input */}
+            <SearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search by name, category or taste…"
+            />
+
+            {/* Category pills */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "1rem",
+                flexWrap: "wrap",
+              }}
+            >
+              <CategoryFilter
+                categories={categories}
+                active={activeCategory}
+                onChange={setActiveCategory}
+              />
+
+              {/* Result count */}
               <p
                 style={{
-                  fontFamily: "var(--font-editorial)",
+                  fontFamily: "var(--font-body)",
                   fontWeight: 300,
-                  fontSize: "1rem",
-                  fontStyle: "italic",
-                  letterSpacing: "0.03em",
-                  lineHeight: 1.7,
-                  color: "var(--color-text-primary)",
+                  fontSize: "11px",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "var(--color-text-muted)",
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
                 }}
               >
-                We're expanding our catalogue with seasonal and rare regional products. Subscribe to be the first to know.
+                {resultCount} {resultCount === 1 ? "product" : "products"}
               </p>
             </div>
-            <Link href="/contact" className="btn-secondary" style={{ color: "var(--color-spice-mahogany)", borderColor: "var(--color-spice-mahogany)", whiteSpace: "nowrap" }}>
-              Notify Me
-            </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── Product Grid ── */}
+      <section style={{ paddingTop: "3rem", paddingBottom: "6rem" }}>
+        <div className="section-container">
+          <ProductGrid
+            products={filteredProducts}
+            searchQuery={searchQuery}
+            activeCategory={activeCategory}
+          />
         </div>
       </section>
     </main>
