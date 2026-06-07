@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
+import { VideoBackground } from "./VideoBackground";
+import { heroVideos } from "./data";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -18,16 +20,20 @@ const fadeUp = {
 
 export default function Hero1() {
   return (
-    <section className="relative min-h-[calc(100dvh-72px)] bg-white">
-      <div className="section-container grid min-h-[calc(100dvh-72px)] items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
-        {/* Copy */}
-        <div>
+    <section className="relative min-h-[calc(100dvh-72px)] overflow-hidden">
+      <VideoBackground
+        src={heroVideos.hero1}
+        overlayClassName="bg-gradient-to-r from-[var(--color-maroon)]/88 via-[var(--color-maroon)]/72 to-[var(--color-maroon)]/55"
+      />
+
+      <div className="section-container relative z-10 flex min-h-[calc(100dvh-72px)] items-center py-16 lg:py-24">
+        <div className="max-w-xl">
           <motion.span
             custom={0}
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="brand-tag"
+            className="brand-tag text-[var(--color-gold)]"
           >
             Artisan Food · Mithila, Bihar
           </motion.span>
@@ -37,10 +43,10 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-editorial mt-5 text-[clamp(2.5rem,5vw,4rem)] leading-[1.08] text-[var(--color-ink)]"
+            className="font-editorial mt-5 text-[clamp(2.5rem,5vw,4.25rem)] leading-[1.08] text-[var(--color-cream)]"
           >
             From the heart of{" "}
-            <span className="text-gradient-gold italic">Mithila</span>
+            <span className="italic text-[var(--color-gold-light)]">Mithila</span>
           </motion.h1>
 
           <motion.p
@@ -48,7 +54,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mt-5 max-w-md text-base leading-relaxed text-[var(--color-text-secondary)]"
+            className="mt-5 max-w-md text-base leading-relaxed text-[var(--color-beige)]"
           >
             Stone-ground spices, cold-pressed oils, and heirloom grains — curated
             directly from the farms of Bihar.
@@ -64,28 +70,14 @@ export default function Hero1() {
             <Link href="/products" className="btn-gold">
               Explore Products
             </Link>
-            <Link href="/about" className="btn-secondary">
+            <Link
+              href="/about"
+              className="btn-secondary border-[var(--color-gold)]/50 text-[var(--color-cream)] hover:border-[var(--color-gold)] hover:bg-white/10"
+            >
               Our Story
             </Link>
           </motion.div>
         </div>
-
-        {/* Video placeholder — drop hero-video.mp4 in /public when ready */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]"
-        >
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-[var(--color-blue-light)] to-[var(--color-surface-warm)]">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--color-gold)] bg-white/80">
-              <div className="ml-1 h-0 w-0 border-y-[8px] border-l-[14px] border-y-transparent border-l-[var(--color-gold)]" />
-            </div>
-            <p className="text-xs font-medium uppercase tracking-widest text-[var(--color-text-muted)]">
-              Video coming soon
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

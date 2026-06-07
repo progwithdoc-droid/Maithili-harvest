@@ -21,7 +21,7 @@ export default function WorldMap({
 
   const svgMap = map.getSVG({
     radius: 0.22,
-    color: "#1E40AF30",
+    color: "#8D0B4130",
     shape: "circle",
     backgroundColor: "#FFFFFF",
   });

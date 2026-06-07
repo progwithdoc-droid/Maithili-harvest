@@ -34,34 +34,34 @@ export const StickyScroll = ({
 
   return (
     <div ref={ref} className="relative w-full">
-      <div className="flex flex-col lg:flex-row lg:gap-20">
-        {/* Left — scroll runway; each block is one viewport tall */}
-        <div className="w-full lg:w-1/2">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+        {/* Left — scroll runway */}
+        <div>
           {content.map((item, index) => (
             <div
               key={item.title + index}
-              className="flex min-h-[60vh] flex-col justify-center py-16 lg:min-h-[85vh] lg:py-20"
+              className="flex min-h-[70vh] flex-col justify-center py-12 lg:min-h-[100vh] lg:py-20"
             >
               <motion.h2
-                animate={{ opacity: activeCard === index ? 1 : 0.2 }}
+                animate={{ opacity: activeCard === index ? 1 : 0.25 }}
                 transition={{ duration: 0.4 }}
-                className="font-display text-2xl font-semibold text-[var(--color-ink)] md:text-3xl lg:text-4xl"
+                className="font-display text-2xl font-semibold text-[var(--color-maroon)] md:text-3xl lg:text-4xl"
               >
                 {item.title}
               </motion.h2>
               <motion.p
-                animate={{ opacity: activeCard === index ? 1 : 0.2 }}
+                animate={{ opacity: activeCard === index ? 1 : 0.25 }}
                 transition={{ duration: 0.4 }}
                 className="mt-6 max-w-md text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg"
               >
                 {item.description}
               </motion.p>
 
-              {/* Mobile — show card inline below each block */}
+              {/* Mobile — inline image */}
               <div className="mt-8 lg:hidden">
                 <div
                   className={cn(
-                    "h-[18rem] overflow-hidden rounded-2xl",
+                    "h-[220px] overflow-hidden rounded-2xl",
                     contentClassName,
                   )}
                 >
@@ -72,22 +72,22 @@ export const StickyScroll = ({
           ))}
         </div>
 
-        {/* Right — sticky panel (desktop only) */}
-        <div className="hidden w-full lg:block lg:w-1/2">
+        {/* Right — sticky panel (desktop) */}
+        <div className="relative hidden lg:block">
           <div
             className={cn(
-              "sticky top-28 h-[28rem] w-full overflow-hidden rounded-2xl xl:top-32 xl:h-[32rem]",
+              "sticky top-28 h-[min(420px,55vh)] w-full overflow-hidden rounded-2xl xl:top-32 xl:h-[min(480px,60vh)]",
               contentClassName,
             )}
           >
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCard}
-                initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                initial={{ opacity: 0, y: 24, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.97 }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-                className="h-full w-full"
+                exit={{ opacity: 0, y: -24, scale: 0.96 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 h-full w-full"
               >
                 {content[activeCard].content ?? null}
               </motion.div>

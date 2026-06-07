@@ -44,7 +44,7 @@ export default function RootLayout({
     >
       <body
         style={{ paddingTop: "72px" }}
-        className="min-h-screen bg-white text-[var(--foreground)] antialiased"
+        className="min-h-screen bg-[var(--color-cream)] text-[var(--foreground)] antialiased"
       >
         <Navbar />
         {children}

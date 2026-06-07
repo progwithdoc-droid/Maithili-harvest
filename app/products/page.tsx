@@ -40,112 +40,42 @@ export default function ProductsPage() {
   }, [searchQuery, activeCategory]);
 
   return (
-    <main style={{ backgroundColor: "var(--color-white-soft)" }}>
-      <section
-        style={{
-          backgroundColor: "var(--color-obsidian)",
-          paddingTop: "5rem",
-          paddingBottom: "5rem",
-          borderBottom: "1px solid rgba(201,169,110,0.14)",
-        }}
-      >
+    <main className="bg-[var(--color-cream)]">
+      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-16 pt-12">
         <div className="section-container">
-          <p
-            className="brand-tag"
-            style={{ color: "var(--color-champagne)", marginBottom: "1.25rem" }}
-          >
-            Our Products
-          </p>
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 400,
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              letterSpacing: "0.05em",
-              color: "var(--color-white-pure)",
-              lineHeight: 1.2,
-              maxWidth: "560px",
-            }}
-          >
+          <p className="brand-tag mb-4 text-[var(--color-gold)]">Our Products</p>
+          <h1 className="font-editorial max-w-xl text-[clamp(2rem,5vw,3.5rem)] leading-tight text-[var(--color-cream)]">
             The pantry of Mithila, curated for you.
           </h1>
-          <p
-            style={{
-              fontFamily: "var(--font-editorial)",
-              fontWeight: 300,
-              fontSize: "1.05rem",
-              fontStyle: "italic",
-              letterSpacing: "0.03em",
-              lineHeight: 1.8,
-              color: "rgba(201,169,110,0.7)",
-              marginTop: "1.25rem",
-              maxWidth: "480px",
-            }}
-          >
+          <p className="mt-4 max-w-md text-base italic text-[var(--color-beige)]">
             Every item is traceable, FSSAI-registered, and sourced with
             intention from Bihar&apos;s farming communities.
           </p>
         </div>
       </section>
 
-      <section
-        style={{
-          backgroundColor: "var(--color-white-soft)",
-          borderBottom: "1px solid var(--color-border-gold)",
-          padding: "2rem 0",
-          position: "sticky",
-          top: "72px",
-          zIndex: 30,
-        }}
-      >
-        <div className="section-container">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-            }}
-          >
-            <SearchBar
-              value={searchQuery}
-              onChange={setSearchQuery}
-              placeholder="Search by name, category or taste…"
+      <section className="sticky top-[72px] z-30 border-b border-[var(--color-beige)] bg-[var(--color-cream)]/95 py-6 backdrop-blur-md">
+        <div className="section-container flex flex-col gap-4">
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search by name, category or taste…"
+          />
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <CategoryFilter
+              categories={categories}
+              active={activeCategory}
+              onChange={setActiveCategory}
             />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "1rem",
-                flexWrap: "wrap",
-              }}
-            >
-              <CategoryFilter
-                categories={categories}
-                active={activeCategory}
-                onChange={setActiveCategory}
-              />
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 300,
-                  fontSize: "11px",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "var(--color-text-muted)",
-                  whiteSpace: "nowrap",
-                  flexShrink: 0,
-                }}
-              >
-                {filteredProducts.length}{" "}
-                {filteredProducts.length === 1 ? "product" : "products"}
-              </p>
-            </div>
+            <p className="whitespace-nowrap text-[11px] uppercase tracking-widest text-[var(--color-text-muted)]">
+              {filteredProducts.length}{" "}
+              {filteredProducts.length === 1 ? "product" : "products"}
+            </p>
           </div>
         </div>
       </section>
 
-      <section style={{ paddingTop: "3rem", paddingBottom: "6rem" }}>
+      <section className="py-12">
         <div className="section-container">
           <ProductGrid
             products={filteredProducts}

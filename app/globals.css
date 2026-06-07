@@ -4,44 +4,39 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ── Maithili Harvest — Premium Light Palette ── */
+/* ── Maithili Harvest — Food Brand Palette ── */
 :root {
+  --color-maroon:           #8D0B41;
+  --color-maroon-dark:      #6A0831;
+  --color-maroon-light:     #A80E4F;
+  --color-gold:             #D39D55;
+  --color-gold-light:       #E8C088;
+  --color-gold-dark:        #B8843A;
+  --color-beige:            #D6CFB4;
+  --color-beige-light:      #E8E2D0;
+  --color-cream:            #FFF8E6;
+
   --color-white:            #FFFFFF;
-  --color-off-white:        #FAFAFA;
-  --color-surface:          #F4F6FA;
-  --color-surface-warm:     #FFFBF0;
+  --color-ink:              #3D0520;
+  --color-text-primary:     #3D0520;
+  --color-text-secondary:   #6B5344;
+  --color-text-muted:       #9A8878;
+  --color-text-inverse:     #FFF8E6;
 
-  --color-ink:              #0F172A;
-  --color-charcoal:         #1E293B;
-  --color-slate:            #334155;
+  --color-border:           #D6CFB4;
+  --color-border-gold:      rgba(211, 157, 85, 0.45);
 
-  --color-gold:             #D4A017;
-  --color-gold-light:       #F5E6B8;
-  --color-gold-dark:        #B8860B;
-
-  --color-blue:             #1E40AF;
-  --color-blue-light:       #DBEAFE;
-  --color-blue-dark:        #1E3A8A;
-
-  --color-text-primary:     #0F172A;
-  --color-text-secondary:   #475569;
-  --color-text-muted:       #94A3B8;
-  --color-text-inverse:     #FFFFFF;
-
-  --color-border:           #E2E8F0;
-  --color-border-gold:      rgba(212, 160, 23, 0.35);
-
-  --background:             var(--color-white);
+  --background:             var(--color-cream);
   --foreground:             var(--color-text-primary);
   --card:                   var(--color-white);
   --card-foreground:        var(--color-text-primary);
   --popover:                var(--color-white);
   --popover-foreground:     var(--color-text-primary);
-  --primary:                var(--color-ink);
-  --primary-foreground:     var(--color-white);
-  --secondary:              var(--color-surface);
+  --primary:                var(--color-maroon);
+  --primary-foreground:     var(--color-cream);
+  --secondary:              var(--color-beige-light);
   --secondary-foreground:   var(--color-text-primary);
-  --muted:                  var(--color-surface);
+  --muted:                  var(--color-beige-light);
   --muted-foreground:       var(--color-text-muted);
   --accent:                 var(--color-gold);
   --accent-foreground:      var(--color-ink);
@@ -60,27 +55,33 @@
   --section-gap:    5rem;
   --content-width:  1200px;
 
-  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 16px 48px rgba(15, 23, 42, 0.10);
-  --shadow-gold: 0 8px 32px rgba(212, 160, 23, 0.22);
+  --shadow-xs: 0 1px 2px rgba(141, 11, 65, 0.05);
+  --shadow-sm: 0 2px 8px rgba(141, 11, 65, 0.07);
+  --shadow-md: 0 8px 24px rgba(141, 11, 65, 0.09);
+  --shadow-lg: 0 16px 48px rgba(141, 11, 65, 0.11);
+  --shadow-gold: 0 8px 32px rgba(211, 157, 85, 0.28);
 
-  /* Legacy aliases used across pages */
+  /* Legacy aliases */
   --color-obsidian:         var(--color-ink);
-  --color-deep-cacao:       var(--color-charcoal);
+  --color-charcoal:         var(--color-maroon-dark);
+  --color-deep-cacao:       var(--color-maroon);
+  --color-off-white:        var(--color-cream);
   --color-white-pure:       var(--color-white);
-  --color-white-soft:       var(--color-off-white);
-  --color-ivory-cream:      var(--color-white);
-  --color-linen-white:      var(--color-off-white);
+  --color-white-soft:       var(--color-cream);
+  --color-ivory-cream:      var(--color-cream);
+  --color-linen-white:      var(--color-cream);
+  --color-surface:          var(--color-beige-light);
+  --color-surface-warm:     var(--color-cream);
   --color-champagne:        var(--color-gold);
   --color-gold-bright:      var(--color-gold);
   --color-gold-pale:        var(--color-gold-light);
   --color-aged-gold:        var(--color-gold-dark);
   --color-warm-honey:       var(--color-gold);
+  --color-blue:             var(--color-maroon);
+  --color-blue-light:       var(--color-beige-light);
   --color-border-light:     var(--color-border);
   --color-rich-walnut:      var(--color-border);
-  --color-spice-mahogany:   var(--color-charcoal);
+  --color-spice-mahogany:   var(--color-maroon);
 }
 
 @theme inline {
@@ -93,7 +94,7 @@
   --color-secondary:              var(--secondary);
   --color-secondary-foreground:   var(--secondary-foreground);
   --color-muted:                  var(--muted);
-  --color-muted-foreground:       var(--muted-foreground);
+  --color-muted-foreground:       var(--color-muted-foreground);
   --color-accent:                 var(--accent);
   --color-accent-foreground:      var(--accent-foreground);
   --color-border:                 var(--border);
@@ -111,26 +112,23 @@
 @layer base {
   html {
     font-family: var(--font-body);
-    background-color: var(--color-white);
+    background-color: var(--color-cream);
     color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--color-white);
+    background-color: var(--color-cream);
     color: var(--color-text-primary);
     min-height: 100dvh;
   }
 
-  * {
-    @apply border-border;
-    box-sizing: border-box;
-  }
+  * { @apply border-border; box-sizing: border-box; }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    color: var(--color-ink);
+    color: var(--color-maroon);
     line-height: 1.15;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -138,7 +136,7 @@
 
   ::selection {
     background-color: var(--color-gold-light);
-    color: var(--color-ink);
+    color: var(--color-maroon-dark);
   }
 }
 
@@ -161,13 +159,11 @@
   padding-inline: 1.5rem;
 }
 
-.section-gap {
-  padding-block: var(--section-gap);
-}
+.section-gap { padding-block: var(--section-gap); }
 
 .brand-card {
   background: var(--color-white);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-beige);
   border-radius: 16px;
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -183,8 +179,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--color-ink);
-  color: var(--color-white);
+  background: var(--color-maroon);
+  color: var(--color-cream);
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 11px;
@@ -199,7 +195,7 @@
 }
 
 .btn-primary:hover {
-  background: var(--color-charcoal);
+  background: var(--color-maroon-dark);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -210,7 +206,7 @@
   justify-content: center;
   gap: 0.5rem;
   background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-  color: var(--color-ink);
+  color: var(--color-maroon-dark);
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 11px;
@@ -225,7 +221,7 @@
 }
 
 .btn-gold:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.06);
   transform: translateY(-1px);
 }
 
@@ -235,7 +231,7 @@
   justify-content: center;
   gap: 0.5rem;
   background: transparent;
-  color: var(--color-ink);
+  color: var(--color-maroon);
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 11px;
@@ -243,14 +239,14 @@
   text-transform: uppercase;
   padding: 12px 30px;
   border-radius: 999px;
-  border: 1.5px solid var(--color-border);
+  border: 1.5px solid var(--color-beige);
   cursor: pointer;
   transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-blue);
-  background: var(--color-blue-light);
+  border-color: var(--color-gold);
+  background: var(--color-gold-light);
   transform: translateY(-1px);
 }
 
@@ -261,15 +257,16 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--color-white);
-  border: 1.5px solid var(--color-border);
+  background: var(--color-cream);
+  border: 1.5px solid var(--color-beige);
   cursor: pointer;
-  color: var(--color-ink);
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  color: var(--color-maroon);
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
 .btn-icon:hover {
   border-color: var(--color-gold);
+  background: var(--color-gold-light);
   transform: translateY(-1px);
 }
 
@@ -277,7 +274,7 @@
   font-family: var(--font-body);
   font-size: 14px;
   background: var(--color-white);
-  border: 1.5px solid var(--color-border);
+  border: 1.5px solid var(--color-beige);
   color: var(--color-text-primary);
   padding: 12px 16px;
   border-radius: 12px;
@@ -287,14 +284,14 @@
 }
 
 .brand-input:focus {
-  border-color: var(--color-blue);
-  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+  border-color: var(--color-maroon);
+  box-shadow: 0 0 0 3px rgba(141, 11, 65, 0.12);
 }
 
 .brand-input--dark {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 248, 230, 0.2);
+  color: var(--color-cream);
 }
 
 .brand-badge--gold {
@@ -307,19 +304,19 @@
   padding: 4px 10px;
   border-radius: 999px;
   background: var(--color-gold-light);
-  color: var(--color-gold-dark);
+  color: var(--color-maroon-dark);
   border: 1px solid var(--color-border-gold);
 }
 
 .text-gradient-gold {
-  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-maroon) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .brand-divider--dark {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 248, 230, 0.15);
 }
 
 @keyframes spotlight {

@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { FacebookIcon, LinkedinIcon, YoutubeIcon, InstagramIcon } from "@/components/icons/SocialIcons";
 import WorldPresence from "@/components/WorldPresence";
 
 const contactDetails = [
@@ -9,6 +11,13 @@ const contactDetails = [
   { Icon: Mail, label: "Email", value: "hello@maithiliharvest.com" },
   { Icon: MapPin, label: "Address", value: "Darbhanga, Bihar — 846001, India" },
   { Icon: Clock, label: "Response Time", value: "Within 24 business hours" },
+];
+
+const socialLinks = [
+  { Icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/maithiliharvest" },
+  { Icon: LinkedinIcon, label: "LinkedIn", href: "https://in.linkedin.com/in/amit-kumar-6a23a5184" },
+  { Icon: YoutubeIcon, label: "YouTube", href: "https://youtube.com/@maithiliharvest" },
+  { Icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/maithiliharvest" },
 ];
 
 export default function ContactPage() {
@@ -34,208 +43,107 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="bg-white">
-      <section className="border-b border-[var(--color-border)] bg-[var(--color-off-white)] pb-20 pt-12">
+    <main className="bg-[var(--color-cream)]">
+      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-20 pt-12">
         <div className="section-container">
-          <p className="brand-tag mb-5">Get in Touch</p>
-          <h1 className="font-editorial max-w-lg text-[clamp(2rem,5vw,3.5rem)] leading-tight text-[var(--color-ink)]">
+          <p className="brand-tag mb-5 text-[var(--color-gold)]">Get in Touch</p>
+          <h1 className="font-editorial max-w-lg text-[clamp(2rem,5vw,3.5rem)] leading-tight text-[var(--color-cream)]">
             We&apos;d love to hear from you.
           </h1>
-          <p className="mt-5 max-w-md text-base italic text-[var(--color-text-secondary)]">
+          <p className="mt-5 max-w-md text-base italic text-[var(--color-beige)]">
             Whether it&apos;s a wholesale enquiry, a partnership idea, or a question
             about our products — write to us.
           </p>
         </div>
       </section>
 
-      {/* ── Contact form + details ── */}
-      <section style={{ paddingTop: "5rem", paddingBottom: "6rem" }}>
-        <div
-          className="section-container"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "5rem",
-            alignItems: "start",
-          }}
-        >
-          {/* LEFT — contact info */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+      <section className="py-20">
+        <div className="section-container grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
+          {/* LEFT */}
+          <div className="flex flex-col gap-10">
             <div>
-              <p className="brand-tag" style={{ marginBottom: "1rem" }}>
-                Contact Details
-              </p>
-              <div style={{ display: "flex", flexDirection: "column" }}>
+              <p className="brand-tag mb-4">Contact Details</p>
+              <div className="flex flex-col">
                 {contactDetails.map(({ Icon, label, value }, i) => (
                   <div
                     key={label}
+                    className="flex items-start gap-4 py-5"
                     style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "1rem",
-                      padding: "1.25rem 0",
                       borderBottom:
                         i < contactDetails.length - 1
-                          ? "0.5px solid var(--color-border-gold)"
+                          ? "1px solid var(--color-beige)"
                           : "none",
                     }}
                   >
-                    <div
-                      style={{
-                        width: 36,
-                        height: 36,
-                        flexShrink: 0,
-                        border: "0.5px solid var(--color-border-gold)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "var(--color-aged-gold)",
-                      }}
-                    >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-gold)]/40 text-[var(--color-maroon)]">
                       <Icon size={16} />
                     </div>
                     <div>
-                      <p
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontWeight: 500,
-                          fontSize: "10px",
-                          letterSpacing: "0.22em",
-                          textTransform: "uppercase",
-                          color: "var(--color-aged-gold)",
-                          marginBottom: "3px",
-                        }}
-                      >
-                        {label}
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontWeight: 300,
-                          fontSize: "0.9rem",
-                          letterSpacing: "0.04em",
-                          lineHeight: 1.6,
-                          color: "var(--color-text-primary)",
-                        }}
-                      >
-                        {value}
-                      </p>
+                      <p className="brand-tag mb-1">{label}</p>
+                      <p className="text-sm text-[var(--color-text-primary)]">{value}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Quote */}
-            <div
-              style={{
-                borderLeft: "2px solid var(--color-warm-honey)",
-                paddingLeft: "1.5rem",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "var(--font-editorial)",
-                  fontWeight: 300,
-                  fontSize: "1rem",
-                  fontStyle: "italic",
-                  letterSpacing: "0.03em",
-                  lineHeight: 1.85,
-                  color: "var(--color-spice-mahogany)",
-                }}
-              >
-                "We believe great relationships — like great food — are built on
-                honest conversation and shared values."
+            {/* Social icons */}
+            <div>
+              <p className="brand-tag mb-4">Follow Us</p>
+              <div className="flex gap-3">
+                {socialLinks.map(({ Icon, label, href }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-beige)] bg-white text-[var(--color-maroon)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:bg-[var(--color-gold-light)] hover:shadow-[var(--shadow-md)]"
+                  >
+                    <Icon size={18} />
+                  </Link>
+                ))}
+              </div>
+              <p className="mt-3 text-xs text-[var(--color-text-muted)]">
+                Connect with us on social media for recipes, harvest updates &amp; more.
               </p>
-              <p
-                className="brand-tag"
-                style={{ marginTop: "0.75rem" }}
-              >
-                — Amit Kumar, Founder
+            </div>
+
+            <div className="border-l-2 border-[var(--color-gold)] pl-5">
+              <p className="font-editorial text-base italic leading-relaxed text-[var(--color-maroon)]">
+                &ldquo;We believe great relationships — like great food — are built on
+                honest conversation and shared values.&rdquo;
               </p>
+              <p className="brand-tag mt-3">— Amit Kumar, Founder</p>
             </div>
           </div>
 
           {/* RIGHT — form */}
           <div>
-            <p className="brand-tag" style={{ marginBottom: "2rem" }}>
-              Send a Message
-            </p>
+            <p className="brand-tag mb-6">Send a Message</p>
 
             {sent ? (
-              <div
-                style={{
-                  padding: "2.5rem",
-                  border: "0.5px solid var(--color-border-gold)",
-                  backgroundColor: "var(--color-ivory-cream)",
-                  borderLeft: "2px solid var(--color-forest-herb)",
-                }}
-              >
-                <h3
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 400,
-                    fontSize: "1.4rem",
-                    letterSpacing: "0.04em",
-                    color: "var(--color-deep-cacao)",
-                    marginBottom: "0.75rem",
-                  }}
-                >
+              <div className="rounded-2xl border border-[var(--color-beige)] bg-white p-8 border-l-4 border-l-[var(--color-gold)]">
+                <h3 className="font-display text-xl text-[var(--color-maroon)]">
                   Message received.
                 </h3>
-                <p
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontWeight: 300,
-                    fontSize: "0.9rem",
-                    letterSpacing: "0.05em",
-                    lineHeight: 1.8,
-                    color: "var(--color-text-muted)",
-                  }}
-                >
-                  Thank you, {form.name}. We'll get back to you at{" "}
-                  <span style={{ color: "var(--color-aged-gold)" }}>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                  Thank you, {form.name}. We&apos;ll get back to you at{" "}
+                  <span className="font-semibold text-[var(--color-gold-dark)]">
                     {form.email}
                   </span>{" "}
                   within 24 hours.
                 </p>
               </div>
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1.25rem",
-                }}
-              >
-                {/* Name + Email row */}
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "1rem",
-                  }}
-                  className="grid-cols-1 sm:grid-cols-2"
-                >
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {[
                     { id: "contact-name", name: "name", label: "Name", type: "text", placeholder: "Your name" },
                     { id: "contact-email", name: "email", label: "Email", type: "email", placeholder: "your@email.com" },
                   ].map((field) => (
                     <div key={field.id}>
-                      <label
-                        htmlFor={field.id}
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontWeight: 500,
-                          fontSize: "10px",
-                          letterSpacing: "0.22em",
-                          textTransform: "uppercase",
-                          color: "var(--color-aged-gold)",
-                          display: "block",
-                          marginBottom: "6px",
-                        }}
-                      >
+                      <label htmlFor={field.id} className="brand-tag mb-2 block">
                         {field.label}
                       </label>
                       <input
@@ -252,21 +160,8 @@ export default function ContactPage() {
                   ))}
                 </div>
 
-                {/* Subject */}
                 <div>
-                  <label
-                    htmlFor="contact-subject"
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontWeight: 500,
-                      fontSize: "10px",
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      color: "var(--color-aged-gold)",
-                      display: "block",
-                      marginBottom: "6px",
-                    }}
-                  >
+                  <label htmlFor="contact-subject" className="brand-tag mb-2 block">
                     Subject
                   </label>
                   <select
@@ -275,7 +170,7 @@ export default function ContactPage() {
                     className="brand-input"
                     value={form.subject}
                     onChange={handleChange}
-                    style={{ cursor: "pointer", appearance: "none" }}
+                    style={{ cursor: "pointer" }}
                   >
                     <option value="">Select a topic</option>
                     <option value="order">Order Enquiry</option>
@@ -286,21 +181,8 @@ export default function ContactPage() {
                   </select>
                 </div>
 
-                {/* Message */}
                 <div>
-                  <label
-                    htmlFor="contact-message"
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontWeight: 500,
-                      fontSize: "10px",
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      color: "var(--color-aged-gold)",
-                      display: "block",
-                      marginBottom: "6px",
-                    }}
-                  >
+                  <label htmlFor="contact-message" className="brand-tag mb-2 block">
                     Message
                   </label>
                   <textarea
@@ -316,11 +198,7 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="btn-primary"
-                  style={{ alignSelf: "flex-start" }}
-                >
+                <button type="submit" className="btn-primary self-start">
                   Send Message
                 </button>
               </form>
@@ -329,7 +207,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ── World Map — "We Are Available All Around the World" ── */}
       <WorldPresence />
     </main>
   );

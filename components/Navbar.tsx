@@ -38,18 +38,15 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 h-[72px] border-b bg-white/90 backdrop-blur-md transition-shadow duration-300"
-        style={{
-          borderColor: scrolled ? "var(--color-border)" : "transparent",
-          boxShadow: scrolled ? "var(--shadow-sm)" : "none",
-        }}
+        className="fixed inset-x-0 top-0 z-50 h-[72px] border-b border-[var(--color-beige)] bg-[var(--color-cream)]/95 backdrop-blur-md transition-shadow duration-300"
+        style={{ boxShadow: scrolled ? "var(--shadow-sm)" : "none" }}
       >
         <div className="section-container flex h-full items-center justify-between">
           <Link href="/" className="flex items-center gap-3 no-underline">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-gold)]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-gold)]">
               <Image src="/logo.svg" alt="Logo" width={22} height={22} />
             </div>
-            <span className="font-display text-lg tracking-wide text-[var(--color-ink)]">
+            <span className="font-display text-lg tracking-wide text-[var(--color-maroon)]">
               {brandName}
             </span>
           </Link>
@@ -64,7 +61,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
                   className="relative text-[11px] font-semibold uppercase tracking-[0.18em] no-underline transition-colors duration-200"
                   style={{
                     color: isActive
-                      ? "var(--color-blue)"
+                      ? "var(--color-maroon)"
                       : "var(--color-text-secondary)",
                   }}
                 >
@@ -72,7 +69,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
                   {isActive && (
                     <motion.span
                       layoutId="nav-underline"
-                      className="absolute -bottom-1 left-0 h-px w-full bg-[var(--color-gold)]"
+                      className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-[var(--color-gold)]"
                     />
                   )}
                 </Link>
@@ -100,7 +97,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center border border-[var(--color-border)] p-2 text-[var(--color-ink)]"
+              className="flex items-center border border-[var(--color-beige)] p-2 text-[var(--color-maroon)]"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={18} /> : <Menu size={18} />}
@@ -115,7 +112,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="overflow-hidden border-t border-[var(--color-border)] bg-white md:hidden"
+              className="overflow-hidden border-t border-[var(--color-beige)] bg-[var(--color-cream)] md:hidden"
             >
               {navLinks.map((item) => {
                 const isActive = pathname === item.href;
@@ -124,10 +121,10 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block border-b border-[var(--color-border)] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] no-underline"
+                    className="block border-b border-[var(--color-beige)] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] no-underline"
                     style={{
                       color: isActive
-                        ? "var(--color-blue)"
+                        ? "var(--color-maroon)"
                         : "var(--color-text-secondary)",
                     }}
                   >

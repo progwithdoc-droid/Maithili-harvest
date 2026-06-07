@@ -8,7 +8,7 @@ import Hero5 from "./hero5";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main>
       <Hero1 />
       <Hero2 />
       <Hero3 />

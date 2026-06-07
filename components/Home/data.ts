@@ -1,5 +1,12 @@
 import { products } from "@/components/products/data";
 
+/** Drop your MP4 files in /public/videos/ */
+export const heroVideos = {
+  hero1: "/videos/hero1.mp4",
+  hero3: "/videos/hero3.mp4",
+  hero5: "/videos/hero5.mp4",
+} as const;
+
 export const trustedCompanies = [
   { name: "FreshMart", logo: "/companies/freshmart.svg" },
   { name: "HarvestCo", logo: "/companies/harvestco.svg" },

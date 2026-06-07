@@ -22,11 +22,11 @@ export default function WorldPresence() {
   ];
 
   return (
-    <section className="border-t border-[var(--color-border)] bg-[var(--color-off-white)] py-20">
+    <section className="border-t border-[var(--color-beige)] bg-[var(--color-beige-light)]/30 py-20">
       <div className="section-container">
         <div className="mb-14 text-center">
           <p className="brand-tag mb-4">Global Reach</p>
-          <h2 className="font-editorial text-[clamp(1.8rem,4vw,2.8rem)] text-[var(--color-ink)]">
+          <h2 className="font-editorial text-[clamp(1.8rem,4vw,2.8rem)] text-[var(--color-maroon)]">
             We Are Available All Around the World
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base italic text-[var(--color-text-secondary)]">
@@ -35,17 +35,17 @@ export default function WorldPresence() {
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-white shadow-[var(--shadow-sm)]">
-          <WorldMap dots={dots} lineColor="#D4A017" />
+        <div className="overflow-hidden rounded-xl border border-[var(--color-beige)] bg-white shadow-[var(--shadow-sm)]">
+          <WorldMap dots={dots} lineColor="#D39D55" />
         </div>
 
-        <div className="mt-12 grid grid-cols-2 border border-[var(--color-border)] bg-white sm:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 border border-[var(--color-beige)] bg-white sm:grid-cols-4">
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="border-b border-r border-[var(--color-border)] p-6 text-center last:border-r-0 sm:border-b-0"
+              className="border-b border-r border-[var(--color-beige)] p-6 text-center last:border-r-0 sm:border-b-0"
             >
-              <p className="font-display text-2xl font-bold text-[var(--color-blue)] md:text-3xl">
+              <p className="font-display text-2xl font-bold text-[var(--color-maroon)] md:text-3xl">
                 {stat.value}
               </p>
               <p className="mt-1 text-[11px] uppercase tracking-widest text-[var(--color-text-muted)]">
