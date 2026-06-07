@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { X } from "lucide-react";
 
 const brands = [
-  { name: "Amazon", logo: "/brands/amazon.png" },
-  { name: "Flipkart", logo: "/brands/flipkart.png" },
-  { name: "Blinkit", logo: "/brands/blinkit.png" },
-  { name: "Zomato", logo: "/brands/zomato.png" },
+  { name: "Amazon", accent: "A" },
+  { name: "Flipkart", accent: "F" },
+  { name: "Blinkit", accent: "B" },
+  { name: "Zomato", accent: "Z" },
 ];
 
 type ShopModalProps = {
@@ -99,15 +98,13 @@ export default function ShopModal({ open, onClose }: ShopModalProps) {
               justifyContent: "center",
               border: "0.5px solid var(--color-border-gold)",
               padding: "1rem",
+              background: "linear-gradient(135deg, rgba(17,24,39,0.96), rgba(184,137,75,0.85))",
+              color: "var(--color-ivory-cream)",
             }}
           >
-            <Image
-              src={brands[current].logo}
-              alt={brands[current].name}
-              width={100}
-              height={56}
-              style={{ objectFit: "contain", maxHeight: "100%" }}
-            />
+            <span style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", letterSpacing: "0.08em" }}>
+              {brands[current].accent}
+            </span>
           </div>
 
           <div>

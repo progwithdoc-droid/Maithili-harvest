@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360" fill="none">
+  <rect width="480" height="360" rx="24" fill="#F4F6FA"/>
+  <circle cx="240" cy="140" r="48" fill="#0F172A" opacity="0.08"/>
+  <text x="240" y="250" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="600" fill="#0F172A">Purity</text>
+</svg>

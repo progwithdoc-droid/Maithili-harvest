@@ -122,6 +122,7 @@ function ProductCardInline({ product }: { product: Product }) {
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             style={{ objectFit: "cover" }}
+            priority={product.id === "1"}
           />
 
           {/* Badge */}

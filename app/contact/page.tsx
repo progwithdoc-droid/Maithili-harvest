@@ -34,51 +34,15 @@ export default function ContactPage() {
   };
 
   return (
-    <main style={{ backgroundColor: "var(--color-linen-white)" }}>
-
-      {/* ── Page header ── */}
-      <section
-        style={{
-          backgroundColor: "var(--color-deep-cacao)",
-          paddingTop: "5rem",
-          paddingBottom: "5rem",
-          borderBottom: "0.5px solid var(--color-rich-walnut)",
-        }}
-      >
+    <main className="bg-white">
+      <section className="border-b border-[var(--color-border)] bg-[var(--color-off-white)] pb-20 pt-12">
         <div className="section-container">
-          <p
-            className="brand-tag"
-            style={{ color: "var(--color-aged-gold)", marginBottom: "1.25rem" }}
-          >
-            Get in Touch
-          </p>
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 400,
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              letterSpacing: "0.05em",
-              color: "var(--color-ivory-cream)",
-              lineHeight: 1.2,
-              maxWidth: "520px",
-            }}
-          >
-            We'd love to hear from you.
+          <p className="brand-tag mb-5">Get in Touch</p>
+          <h1 className="font-editorial max-w-lg text-[clamp(2rem,5vw,3.5rem)] leading-tight text-[var(--color-ink)]">
+            We&apos;d love to hear from you.
           </h1>
-          <p
-            style={{
-              fontFamily: "var(--font-editorial)",
-              fontWeight: 300,
-              fontSize: "1.05rem",
-              fontStyle: "italic",
-              letterSpacing: "0.03em",
-              lineHeight: 1.8,
-              color: "rgba(196,164,106,0.7)",
-              marginTop: "1.25rem",
-              maxWidth: "440px",
-            }}
-          >
-            Whether it's a wholesale enquiry, a partnership idea, or a question
+          <p className="mt-5 max-w-md text-base italic text-[var(--color-text-secondary)]">
+            Whether it&apos;s a wholesale enquiry, a partnership idea, or a question
             about our products — write to us.
           </p>
         </div>
@@ -366,7 +330,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── World Map — "We Are Available All Around the World" ── */}
-      <WorldPresence variant="dark" />
+      <WorldPresence />
     </main>
   );
 }

@@ -116,33 +116,34 @@ export default function About() {
               <div
                 style={{
                   position: "absolute",
-                  left: "-20px",
-                  top: "-20px",
-                  zIndex: 20,
-                  display: "none",
+                  left: "-36px",
+                  top: "-36px",
+                  zIndex: 30,
+                  display: "block",
                 }}
-                className="md:block"
+                className="hidden md:block"
               >
-                <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", width: 96, height: 96 }}>
                   <SpinningText
-                    radius={7}
-                    fontSize={0.85}
+                    radius={5.6}
+                    fontSize={0.72}
                     className="font-body"
-                    style={{ color: "var(--color-aged-gold)" }}
+                    style={{ color: "var(--color-aged-gold)", opacity: 0.95 }}
                   >
                     {` FOUNDER • AGRI-ENTREPRENEUR • MITHILA HARVEST • `}
                   </SpinningText>
                   <div
                     style={{
                       position: "absolute",
-                      width: 52,
-                      height: 52,
+                      width: 58,
+                      height: 58,
                       borderRadius: "50%",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      backgroundColor: "var(--color-linen-white)",
-                      border: "0.5px solid var(--color-warm-honey)",
+                      background: "linear-gradient(180deg, rgba(255,250,243,0.96), rgba(247,244,238,0.92))",
+                      border: "1px solid rgba(184,137,75,0.35)",
+                      boxShadow: "0 14px 32px rgba(17,24,39,0.08)",
                     }}
                   >
                     <Image src="/logo.svg" alt="Maithili Harvest" width={26} height={26} />

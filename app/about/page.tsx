@@ -1,5 +1,5 @@
 import About from "@/components/About";
-import Story from "@/components/Story";
+import TimelineDemo from "@/components/timeline-demo";
 import TestimonialSection from "@/components/TestimonialSection";
 import WorldPresence from "@/components/WorldPresence";
 
@@ -16,10 +16,10 @@ export default function AboutPage() {
       <About />
 
       {/* World presence — we are all over the world */}
-      <WorldPresence variant="light" />
+      <WorldPresence />
 
       {/* Timeline of milestones */}
-      <Story />
+      <TimelineDemo />
 
       {/* Testimonials */}
       <TestimonialSection />

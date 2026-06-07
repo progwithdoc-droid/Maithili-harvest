@@ -2,171 +2,53 @@
 
 import WorldMap from "@/components/ui/world-map";
 
-/**
- * Reusable WorldPresence section.
- * Wraps the Aceternity WorldMap with brand-styled heading + copy.
- * Pass `variant="dark"` for sections on dark backgrounds.
- */
-export default function WorldPresence({
-  variant = "light",
-}: {
-  variant?: "light" | "dark";
-}) {
-  const isDark = variant === "dark";
-
-  /* Connection arcs: Darbhanga (origin) → major global cities */
+export default function WorldPresence() {
   const dots = [
-    // Darbhanga → Delhi
     { start: { lat: 26.12, lng: 85.9, label: "Darbhanga" }, end: { lat: 28.61, lng: 77.21, label: "Delhi" } },
-    // Darbhanga → Mumbai
     { start: { lat: 26.12, lng: 85.9, label: "Darbhanga" }, end: { lat: 19.08, lng: 72.88, label: "Mumbai" } },
-    // Darbhanga → London
     { start: { lat: 26.12, lng: 85.9, label: "Darbhanga" }, end: { lat: 51.51, lng: -0.13, label: "London" } },
-    // Darbhanga → New York
     { start: { lat: 26.12, lng: 85.9, label: "Darbhanga" }, end: { lat: 40.71, lng: -74.01, label: "New York" } },
-    // Darbhanga → Dubai
     { start: { lat: 26.12, lng: 85.9, label: "Darbhanga" }, end: { lat: 25.2, lng: 55.27, label: "Dubai" } },
-    // Darbhanga → Singapore
     { start: { lat: 26.12, lng: 85.9, label: "Darbhanga" }, end: { lat: 1.35, lng: 103.82, label: "Singapore" } },
-    // Darbhanga → Sydney
     { start: { lat: 26.12, lng: 85.9, label: "Darbhanga" }, end: { lat: -33.87, lng: 151.21, label: "Sydney" } },
-    // Darbhanga → Toronto
     { start: { lat: 26.12, lng: 85.9, label: "Darbhanga" }, end: { lat: 43.65, lng: -79.38, label: "Toronto" } },
   ];
 
-  return (
-    <section
-      style={{
-        backgroundColor: isDark ? "var(--color-deep-cacao)" : "var(--color-ivory-cream)",
-        paddingTop: "5rem",
-        paddingBottom: "5rem",
-        borderTop: isDark
-          ? "0.5px solid var(--color-rich-walnut)"
-          : "0.5px solid var(--color-border-gold)",
-        borderBottom: isDark
-          ? "0.5px solid var(--color-rich-walnut)"
-          : "0.5px solid var(--color-border-gold)",
-      }}
-    >
-      <div className="section-container">
+  const stats = [
+    { value: "8+", label: "Countries" },
+    { value: "25+", label: "Cities" },
+    { value: "500+", label: "Happy Customers" },
+    { value: "100%", label: "Authentic Sourcing" },
+  ];
 
-        {/* Heading */}
-        <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-          <p
-            className="brand-tag"
-            style={{
-              marginBottom: "1rem",
-              color: isDark ? "var(--color-aged-gold)" : "var(--color-aged-gold)",
-            }}
-          >
-            Global Reach
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 400,
-              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-              letterSpacing: "0.05em",
-              color: isDark ? "var(--color-ivory-cream)" : "var(--color-deep-cacao)",
-              lineHeight: 1.2,
-              marginBottom: "1rem",
-            }}
-          >
+  return (
+    <section className="border-t border-[var(--color-border)] bg-[var(--color-off-white)] py-20">
+      <div className="section-container">
+        <div className="mb-14 text-center">
+          <p className="brand-tag mb-4">Global Reach</p>
+          <h2 className="font-editorial text-[clamp(1.8rem,4vw,2.8rem)] text-[var(--color-ink)]">
             We Are Available All Around the World
           </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-editorial)",
-              fontWeight: 300,
-              fontSize: "1.05rem",
-              fontStyle: "italic",
-              letterSpacing: "0.03em",
-              lineHeight: 1.8,
-              color: isDark ? "rgba(196,164,106,0.7)" : "var(--color-spice-mahogany)",
-              maxWidth: "520px",
-              margin: "0 auto",
-            }}
-          >
+          <p className="mx-auto mt-4 max-w-lg text-base italic text-[var(--color-text-secondary)]">
             From the fertile plains of Darbhanga, Bihar — our products travel to
-            kitchens, restaurants, and pantries across continents. The taste of
-            Mithila, wherever you are.
+            kitchens, restaurants, and pantries across continents.
           </p>
         </div>
 
-        {/* Map */}
-        <div
-          style={{
-            border: isDark
-              ? "0.5px solid rgba(196,164,106,0.12)"
-              : "0.5px solid var(--color-border-gold)",
-            borderRadius: "12px",
-            overflow: "hidden",
-            backgroundColor: isDark ? "var(--color-rich-walnut)" : "var(--color-linen-white)",
-          }}
-        >
-          <WorldMap
-            dots={dots}
-            lineColor={isDark ? "#C4A46A" : "#9A7B50"}
-          />
+        <div className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-white shadow-[var(--shadow-sm)]">
+          <WorldMap dots={dots} lineColor="#D4A017" />
         </div>
 
-        {/* Stats row */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-            gap: "0",
-            marginTop: "3rem",
-            borderTop: isDark
-              ? "0.5px solid var(--color-rich-walnut)"
-              : "0.5px solid var(--color-border-gold)",
-            borderLeft: isDark
-              ? "0.5px solid var(--color-rich-walnut)"
-              : "0.5px solid var(--color-border-gold)",
-          }}
-        >
-          {[
-            { value: "8+", label: "Countries" },
-            { value: "25+", label: "Cities" },
-            { value: "500+", label: "Happy Customers" },
-            { value: "100%", label: "Authentic Sourcing" },
-          ].map((stat) => (
+        <div className="mt-12 grid grid-cols-2 border border-[var(--color-border)] bg-white sm:grid-cols-4">
+          {stats.map((stat) => (
             <div
               key={stat.label}
-              style={{
-                textAlign: "center",
-                padding: "1.75rem 1rem",
-                borderRight: isDark
-                  ? "0.5px solid var(--color-rich-walnut)"
-                  : "0.5px solid var(--color-border-gold)",
-                borderBottom: isDark
-                  ? "0.5px solid var(--color-rich-walnut)"
-                  : "0.5px solid var(--color-border-gold)",
-              }}
+              className="border-b border-r border-[var(--color-border)] p-6 text-center last:border-r-0 sm:border-b-0"
             >
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 400,
-                  fontSize: "clamp(1.6rem, 3vw, 2rem)",
-                  letterSpacing: "0.04em",
-                  color: isDark ? "var(--color-warm-honey)" : "var(--color-aged-gold)",
-                  lineHeight: 1,
-                }}
-              >
+              <p className="font-display text-2xl font-bold text-[var(--color-blue)] md:text-3xl">
                 {stat.value}
               </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 300,
-                  fontSize: "11px",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: isDark ? "var(--color-text-muted)" : "var(--color-text-muted)",
-                  marginTop: "0.5rem",
-                }}
-              >
+              <p className="mt-1 text-[11px] uppercase tracking-widest text-[var(--color-text-muted)]">
                 {stat.label}
               </p>
             </div>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import ShopModal from "./ShopModal";
 
@@ -12,6 +13,7 @@ const navLinks = [
   { label: "Products", href: "/products" },
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Navbar({ brandName = "Maithili Harvest" }) {
@@ -26,142 +28,79 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setIsOpen(false); }, [pathname]);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed inset-x-0 top-0 z-50 h-[72px] border-b bg-white/90 backdrop-blur-md transition-shadow duration-300"
         style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          height: "72px",
-          backgroundColor: "var(--color-deep-cacao)",
-          borderBottom: scrolled
-            ? "0.5px solid var(--color-rich-walnut)"
-            : "0.5px solid transparent",
-          transition: "border-color 0.3s ease",
+          borderColor: scrolled ? "var(--color-border)" : "transparent",
+          boxShadow: scrolled ? "var(--shadow-sm)" : "none",
         }}
       >
-        <div
-          style={{
-            maxWidth: "var(--content-width)",
-            margin: "0 auto",
-            padding: "0 1.5rem",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          {/* Logo + Brand */}
-          <Link
-            href="/"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              textDecoration: "none",
-            }}
-          >
-            <div
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                border: "0.5px solid rgba(196,164,106,0.4)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}
-            >
+        <div className="section-container flex h-full items-center justify-between">
+          <Link href="/" className="flex items-center gap-3 no-underline">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border-gold)]">
               <Image src="/logo.svg" alt="Logo" width={22} height={22} />
             </div>
-            <span
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "20px",
-                fontWeight: 400,
-                letterSpacing: "0.05em",
-                color: "var(--color-ivory-cream)",
-              }}
-            >
+            <span className="font-display text-lg tracking-wide text-[var(--color-ink)]">
               {brandName}
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div
-            className="hidden md:flex"
-            style={{ alignItems: "center", gap: "2.5rem" }}
-          >
+          <div className="hidden items-center gap-10 md:flex">
             {navLinks.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
+                  className="relative text-[11px] font-semibold uppercase tracking-[0.18em] no-underline transition-colors duration-200"
                   style={{
-                    fontFamily: "var(--font-body)",
-                    fontWeight: 500,
-                    fontSize: "11px",
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
                     color: isActive
-                      ? "var(--color-warm-honey)"
-                      : "rgba(196,164,106,0.6)",
-                    textDecoration: "none",
-                    position: "relative",
-                    paddingBottom: "2px",
-                    borderBottom: isActive
-                      ? "0.5px solid var(--color-warm-honey)"
-                      : "0.5px solid transparent",
-                    transition: "color 0.2s ease, border-color 0.2s ease",
+                      ? "var(--color-blue)"
+                      : "var(--color-text-secondary)",
                   }}
                 >
                   {item.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1 left-0 h-px w-full bg-[var(--color-gold)]"
+                    />
+                  )}
                 </Link>
               );
             })}
           </div>
 
-          {/* Desktop CTA */}
           <div className="hidden md:block">
             <button
               onClick={() => setOpenModal(true)}
-              className="btn-primary"
+              className="btn-gold"
               style={{ padding: "10px 28px", fontSize: "10px" }}
             >
               Shop Now
             </button>
           </div>
 
-          {/* Mobile actions */}
-          <div
-            className="flex md:hidden"
-            style={{ alignItems: "center", gap: "12px" }}
-          >
+          <div className="flex items-center gap-3 md:hidden">
             <button
               onClick={() => setOpenModal(true)}
-              className="btn-primary"
+              className="btn-gold"
               style={{ padding: "8px 18px", fontSize: "10px" }}
             >
               Shop
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              style={{
-                background: "none",
-                border: "0.5px solid rgba(196,164,106,0.3)",
-                color: "var(--color-warm-honey)",
-                padding: "7px",
-                display: "flex",
-                alignItems: "center",
-                cursor: "pointer",
-              }}
+              className="flex items-center border border-[var(--color-border)] p-2 text-[var(--color-ink)]"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={18} /> : <Menu size={18} />}
@@ -169,48 +108,37 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
           </div>
         </div>
 
-        {/* Mobile dropdown */}
-        <div
-          className="md:hidden"
-          style={{
-            backgroundColor: "var(--color-deep-cacao)",
-            borderTop: "0.5px solid var(--color-rich-walnut)",
-            overflow: "hidden",
-            maxHeight: isOpen ? "260px" : "0",
-            transition: "max-height 0.3s ease",
-          }}
-        >
-          {navLinks.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                style={{
-                  display: "block",
-                  padding: "14px 24px",
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 500,
-                  fontSize: "11px",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: isActive
-                    ? "var(--color-warm-honey)"
-                    : "rgba(196,164,106,0.6)",
-                  textDecoration: "none",
-                  borderBottom: "0.5px solid var(--color-rich-walnut)",
-                }}
-              >
-                {isActive && (
-                  <span style={{ marginRight: 10, color: "var(--color-warm-honey)" }}>—</span>
-                )}
-                {item.label}
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden border-t border-[var(--color-border)] bg-white md:hidden"
+            >
+              {navLinks.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block border-b border-[var(--color-border)] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] no-underline"
+                    style={{
+                      color: isActive
+                        ? "var(--color-blue)"
+                        : "var(--color-text-secondary)",
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
       <ShopModal open={openModal} onClose={() => setOpenModal(false)} />
     </>

@@ -4,101 +4,123 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─────────────────────────────────────────────
-   MAITHILI BRAND DESIGN TOKENS
-───────────────────────────────────────────── */
+/* ── Maithili Harvest — Premium Light Palette ── */
 :root {
-  /* Brand palette */
-  --color-deep-cacao:       #1C1410;
-  --color-rich-walnut:      #3B2A1A;
-  --color-aged-gold:        #9A7B50;
-  --color-warm-honey:       #C4A46A;
-  --color-ivory-cream:      #F5ECD8;
-  --color-linen-white:      #FAF6EF;
-  --color-spice-mahogany:   #5E3B2C;
-  --color-forest-herb:      #2E4A3E;
-  --color-border-gold:      #E0D0BA;
-  --color-text-primary:     #2C1F0E;
-  --color-text-muted:       #8A7560;
-  --color-text-light:       #F5ECD8;
+  --color-white:            #FFFFFF;
+  --color-off-white:        #FAFAFA;
+  --color-surface:          #F4F6FA;
+  --color-surface-warm:     #FFFBF0;
 
-  /* Shadcn / Tailwind compatibility tokens */
-  --background:             var(--color-linen-white);
+  --color-ink:              #0F172A;
+  --color-charcoal:         #1E293B;
+  --color-slate:            #334155;
+
+  --color-gold:             #D4A017;
+  --color-gold-light:       #F5E6B8;
+  --color-gold-dark:        #B8860B;
+
+  --color-blue:             #1E40AF;
+  --color-blue-light:       #DBEAFE;
+  --color-blue-dark:        #1E3A8A;
+
+  --color-text-primary:     #0F172A;
+  --color-text-secondary:   #475569;
+  --color-text-muted:       #94A3B8;
+  --color-text-inverse:     #FFFFFF;
+
+  --color-border:           #E2E8F0;
+  --color-border-gold:      rgba(212, 160, 23, 0.35);
+
+  --background:             var(--color-white);
   --foreground:             var(--color-text-primary);
-  --card:                   var(--color-linen-white);
+  --card:                   var(--color-white);
   --card-foreground:        var(--color-text-primary);
-  --popover:                var(--color-linen-white);
+  --popover:                var(--color-white);
   --popover-foreground:     var(--color-text-primary);
-  --primary:                var(--color-deep-cacao);
-  --primary-foreground:     var(--color-ivory-cream);
-  --secondary:              var(--color-border-gold);
+  --primary:                var(--color-ink);
+  --primary-foreground:     var(--color-white);
+  --secondary:              var(--color-surface);
   --secondary-foreground:   var(--color-text-primary);
-  --muted:                  var(--color-border-gold);
+  --muted:                  var(--color-surface);
   --muted-foreground:       var(--color-text-muted);
-  --accent:                 var(--color-warm-honey);
-  --accent-foreground:      var(--color-deep-cacao);
+  --accent:                 var(--color-gold);
+  --accent-foreground:      var(--color-ink);
   --destructive:            oklch(0.577 0.245 27.325);
-  --destructive-foreground: var(--color-linen-white);
-  --border:                 var(--color-border-gold);
-  --input:                  var(--color-border-gold);
-  --ring:                   var(--color-aged-gold);
+  --destructive-foreground: var(--color-white);
+  --border:                 var(--color-border);
+  --input:                  var(--color-border);
+  --ring:                   var(--color-gold);
   --radius:                 0.75rem;
 
-  /* Typography */
-  --font-display:   "Playfair Display", Georgia, serif;
-  --font-editorial: "Cormorant Garamond", Georgia, serif;
-  --font-body:      "Jost", system-ui, sans-serif;
+  --font-display:   "Geist Sans", "Inter", system-ui, sans-serif;
+  --font-mono:      "Geist Mono", "Fira Code", monospace;
+  --font-editorial: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-body:      "Geist Sans", system-ui, sans-serif;
 
-  /* Spacing */
-  --section-gap:    6rem;
+  --section-gap:    5rem;
   --content-width:  1200px;
+
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 16px 48px rgba(15, 23, 42, 0.10);
+  --shadow-gold: 0 8px 32px rgba(212, 160, 23, 0.22);
+
+  /* Legacy aliases used across pages */
+  --color-obsidian:         var(--color-ink);
+  --color-deep-cacao:       var(--color-charcoal);
+  --color-white-pure:       var(--color-white);
+  --color-white-soft:       var(--color-off-white);
+  --color-ivory-cream:      var(--color-white);
+  --color-linen-white:      var(--color-off-white);
+  --color-champagne:        var(--color-gold);
+  --color-gold-bright:      var(--color-gold);
+  --color-gold-pale:        var(--color-gold-light);
+  --color-aged-gold:        var(--color-gold-dark);
+  --color-warm-honey:       var(--color-gold);
+  --color-border-light:     var(--color-border);
+  --color-rich-walnut:      var(--color-border);
+  --color-spice-mahogany:   var(--color-charcoal);
 }
 
-/* ─────────────────────────────────────────────
-   TAILWIND THEME BRIDGE
-───────────────────────────────────────────── */
 @theme inline {
-  --color-background:       var(--background);
-  --color-foreground:       var(--foreground);
-  --color-card:             var(--card);
-  --color-card-foreground:  var(--card-foreground);
-  --color-primary:          var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-muted:            var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent:           var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-border:           var(--border);
-  --color-input:            var(--input);
-  --color-ring:             var(--ring);
-  --font-sans:              var(--font-body);
-  --font-serif:             var(--font-display);
-  --radius-sm:              4px;
-  --radius-md:              8px;
-  --radius-lg:              12px;
-  --radius-xl:              16px;
+  --color-background:             var(--background);
+  --color-foreground:             var(--foreground);
+  --color-card:                   var(--card);
+  --color-card-foreground:        var(--card-foreground);
+  --color-primary:                var(--primary);
+  --color-primary-foreground:     var(--primary-foreground);
+  --color-secondary:              var(--secondary);
+  --color-secondary-foreground:   var(--secondary-foreground);
+  --color-muted:                  var(--muted);
+  --color-muted-foreground:       var(--muted-foreground);
+  --color-accent:                 var(--accent);
+  --color-accent-foreground:      var(--accent-foreground);
+  --color-border:                 var(--border);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
+  --font-sans:                    var(--font-body);
+  --font-mono:                    var(--font-mono);
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 24px;
 }
 
-/* ─────────────────────────────────────────────
-   BASE STYLES
-───────────────────────────────────────────── */
 @layer base {
   html {
     font-family: var(--font-body);
-    background-color: var(--color-linen-white);
+    background-color: var(--color-white);
     color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--color-linen-white);
+    background-color: var(--color-white);
     color: var(--color-text-primary);
-    font-family: var(--font-body);
-    font-weight: 300;
-    line-height: 1.7;
-    letter-spacing: 0.02em;
+    min-height: 100dvh;
   }
 
   * {
@@ -106,146 +128,205 @@
     box-sizing: border-box;
   }
 
-  /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
-    font-weight: 400;
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 
-  /* Selection */
   ::selection {
-    background-color: var(--color-warm-honey);
-    color: var(--color-deep-cacao);
+    background-color: var(--color-gold-light);
+    color: var(--color-ink);
   }
 }
 
-/* ─────────────────────────────────────────────
-   UTILITY CLASSES
-───────────────────────────────────────────── */
-
-/* Typography utilities */
 .font-display   { font-family: var(--font-display); }
 .font-editorial { font-family: var(--font-editorial); }
 .font-body      { font-family: var(--font-body); }
 
-/* Section wrapper */
-.section-container {
-  max-width: var(--content-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-/* Divider */
-.brand-divider {
-  border: none;
-  border-top: 0.5px solid var(--color-border-gold);
-  width: 100%;
-}
-
-.brand-divider--dark {
-  border-top-color: var(--color-rich-walnut);
-}
-
-/* Tag / badge */
 .brand-tag {
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 10px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-aged-gold);
+  color: var(--color-gold-dark);
 }
 
-/* Primary button */
+.section-container {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.section-gap {
+  padding-block: var(--section-gap);
+}
+
+.brand-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.brand-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  background-color: var(--color-warm-honey);
-  color: var(--color-deep-cacao);
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-ink);
+  color: var(--color-white);
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 14px 36px;
-  border-radius: 0;
+  padding: 13px 32px;
+  border-radius: 999px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
-}
-.btn-primary:hover {
-  background-color: var(--color-aged-gold);
+  box-shadow: var(--shadow-sm);
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
 
-/* Secondary button */
+.btn-primary:hover {
+  background: var(--color-charcoal);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 13px 32px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-gold);
+  transition: filter 0.25s ease, transform 0.2s ease;
+}
+
+.btn-gold:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
 .btn-secondary {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  background-color: transparent;
-  color: var(--color-warm-honey);
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-ink);
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 13px 35px;
-  border-radius: 0;
-  border: 0.5px solid var(--color-warm-honey);
+  padding: 12px 30px;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-border);
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
 }
+
 .btn-secondary:hover {
-  background-color: var(--color-warm-honey);
-  color: var(--color-deep-cacao);
+  border-color: var(--color-blue);
+  background: var(--color-blue-light);
+  transform: translateY(-1px);
 }
 
-/* Card base */
-.brand-card {
-  background-color: var(--color-linen-white);
-  border: 0.5px solid var(--color-border-gold);
-  border-radius: 12px;
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  cursor: pointer;
+  color: var(--color-ink);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.brand-card--dark {
-  background-color: var(--color-rich-walnut);
-  border-color: rgba(196, 164, 106, 0.12);
+.btn-icon:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
 }
 
-/* Input */
 .brand-input {
   font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  background-color: transparent;
-  border: 0.5px solid var(--color-border-gold);
+  font-size: 14px;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
   color: var(--color-text-primary);
   padding: 12px 16px;
-  border-radius: 0;
+  border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s ease;
   width: 100%;
-}
-.brand-input:focus {
-  border-color: var(--color-warm-honey);
-}
-.brand-input::placeholder {
-  color: var(--color-text-muted);
-  opacity: 0.7;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Dark surface input */
+.brand-input:focus {
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+}
+
 .brand-input--dark {
-  border-color: rgba(196, 164, 106, 0.2);
-  color: var(--color-ivory-cream);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
 }
-.brand-input--dark:focus {
-  border-color: var(--color-warm-honey);
+
+.brand-badge--gold {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-gold-light);
+  color: var(--color-gold-dark);
+  border: 1px solid var(--color-border-gold);
 }
-.brand-input--dark::placeholder {
-  color: rgba(196, 164, 106, 0.5);
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-divider--dark {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@keyframes spotlight {
+  0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
+}
+
+.animate-spotlight {
+  animation: spotlight 2s ease 0.75s 1 forwards;
 }
