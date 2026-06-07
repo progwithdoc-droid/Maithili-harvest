@@ -1,16 +1,50 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { motion, useInView } from "motion/react";
 import { MessageCircleMore, ArrowUpRight, Link2 } from "lucide-react";
-
 import { SpinningText } from "@/components/motion-primitives/spinning-text";
+
+/* ── Reusable fade-in wrapper ── */
+function Reveal({
+  children,
+  delay = 0,
+  direction = "up",
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  direction?: "up" | "left" | "right" | "none";
+  className?: string;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+
+  const initial = {
+    opacity: 0,
+    y: direction === "up" ? 40 : 0,
+    x: direction === "left" ? -50 : direction === "right" ? 50 : 0,
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={initial}
+      animate={isInView ? { opacity: 1, y: 0, x: 0 } : initial}
+      transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94], delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function About() {
   return (
     <section
-      className="w-full py-20"
+      className="w-full py-24"
       style={{
         background: "linear-gradient(160deg, #F5ECD7 0%, #FAF3E4 60%, #F0E2C4 100%)",
         fontFamily: "'Lato', sans-serif",
@@ -20,18 +54,10 @@ export default function About() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&family=IM+Fell+English:ital@0;1&display=swap');
 
-        .mh-display {
-          font-family: 'Playfair Display', Georgia, serif;
-        }
-        .mh-subheading {
-          font-family: 'Cormorant Garamond', Georgia, serif;
-        }
-        .mh-body {
-          font-family: 'Lato', sans-serif;
-        }
-        .mh-label {
-          font-family: 'IM Fell English', Georgia, serif;
-        }
+        .mh-display { font-family: 'Playfair Display', Georgia, serif; }
+        .mh-subheading { font-family: 'Cormorant Garamond', Georgia, serif; }
+        .mh-body { font-family: 'Lato', sans-serif; }
+        .mh-label { font-family: 'IM Fell English', Georgia, serif; }
 
         .mh-badge {
           border: 1px solid #8B3A2A;
@@ -41,10 +67,7 @@ export default function About() {
           letter-spacing: 0.04em;
         }
 
-        .mh-divider {
-          border-color: #C8A97E;
-          opacity: 0.5;
-        }
+        .mh-divider { border-color: #C8A97E; opacity: 0.5; }
 
         .mh-available-badge {
           background: #fff8ee;
@@ -61,20 +84,7 @@ export default function About() {
           transform: scale(1.18);
         }
 
-        .mh-accent-line {
-          display: inline-block;
-          width: 48px;
-          height: 3px;
-          background: linear-gradient(90deg, #D4A017, #8B3A2A);
-          border-radius: 2px;
-          margin-bottom: 6px;
-          vertical-align: middle;
-          margin-right: 10px;
-        }
-
-        .mh-grain-overlay {
-          position: relative;
-        }
+        .mh-grain-overlay { position: relative; }
         .mh-grain-overlay::after {
           content: '';
           position: absolute;
@@ -123,11 +133,10 @@ export default function About() {
         {/* ── Top Section ── */}
         <div className="grid gap-10 lg:grid-cols-2">
 
-          <div>
+          <Reveal direction="left">
             <span className="mh-badge inline-flex rounded-full px-4 py-1 text-sm">
               About the Founder
             </span>
-
             <h1
               className="mh-display mt-6 text-4xl font-bold leading-tight md:text-6xl"
               style={{ color: "#1C1208" }}
@@ -137,29 +146,28 @@ export default function About() {
               <span style={{ color: "#8B3A2A" }}>Built for the world.</span>{" "}
               <span style={{ fontSize: "0.85em" }}>🌾</span>
             </h1>
-          </div>
+          </Reveal>
 
-          <div className="flex items-center">
-            <p
-              className="mh-body max-w-xl text-lg leading-8"
-              style={{ color: "#5C3D1E" }}
-            >
+          <Reveal direction="right" delay={0.15} className="flex items-center">
+            <p className="mh-body max-w-xl text-lg leading-8" style={{ color: "#5C3D1E" }}>
               We help people reconnect with the authentic tastes, aromas, and
               traditions of Mithila — through carefully sourced, processed, and
-              packaged food products that carry the soul of Bihar's harvest
-              culture.
+              packaged food products that carry the soul of Bihar's harvest culture.
             </p>
-          </div>
+          </Reveal>
+
         </div>
 
         {/* ── Divider ── */}
-        <div className="mh-divider my-14 border-t" />
+        <Reveal direction="none" delay={0.1}>
+          <div className="mh-divider my-14 border-t" />
+        </Reveal>
 
         {/* ── Main Content ── */}
         <div className="grid gap-16 lg:grid-cols-2">
 
-          {/* ── LEFT SIDE ── */}
-          <div>
+          {/* ── LEFT SIDE — Image ── */}
+          <Reveal direction="left" delay={0.05}>
             <div className="relative">
 
               {/* Spinning Badge */}
@@ -175,17 +183,9 @@ export default function About() {
                   </SpinningText>
                   <div
                     className="absolute flex h-14 w-14 items-center justify-center rounded-full shadow-md"
-                    style={{
-                      background: "#F5ECD7",
-                      border: "2px solid #D4A017",
-                    }}
+                    style={{ background: "#F5ECD7", border: "2px solid #D4A017" }}
                   >
-                    <Image
-                      src="/logo.svg"
-                      alt="Maithili Harvest Logo"
-                      width={28}
-                      height={28}
-                    />
+                    <Image src="/logo.svg" alt="Maithili Harvest Logo" width={28} height={28} />
                   </div>
                 </div>
               </div>
@@ -214,14 +214,8 @@ export default function About() {
                 style={{ whiteSpace: "nowrap" }}
               >
                 <div className="flex items-center gap-2">
-                  <div
-                    className="h-3 w-3 rounded-full"
-                    style={{ background: "#D4A017" }}
-                  />
-                  <span
-                    className="mh-label text-sm font-medium"
-                    style={{ color: "#8B3A2A" }}
-                  >
+                  <div className="h-3 w-3 rounded-full animate-pulse" style={{ background: "#D4A017" }} />
+                  <span className="mh-label text-sm font-medium" style={{ color: "#8B3A2A" }}>
                     Open to Partnerships
                   </span>
                 </div>
@@ -231,16 +225,10 @@ export default function About() {
             {/* Name + Social */}
             <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
-                <h3
-                  className="mh-display text-3xl font-bold"
-                  style={{ color: "#1C1208" }}
-                >
+                <h3 className="mh-display text-3xl font-bold" style={{ color: "#1C1208" }}>
                   Amit Kumar
                 </h3>
-                <p
-                  className="mh-subheading mt-1 text-base italic"
-                  style={{ color: "#8B3A2A", letterSpacing: "0.02em" }}
-                >
+                <p className="mh-subheading mt-1 text-base italic" style={{ color: "#8B3A2A", letterSpacing: "0.02em" }}>
                   Founder, Maithili Harvest Pvt. Ltd.
                 </p>
                 <div className="mt-2 flex gap-2 flex-wrap">
@@ -250,137 +238,105 @@ export default function About() {
               </div>
 
               <div className="flex items-center gap-4">
-                <Link
-                  href="https://www.instagram.com/maithiliharvest"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mh-social-link"
-                  aria-label="Instagram"
-                >
+                <Link href="https://www.instagram.com/maithiliharvest" target="_blank" rel="noopener noreferrer" className="mh-social-link" aria-label="Instagram">
                   <MessageCircleMore size={22} />
                 </Link>
-                <Link
-                  href="https://in.linkedin.com/in/amit-kumar-6a23a5184"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mh-social-link"
-                  aria-label="LinkedIn"
-                >
+                <Link href="https://in.linkedin.com/in/amit-kumar-6a23a5184" target="_blank" rel="noopener noreferrer" className="mh-social-link" aria-label="LinkedIn">
                   <ArrowUpRight size={22} />
                 </Link>
-                <Link
-                  href="https://maithiliharvest.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mh-social-link"
-                  aria-label="Website"
-                >
+                <Link href="https://maithiliharvest.com" target="_blank" rel="noopener noreferrer" className="mh-social-link" aria-label="Website">
                   <Link2 size={22} />
                 </Link>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          {/* ── RIGHT SIDE ── */}
+          {/* ── RIGHT SIDE — Text ── */}
           <div className="flex flex-col justify-between">
             <div className="space-y-10">
 
               {/* Para 1 */}
-              <div>
+              <Reveal direction="right" delay={0.1}>
                 <span className="mh-quote-mark">"</span>
-                <p
-                  className="mh-body text-lg leading-9"
-                  style={{ color: "#3D2410" }}
-                >
+                <p className="mh-body text-lg leading-9" style={{ color: "#3D2410" }}>
                   <span className="mh-para-highlight">
                     Maithili Harvest isn't just a business — it's a mission.
                   </span>{" "}
-                  What began as a deep respect for Bihar's agricultural roots
-                  grew into a registered food and agri-startup, incorporated in
-                  February 2026, dedicated to bringing the finest traditional
-                  and regional products to modern markets.
+                  What began as a deep respect for Bihar's agricultural roots grew into a
+                  registered food and agri-startup, incorporated in February 2026, dedicated
+                  to bringing the finest traditional and regional products to modern markets.
                 </p>
-              </div>
+              </Reveal>
 
               {/* Para 2 */}
-              <div>
-                <p
-                  className="mh-body text-lg leading-9"
-                  style={{ color: "#3D2410" }}
-                >
+              <Reveal direction="right" delay={0.2}>
+                <p className="mh-body text-lg leading-9" style={{ color: "#3D2410" }}>
                   <span className="mh-para-highlight">
                     Amit has built this brand from the ground up —
                   </span>{" "}
-                  navigating import-export licensing, FSSAI food safety
-                  registrations, and e-commerce packaging standards firsthand.
-                  Every product on our shelf carries his personal commitment to
-                  authenticity, quality, and fair sourcing.
+                  navigating import-export licensing, FSSAI food safety registrations, and
+                  e-commerce packaging standards firsthand. Every product on our shelf carries
+                  his personal commitment to authenticity, quality, and fair sourcing.
                 </p>
-              </div>
+              </Reveal>
 
               {/* Para 3 */}
-              <div>
-                <p
-                  className="mh-body text-lg leading-9"
-                  style={{ color: "#3D2410" }}
-                >
+              <Reveal direction="right" delay={0.3}>
+                <p className="mh-body text-lg leading-9" style={{ color: "#3D2410" }}>
                   <span className="mh-para-highlight">
-                    From hand-picked spices and fresh groceries to exotic indoor
-                    plants —
+                    From hand-picked spices and fresh groceries to exotic indoor plants —
                   </span>{" "}
-                  Maithili Harvest is expanding what "local food" can mean. We
-                  believe the harvest of Mithila deserves a place in every
-                  Indian kitchen, and far beyond.
+                  Maithili Harvest is expanding what "local food" can mean. We believe the
+                  harvest of Mithila deserves a place in every Indian kitchen, and far beyond.
                 </p>
-              </div>
+              </Reveal>
 
               {/* Decorative Rule */}
-              <div
-                style={{
-                  height: "1px",
-                  background:
-                    "linear-gradient(90deg, #D4A017 0%, #8B3A2A 50%, transparent 100%)",
-                  opacity: 0.35,
-                  borderRadius: 2,
-                }}
-              />
+              <Reveal direction="none" delay={0.35}>
+                <div
+                  style={{
+                    height: "1px",
+                    background: "linear-gradient(90deg, #D4A017 0%, #8B3A2A 50%, transparent 100%)",
+                    opacity: 0.35,
+                    borderRadius: 2,
+                  }}
+                />
+              </Reveal>
 
               {/* Founding Note */}
-              <div
-                className="rounded-2xl px-6 py-5"
-                style={{
-                  background: "rgba(212,160,23,0.08)",
-                  border: "1px solid rgba(212,160,23,0.25)",
-                }}
-              >
-                <p
-                  className="mh-subheading text-base italic leading-7"
-                  style={{ color: "#5C3D1E" }}
+              <Reveal direction="up" delay={0.4}>
+                <div
+                  className="rounded-2xl px-6 py-5"
+                  style={{
+                    background: "rgba(212,160,23,0.08)",
+                    border: "1px solid rgba(212,160,23,0.25)",
+                  }}
                 >
-                  "The soil of Mithila has fed generations. Our work is simply
-                  to carry that nourishment forward — with care, integrity, and
-                  pride."
-                </p>
-                <p
-                  className="mh-label mt-3 text-sm"
-                  style={{ color: "#8B3A2A" }}
-                >
-                  — Amit Kumar, Founder
-                </p>
-              </div>
+                  <p className="mh-subheading text-base italic leading-7" style={{ color: "#5C3D1E" }}>
+                    "The soil of Mithila has fed generations. Our work is simply to carry that
+                    nourishment forward — with care, integrity, and pride."
+                  </p>
+                  <p className="mh-label mt-3 text-sm" style={{ color: "#8B3A2A" }}>
+                    — Amit Kumar, Founder
+                  </p>
+                </div>
+              </Reveal>
+
             </div>
 
             {/* Signature */}
-            <div className="mt-16 flex justify-center lg:justify-end">
-              <Image
-                src="/about/signature.svg"
-                alt="Amit Kumar Signature"
-                width={220}
-                height={100}
-                className="object-contain"
-                style={{ opacity: 0.75, filter: "sepia(40%) hue-rotate(-10deg)" }}
-              />
-            </div>
+            <Reveal direction="up" delay={0.5}>
+              <div className="mt-16 flex justify-center lg:justify-end">
+                <Image
+                  src="/about/signature.svg"
+                  alt="Amit Kumar Signature"
+                  width={220}
+                  height={100}
+                  className="object-contain"
+                  style={{ opacity: 0.75, filter: "sepia(40%) hue-rotate(-10deg)" }}
+                />
+              </div>
+            </Reveal>
           </div>
 
         </div>
