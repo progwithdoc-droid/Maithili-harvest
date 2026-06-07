@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="700" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5ECD7"/>
+      <stop offset="1" stop-color="#F0E2C4"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="160" y1="160" x2="540" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D4A017"/>
+      <stop offset="1" stop-color="#8B3A2A"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="800" rx="36" fill="url(#bg)"/>
+  <circle cx="350" cy="300" r="120" fill="#C8A97E" fill-opacity="0.35"/>
+  <path d="M250 580c24-88 73-132 100-132s76 44 100 132" fill="#8B3A2A" fill-opacity="0.18"/>
+  <circle cx="350" cy="292" r="78" fill="#8B3A2A" fill-opacity="0.2"/>
+  <path d="M282 290c0-42 31-76 68-76s68 34 68 76c0 41-31 74-68 74s-68-33-68-74Z" fill="url(#accent)" fill-opacity="0.8"/>
+  <path d="M286 580c6-66 34-112 64-112s58 46 64 112" stroke="#1C1208" stroke-opacity="0.35" stroke-width="12" stroke-linecap="round"/>
+  <text x="350" y="710" text-anchor="middle" fill="#8B3A2A" font-family="serif" font-size="42" font-weight="700">Maithili Harvest</text>
+</svg>
