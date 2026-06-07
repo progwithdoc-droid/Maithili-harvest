@@ -1,22 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { MessageCircleMore, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
-
 import TestimonialCard from "./TestimonialCard";
-
-export default function TestimonialSection() {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % testimonials.length);
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, []);
-
 
 const testimonials = [
   {
@@ -28,7 +14,6 @@ const testimonials = [
     review:
       "The mustard oil and thekua mix from Maithili Harvest brought back memories of my nani's kitchen in Darbhanga. Genuinely authentic — you can taste the difference from supermarket brands.",
   },
-
   {
     id: 2,
     name: "Rajesh Jha",
@@ -36,9 +21,8 @@ const testimonials = [
     company: "Mithila Bhoj, Patna",
     avatar: "/testimonials/rajesh.svg",
     review:
-      "We source our spices and organic rice exclusively from Maithili Harvest. The quality is consistent, packaging is clean, and Amit personally ensures every batch meets standard. Truly a brand built with purpose.",
+      "We source our spices and organic rice exclusively from Maithili Harvest. The quality is consistent, packaging is clean, and Amit personally ensures every batch meets standard.",
   },
-
   {
     id: 3,
     name: "Ananya Mishra",
@@ -46,145 +30,221 @@ const testimonials = [
     company: "Sattvik Living",
     avatar: "/testimonials/ananya.svg",
     review:
-      "I recommend Maithili Harvest to all my clients looking for unprocessed, region-authentic food. Their products are traceable, fresh, and free from unnecessary additives. Exactly what clean eating should look like.",
+      "I recommend Maithili Harvest to all my clients looking for unprocessed, region-authentic food. Their products are traceable, fresh, and free from unnecessary additives.",
   },
 ];
 
+export default function TestimonialSection() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      style={{
+        backgroundColor: "var(--color-linen-white)",
+        paddingTop: "6rem",
+        paddingBottom: "6rem",
+        borderTop: "0.5px solid var(--color-border-gold)",
+      }}
+    >
+      <div className="section-container">
 
-        {/* Heading */}
-
-        <div className="grid gap-10 lg:grid-cols-2">
-
+        {/* Header row */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "2.5rem",
+            marginBottom: "4.5rem",
+            alignItems: "end",
+          }}
+        >
           <div>
-            <span className="inline-flex rounded-full border px-4 py-1 text-sm">
+            <p className="brand-tag" style={{ marginBottom: "1.25rem" }}>
               Testimonials
-            </span>
-
-            <h2 className="mt-5 text-4xl font-bold md:text-6xl">
-              Trusted by clients
-              <br />
-              around the globe. 🌍
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-editorial)",
+                fontWeight: 300,
+                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                letterSpacing: "0.03em",
+                color: "var(--color-deep-cacao)",
+                lineHeight: 1.25,
+              }}
+            >
+              Trusted by those who{" "}
+              <span style={{ color: "var(--color-aged-gold)", fontStyle: "italic" }}>
+                value authenticity.
+              </span>
             </h2>
           </div>
-
-          <p className="max-w-xl text-lg text-muted-foreground">
-            I'm grateful to collaborate with forward-thinking
-            brands and teams who value design that creates
-            a real difference in user experiences and drives
-            business success.
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontWeight: 300,
+              fontSize: "0.95rem",
+              letterSpacing: "0.04em",
+              lineHeight: 1.85,
+              color: "var(--color-text-muted)",
+              maxWidth: "400px",
+            }}
+          >
+            From home cooks to restaurant owners — people across India trust
+            Maithili Harvest for its uncompromising quality and regional authenticity.
           </p>
-
         </div>
 
-        <div className="mt-16 grid gap-16 lg:grid-cols-2">
-
-          {/* LEFT */}
-
-          <div className="flex flex-col justify-between">
-
-            <div>
-
-              <p className="mb-12 text-xl text-muted-foreground">
-                I'm grateful to collaborate with brands and teams.
-              </p>
-
-              <div className="grid grid-cols-3 border-y py-10">
-
-                <div className="text-center">
-                  <h3 className="text-4xl font-bold">
-                    100+
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    Happy Client
+        {/* Stats + Card grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "4rem",
+            alignItems: "center",
+          }}
+        >
+          {/* Left — stats */}
+          <div>
+            {/* Stats row */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                borderTop: "0.5px solid var(--color-border-gold)",
+                borderBottom: "0.5px solid var(--color-border-gold)",
+                marginBottom: "3rem",
+              }}
+            >
+              {[
+                { value: "100+", label: "Happy Clients" },
+                { value: "₹5Cr+", label: "Products Sourced" },
+                { value: "4.9", label: "Avg. Rating" },
+              ].map((stat, i, arr) => (
+                <div
+                  key={stat.label}
+                  style={{
+                    textAlign: "center",
+                    padding: "1.75rem 0.5rem",
+                    borderRight: i < arr.length - 1 ? "0.5px solid var(--color-border-gold)" : "none",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: 400,
+                      fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+                      letterSpacing: "0.03em",
+                      color: "var(--color-deep-cacao)",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {stat.value}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontWeight: 300,
+                      fontSize: "11px",
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      color: "var(--color-text-muted)",
+                      marginTop: "0.5rem",
+                    }}
+                  >
+                    {stat.label}
                   </p>
                 </div>
-
-                <div className="text-center border-x">
-                  <h3 className="text-4xl font-bold">
-                    $250m
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    Revenue Added
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <h3 className="text-4xl font-bold">
-                    4.8
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    Average Rating
-                  </p>
-                </div>
-
-              </div>
-
+              ))}
             </div>
 
-            <div className="mt-12 flex gap-5">
-
-              <button className="flex items-center gap-2 rounded-full border px-6 py-3">
-                Let's Talk
-                <MessageCircleMore size={18} />
-              </button>
-
-              <button className="flex items-center gap-2 rounded-full bg-black px-6 py-3 text-white">
-                Hire Me
-                <ArrowUpRight size={18} />
-              </button>
-
+            {/* Dot indicators */}
+            <div style={{ display: "flex", gap: "8px", marginBottom: "2rem" }}>
+              {testimonials.map((t, i) => (
+                <button
+                  key={t.id}
+                  onClick={() => setActive(i)}
+                  aria-label={`View testimonial ${i + 1}`}
+                  style={{
+                    width: i === active ? 24 : 8,
+                    height: 8,
+                    borderRadius: "4px",
+                    backgroundColor: i === active
+                      ? "var(--color-warm-honey)"
+                      : "var(--color-border-gold)",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "width 0.3s ease, background-color 0.3s ease",
+                    padding: 0,
+                  }}
+                />
+              ))}
             </div>
+
+            <p
+              style={{
+                fontFamily: "var(--font-editorial)",
+                fontWeight: 300,
+                fontSize: "0.95rem",
+                fontStyle: "italic",
+                letterSpacing: "0.03em",
+                lineHeight: 1.8,
+                color: "var(--color-text-muted)",
+              }}
+            >
+              "Every product tells a story of careful hands, honest soil,<br />
+              and generations of knowledge."
+            </p>
           </div>
 
-          {/* RIGHT */}
+          {/* Right — animated card stack */}
+          <div style={{ position: "relative", height: "320px" }}>
+            {/* Background card 2 */}
+            <div
+              style={{
+                position: "absolute",
+                inset: "0 0.5rem",
+                top: "8px",
+                borderRadius: "12px",
+                border: "0.5px solid var(--color-border-gold)",
+                backgroundColor: "var(--color-ivory-cream)",
+                opacity: 0.5,
+              }}
+            />
+            {/* Background card 1 */}
+            <div
+              style={{
+                position: "absolute",
+                inset: "0 1rem",
+                top: "16px",
+                borderRadius: "12px",
+                border: "0.5px solid var(--color-border-gold)",
+                backgroundColor: "var(--color-ivory-cream)",
+                opacity: 0.3,
+              }}
+            />
 
-          <div className="relative h-[420px]">
-
-            {/* Back Card 3 */}
-            <div className="absolute left-10 right-10 top-0 scale-[0.90] rounded-[28px] border bg-white opacity-50">
-              <div className="h-[250px]" />
-            </div>
-
-            {/* Back Card 2 */}
-            <div className="absolute left-5 right-5 top-5 scale-[0.95] rounded-[28px] border bg-white opacity-70">
-              <div className="h-[250px]" />
-            </div>
-
-            {/* Main Animated Card */}
-
+            {/* Animated main card */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={testimonials[active].id}
-                initial={{
-                  opacity: 0,
-                  y: 50,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: -50,
-                }}
-                transition={{
-                  duration: 0.5,
-                }}
-                className="absolute inset-x-0 top-10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+                style={{ position: "absolute", inset: 0 }}
               >
-                <TestimonialCard
-                  testimonial={testimonials[active]}
-                />
+                <TestimonialCard testimonial={testimonials[active]} />
               </motion.div>
             </AnimatePresence>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

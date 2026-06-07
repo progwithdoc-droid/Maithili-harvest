@@ -4,87 +4,211 @@ import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "Products", href: "/products" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const socials = [
+  { label: "Instagram", href: "https://www.instagram.com/maithiliharvest" },
+  { label: "LinkedIn", href: "https://in.linkedin.com/in/amit-kumar-6a23a5184" },
+  { label: "YouTube", href: "https://youtube.com" },
+  { label: "WhatsApp", href: "https://wa.me/91XXXXXXXXXX" },
+];
+
+const contactItems = [
+  { Icon: Phone, label: "Phone", value: "+91 XXXXX XXXXX" },
+  { Icon: Mail, label: "Email", value: "hello@maithiliharvest.com" },
+  { Icon: MapPin, label: "Location", value: "Darbhanga, Bihar, India" },
+];
+
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
 
   const handleSubscribe = () => {
     if (email.trim()) {
-      alert("Thank you! We'll keep you updated.");
+      setSent(true);
       setEmail("");
+      setTimeout(() => setSent(false), 4000);
     }
   };
 
   return (
-    <footer className="bg-[linear-gradient(170deg,#1C1208_0%,#2A1A0E_100%)] text-[#F5ECD7]">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="flex flex-col gap-8 py-16 md:flex-row md:items-center md:justify-between">
-          <h2 className="max-w-2xl text-3xl font-extrabold leading-tight text-[#F5ECD7] sm:text-4xl lg:text-5xl font-serif">
-            Ready to Taste the
-            <br />
-            <span className="text-[#D4A017]">Heart of Mithila?</span>
-          </h2>
-          <Link
-            href="/"
-            className="group inline-flex items-center gap-3 rounded-full bg-[#F5ECD7] px-7 py-3.5 font-serif text-base tracking-wide text-[#1C1208] shadow-[0_4px_20px_rgba(212,160,23,0.15)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#D4A017] hover:shadow-[0_8px_28px_rgba(212,160,23,0.3)]"
-          >
-            Shop Now
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1C1208] text-sm text-[#F5ECD7] transition-colors duration-200 group-hover:bg-[#8B3A2A]">
-              →
-            </span>
-          </Link>
+    <footer style={{ backgroundColor: "var(--color-deep-cacao)" }}>
+
+      {/* ── Top divider ── */}
+      <div className="brand-divider--dark" style={{ borderTop: "0.5px solid var(--color-rich-walnut)" }} />
+
+      {/* ── CTA banner ── */}
+      <div
+        style={{
+          borderBottom: "0.5px solid var(--color-rich-walnut)",
+          padding: "4rem 1.5rem",
+        }}
+      >
+        <div
+          className="section-container"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "2rem",
+            alignItems: "flex-start",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", flex: 1 }}>
+            <p className="brand-tag" style={{ color: "var(--color-aged-gold)" }}>
+              Taste Mithila
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 400,
+                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                letterSpacing: "0.04em",
+                color: "var(--color-ivory-cream)",
+                lineHeight: 1.2,
+              }}
+            >
+              Ready to taste the heart of Mithila?
+            </h2>
+          </div>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <Link href="/products" className="btn-primary">
+              Shop Now
+            </Link>
+            <Link href="/about" className="btn-secondary">
+              Our Story
+            </Link>
+          </div>
         </div>
       </div>
 
-      <div className="h-px bg-[linear-gradient(90deg,rgba(212,160,23,0.35)_0%,rgba(139,58,42,0.35)_50%,transparent_100%)]" />
+      {/* ── Main footer grid ── */}
+      <div
+        className="section-container"
+        style={{ padding: "4rem 1.5rem", position: "relative", overflow: "hidden" }}
+      >
+        {/* Watermark brand name */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: "2rem",
+            left: "50%",
+            transform: "translateX(-50%)",
+            fontFamily: "var(--font-display)",
+            fontWeight: 400,
+            fontSize: "clamp(4rem, 10vw, 9rem)",
+            letterSpacing: "0.04em",
+            color: "var(--color-ivory-cream)",
+            opacity: 0.03,
+            whiteSpace: "nowrap",
+            userSelect: "none",
+            pointerEvents: "none",
+          }}
+        >
+          Maithili Harvest
+        </div>
 
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.4fr]">
-          <div>
-            <Link href="/" className="mb-4 flex items-center gap-3 text-current no-underline">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#D4A017,#8B3A2A)] text-lg shadow-lg shadow-black/20">
-                🌾
-              </div>
-              <span className="text-[1.15rem] font-bold leading-tight font-serif">
-                Maithili Harvest
-              </span>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gap: "3rem",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          {/* Brand column */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            <Link
+              href="/"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 400,
+                fontSize: "1.2rem",
+                letterSpacing: "0.04em",
+                color: "var(--color-ivory-cream)",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <span style={{ fontSize: "1.2rem" }}>🌾</span>
+              Maithili Harvest
             </Link>
-            <p className="mb-6 max-w-[15rem] text-sm italic leading-7 text-[#9C7A56] font-serif">
-              From the soil of Mithila to your kitchen — authentic flavours,
-              honest sourcing.
+            <p
+              style={{
+                fontFamily: "var(--font-editorial)",
+                fontWeight: 300,
+                fontSize: "0.9rem",
+                fontStyle: "italic",
+                letterSpacing: "0.03em",
+                lineHeight: 1.8,
+                color: "var(--color-text-muted)",
+                maxWidth: "220px",
+              }}
+            >
+              From the soil of Mithila to your kitchen — authentic flavours, honest sourcing.
             </p>
-            <div className="flex items-center gap-4">
-              <Link href="https://www.instagram.com/maithiliharvest" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex text-[#C8A97E] transition duration-200 hover:scale-110 hover:text-[#D4A017]">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(212,160,23,0.28)] bg-[rgba(212,160,23,0.1)] text-xs font-semibold tracking-[0.08em] text-[#F5ECD7]">
-                  IG
-                </span>
-              </Link>
-              <Link href="https://in.linkedin.com/in/amit-kumar-6a23a5184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex text-[#C8A97E] transition duration-200 hover:scale-110 hover:text-[#D4A017]">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(212,160,23,0.28)] bg-[rgba(212,160,23,0.1)] text-xs font-semibold tracking-[0.08em] text-[#F5ECD7]">
-                  IN
-                </span>
-              </Link>
-              <Link href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="flex text-[#C8A97E] transition duration-200 hover:scale-110 hover:text-[#D4A017]">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(212,160,23,0.28)] bg-[rgba(212,160,23,0.1)] text-xs font-semibold tracking-[0.08em] text-[#F5ECD7]">
-                  YT
-                </span>
-              </Link>
+            {/* Social icons */}
+            <div style={{ display: "flex", gap: "8px" }}>
+              {[
+                { label: "IG", href: "https://www.instagram.com/maithiliharvest" },
+                { label: "IN", href: "https://in.linkedin.com/in/amit-kumar-6a23a5184" },
+                { label: "YT", href: "https://youtube.com" },
+              ].map(({ label, href }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 34,
+                    height: 34,
+                    border: "0.5px solid rgba(196,164,106,0.2)",
+                    color: "var(--color-text-muted)",
+                    fontFamily: "var(--font-body)",
+                    fontWeight: 500,
+                    fontSize: "10px",
+                    letterSpacing: "0.1em",
+                    textDecoration: "none",
+                    transition: "border-color 0.2s ease, color 0.2s ease",
+                  }}
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <p className="mb-5 text-xs uppercase tracking-[0.1em] text-[#D4A017] font-serif">Quick Links</p>
-            <ul className="flex flex-col gap-3">
-              {[
-                { label: "Home", href: "/" },
-                { label: "Products", href: "/products" },
-                { label: "About Us", href: "/about" },
-                { label: "Our Story", href: "/story" },
-                { label: "Contact", href: "/contact" },
-              ].map((item) => (
+            <p className="brand-tag" style={{ color: "var(--color-aged-gold)", marginBottom: "1.25rem" }}>
+              Quick Links
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {quickLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="inline-block text-sm font-light tracking-[0.01em] text-[#C8A97E] transition duration-200 hover:translate-x-1 hover:text-[#D4A017]"
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontWeight: 300,
+                      fontSize: "0.875rem",
+                      letterSpacing: "0.05em",
+                      color: "var(--color-text-muted)",
+                      textDecoration: "none",
+                      transition: "color 0.2s ease",
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -93,21 +217,27 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Socials */}
           <div>
-            <p className="mb-5 text-xs uppercase tracking-[0.1em] text-[#D4A017] font-serif">Socials</p>
-            <ul className="flex flex-col gap-3">
-              {[
-                { label: "Instagram", href: "https://www.instagram.com/maithiliharvest" },
-                { label: "LinkedIn", href: "https://in.linkedin.com/in/amit-kumar-6a23a5184" },
-                { label: "YouTube", href: "https://youtube.com" },
-                { label: "WhatsApp", href: "https://wa.me/91XXXXXXXXXX" },
-              ].map((item) => (
+            <p className="brand-tag" style={{ color: "var(--color-aged-gold)", marginBottom: "1.25rem" }}>
+              Socials
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {socials.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block text-sm font-light tracking-[0.01em] text-[#C8A97E] transition duration-200 hover:translate-x-1 hover:text-[#D4A017]"
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontWeight: 300,
+                      fontSize: "0.875rem",
+                      letterSpacing: "0.05em",
+                      color: "var(--color-text-muted)",
+                      textDecoration: "none",
+                      transition: "color 0.2s ease",
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -116,82 +246,154 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Newsletter */}
           <div>
-            <p className="mb-5 text-xs uppercase tracking-[0.1em] text-[#D4A017] font-serif">Stay Updated</p>
-            <p className="mb-4 text-sm italic leading-7 text-[#9C7A56] font-serif">
-              Get harvest updates, new products &amp; seasonal recipes delivered
-              to your inbox.
+            <p className="brand-tag" style={{ color: "var(--color-aged-gold)", marginBottom: "1.25rem" }}>
+              Stay Updated
             </p>
-            <div className="space-y-3">
-              <input
-                type="email"
-                className="w-full rounded-lg border border-[rgba(212,160,23,0.28)] bg-[rgba(245,236,215,0.07)] px-4 py-2.5 text-sm text-[#F5ECD7] outline-none transition duration-200 placeholder:text-[#9C7A56] focus:border-[#D4A017] focus:bg-[rgba(245,236,215,0.11)]"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
-              />
-              <button
-                className="w-full rounded-lg bg-[#8B3A2A] px-4 py-2.5 text-sm tracking-[0.05em] text-[#F5ECD7] transition duration-200 hover:-translate-y-0.5 hover:bg-[#D4A017] hover:text-[#1C1208]"
-                onClick={handleSubscribe}
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontWeight: 300,
+                fontSize: "0.85rem",
+                letterSpacing: "0.04em",
+                lineHeight: 1.8,
+                color: "var(--color-text-muted)",
+                marginBottom: "1rem",
+              }}
+            >
+              Harvest updates, new arrivals &amp; seasonal recipes in your inbox.
+            </p>
+            {sent ? (
+              <p
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontWeight: 300,
+                  fontSize: "0.85rem",
+                  letterSpacing: "0.06em",
+                  color: "var(--color-warm-honey)",
+                }}
               >
-                Subscribe
-              </button>
-            </div>
+                Thank you — we'll be in touch.
+              </p>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                <input
+                  type="email"
+                  className="brand-input brand-input--dark"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
+                />
+                <button
+                  onClick={handleSubscribe}
+                  className="btn-primary"
+                  style={{ width: "100%", justifyContent: "center", padding: "12px 20px" }}
+                >
+                  Subscribe
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="h-px bg-[linear-gradient(90deg,#D4A017_0%,#8B3A2A_50%,transparent_100%)] opacity-30" />
-
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-6 py-8 lg:grid-cols-3">
-          <div className="flex items-center gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(212,160,23,0.28)] bg-[rgba(212,160,23,0.1)] text-[#D4A017]">
-              <Phone size={18} />
+      {/* ── Contact bar ── */}
+      <div style={{ borderTop: "0.5px solid var(--color-rich-walnut)" }}>
+        <div
+          className="section-container"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "1.5rem",
+            padding: "2.5rem 1.5rem",
+          }}
+        >
+          {contactItems.map(({ Icon, label, value }) => (
+            <div
+              key={label}
+              style={{ display: "flex", alignItems: "center", gap: "12px" }}
+            >
+              <div
+                style={{
+                  width: 38,
+                  height: 38,
+                  flexShrink: 0,
+                  border: "0.5px solid rgba(196,164,106,0.2)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--color-aged-gold)",
+                }}
+              >
+                <Icon size={16} />
+              </div>
+              <div>
+                <p className="brand-tag" style={{ color: "var(--color-aged-gold)", marginBottom: "2px" }}>
+                  {label}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontWeight: 300,
+                    fontSize: "0.85rem",
+                    letterSpacing: "0.04em",
+                    color: "var(--color-text-muted)",
+                  }}
+                >
+                  {value}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="mb-1 text-xs uppercase tracking-[0.1em] text-[#D4A017] font-serif">Phone No:</p>
-              <p className="text-sm font-light text-[#C8A97E]">+91 XXXXX XXXXX</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(212,160,23,0.28)] bg-[rgba(212,160,23,0.1)] text-[#D4A017]">
-              <Mail size={18} />
-            </div>
-            <div>
-              <p className="mb-1 text-xs uppercase tracking-[0.1em] text-[#D4A017] font-serif">Email Address:</p>
-              <p className="text-sm font-light text-[#C8A97E]">hello@maithiliharvest.com</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(212,160,23,0.28)] bg-[rgba(212,160,23,0.1)] text-[#D4A017]">
-              <MapPin size={18} />
-            </div>
-            <div>
-              <p className="mb-1 text-xs uppercase tracking-[0.1em] text-[#D4A017] font-serif">Location:</p>
-              <p className="text-sm font-light text-[#C8A97E]">Darbhanga, Bihar, India</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
-      <div className="h-px bg-[linear-gradient(90deg,rgba(200,169,126,0.18)_0%,rgba(200,169,126,0.18)_100%)]" />
-
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-[#6B4C2A] font-serif">
-            © 2026 Maithili Harvest Pvt. Ltd. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <Link href="/privacy" className="text-sm text-[#6B4C2A] transition duration-200 hover:text-[#D4A017]">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-sm text-[#6B4C2A] transition duration-200 hover:text-[#D4A017]">
-              Terms of Service
-            </Link>
+      {/* ── Bottom bar ── */}
+      <div style={{ borderTop: "0.5px solid var(--color-rich-walnut)" }}>
+        <div
+          className="section-container"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.5rem",
+            padding: "1.5rem",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between", width: "100%", flexWrap: "wrap", gap: "0.75rem" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontWeight: 300,
+                fontSize: "11px",
+                letterSpacing: "0.1em",
+                color: "rgba(138,117,96,0.6)",
+              }}
+            >
+              © 2026 Maithili Harvest Pvt. Ltd. All rights reserved.
+            </p>
+            <div style={{ display: "flex", gap: "1.5rem" }}>
+              {[{ label: "Privacy Policy", href: "/privacy" }, { label: "Terms of Service", href: "/terms" }].map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontWeight: 300,
+                    fontSize: "11px",
+                    letterSpacing: "0.1em",
+                    color: "rgba(138,117,96,0.6)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

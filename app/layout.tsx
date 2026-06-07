@@ -1,28 +1,37 @@
 import type { Metadata } from "next";
-import { Poppins, Libre_Baskerville, IBM_Plex_Mono } from "next/font/google";
+import {
+  Playfair_Display,
+  Cormorant_Garamond,
+  Jost,
+} from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const fontSans = Poppins({
+/* ── Google Fonts ── */
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-sans",
-  weight: "100"
+  weight: ["400", "500"],
+  variable: "--font-display",
+  display: "swap",
 });
 
-const fontSerif = Libre_Baskerville({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-serif",
+  weight: ["300", "400", "500"],
+  variable: "--font-editorial",
+  display: "swap",
 });
 
-const fontMono = IBM_Plex_Mono({
+const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-mono",
-  weight: "100"
+  weight: ["300", "400", "500"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Maithili Harvest — Authentic Flavours of Mithila",
+  title: "Maithili Harvest — Artisan Food from Mithila",
   description:
     "Maithili Harvest brings the finest traditional and regional food products from Mithila, Bihar to your kitchen. Authentic flavours, honest sourcing.",
 };
@@ -33,13 +42,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased`}>
+    <html lang="en" className={`${playfair.variable} ${cormorant.variable} ${jost.variable}`}>
+      <body style={{ paddingTop: "72px" }}>
         <Navbar />
-        <div style={{ paddingTop: "72px" }}>
-          {children}
-        </div>
-        <Footer/>
+        {children}
+        <Footer />
       </body>
     </html>
   );
