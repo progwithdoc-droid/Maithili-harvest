@@ -10,7 +10,7 @@ const testimonials = [
     name: "Priya Sharma",
     role: "Home Chef & Food Blogger",
     company: "Rasoi Se Dil Tak",
-    avatar: "/testimonials/priya.svg",
+    avatar: "/testimonials/priya.avif",
     review:
       "The mustard oil and thekua mix from Maithili Harvest brought back memories of my nani's kitchen in Darbhanga. Genuinely authentic — you can taste the difference from supermarket brands.",
   },
@@ -28,7 +28,7 @@ const testimonials = [
     name: "Ananya Mishra",
     role: "Nutritionist & Wellness Coach",
     company: "Sattvik Living",
-    avatar: "/testimonials/ananya.svg",
+    avatar: "/testimonials/ananya.avif",
     review:
       "I recommend Maithili Harvest to all my clients looking for unprocessed, region-authentic food. Their products are traceable, fresh, and free from unnecessary additives.",
   },
@@ -36,13 +36,15 @@ const testimonials = [
 
 export default function TestimonialSection() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
+    if (paused) return;
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % testimonials.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [paused]);
 
   return (
     <section
@@ -132,7 +134,10 @@ export default function TestimonialSection() {
                   style={{
                     textAlign: "center",
                     padding: "1.75rem 0.5rem",
-                    borderRight: i < arr.length - 1 ? "0.5px solid var(--color-border-gold)" : "none",
+                    borderRight:
+                      i < arr.length - 1
+                        ? "0.5px solid var(--color-border-gold)"
+                        : "none",
                   }}
                 >
                   <p
@@ -140,7 +145,8 @@ export default function TestimonialSection() {
                       fontFamily: "var(--font-display)",
                       fontWeight: 400,
                       fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-                      letterSpacing: "0.03em",
+                      /* Tighter tracking makes large numerals feel premium */
+                      letterSpacing: "-0.01em",
                       color: "var(--color-deep-cacao)",
                       lineHeight: 1,
                     }}
@@ -151,11 +157,12 @@ export default function TestimonialSection() {
                     style={{
                       fontFamily: "var(--font-body)",
                       fontWeight: 300,
-                      fontSize: "11px",
-                      letterSpacing: "0.12em",
+                      fontSize: "10px",
+                      /* Wider tracking on small label = airy, editorial */
+                      letterSpacing: "0.18em",
                       textTransform: "uppercase",
                       color: "var(--color-text-muted)",
-                      marginTop: "0.5rem",
+                      marginTop: "0.75rem",
                     }}
                   >
                     {stat.label}
@@ -164,8 +171,18 @@ export default function TestimonialSection() {
               ))}
             </div>
 
-            {/* Dot indicators */}
-            <div style={{ display: "flex", gap: "8px", marginBottom: "2rem" }}>
+            {/* Dot indicators — wrapped in pill container */}
+            <div
+              style={{
+                display: "inline-flex",
+                gap: "6px",
+                padding: "6px 10px",
+                borderRadius: "20px",
+                background: "var(--color-ivory-cream)",
+                border: "0.5px solid var(--color-border-gold)",
+                marginBottom: "2rem",
+              }}
+            >
               {testimonials.map((t, i) => (
                 <button
                   key={t.id}
@@ -175,9 +192,10 @@ export default function TestimonialSection() {
                     width: i === active ? 24 : 8,
                     height: 8,
                     borderRadius: "4px",
-                    backgroundColor: i === active
-                      ? "var(--color-warm-honey)"
-                      : "var(--color-border-gold)",
+                    backgroundColor:
+                      i === active
+                        ? "var(--color-warm-honey)"
+                        : "var(--color-border-gold)",
                     border: "none",
                     cursor: "pointer",
                     transition: "width 0.3s ease, background-color 0.3s ease",
@@ -187,46 +205,73 @@ export default function TestimonialSection() {
               ))}
             </div>
 
-            <p
-              style={{
-                fontFamily: "var(--font-editorial)",
-                fontWeight: 300,
-                fontSize: "0.95rem",
-                fontStyle: "italic",
-                letterSpacing: "0.03em",
-                lineHeight: 1.8,
-                color: "var(--color-text-muted)",
-              }}
-            >
-              "Every product tells a story of careful hands, honest soil,<br />
-              and generations of knowledge."
-            </p>
+            {/* Editorial quote with decorative mark */}
+            <div style={{ maxWidth: "320px" }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-editorial)",
+                  fontWeight: 300,
+                  fontSize: "3rem",
+                  lineHeight: 1,
+                  color: "var(--color-aged-gold)",
+                  opacity: 0.35,
+                  marginBottom: "0.25rem",
+                  userSelect: "none",
+                }}
+                aria-hidden="true"
+              >
+                "
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-editorial)",
+                  fontWeight: 300,
+                  fontSize: "0.95rem",
+                  fontStyle: "italic",
+                  letterSpacing: "0.03em",
+                  lineHeight: 1.8,
+                  color: "var(--color-text-muted)",
+                  marginTop: 0,
+                }}
+              >
+                Every product tells a story of careful hands, honest soil,
+                and generations of knowledge.
+              </p>
+            </div>
           </div>
 
-          {/* Right — animated card stack */}
-          <div style={{ position: "relative", height: "320px" }}>
-            {/* Background card 2 */}
+          {/* Right — animated card stack with hover-to-pause */}
+          <div
+            style={{ position: "relative", height: "320px" }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            {/* Background card 2 — scale gives true depth */}
             <div
               style={{
                 position: "absolute",
-                inset: "0 0.5rem",
-                top: "8px",
+                inset: "0 0.75rem",
+                top: "10px",
                 borderRadius: "12px",
                 border: "0.5px solid var(--color-border-gold)",
                 backgroundColor: "var(--color-ivory-cream)",
-                opacity: 0.5,
+                opacity: 0.6,
+                transform: "scale(0.97)",
+                transformOrigin: "bottom center",
               }}
             />
             {/* Background card 1 */}
             <div
               style={{
                 position: "absolute",
-                inset: "0 1rem",
-                top: "16px",
+                inset: "0 1.5rem",
+                top: "20px",
                 borderRadius: "12px",
                 border: "0.5px solid var(--color-border-gold)",
                 backgroundColor: "var(--color-ivory-cream)",
-                opacity: 0.3,
+                opacity: 0.35,
+                transform: "scale(0.94)",
+                transformOrigin: "bottom center",
               }}
             />
 

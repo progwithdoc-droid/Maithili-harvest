@@ -4,8 +4,45 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "motion/react";
-import { MessageCircleMore, ArrowUpRight, Link2 } from "lucide-react";
 import { SpinningText } from "@/components/motion-primitives/spinning-text";
+
+// ── Highlight components ────────────────────────────────────────────────────
+
+function HlHarvest({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      style={{
+        background:
+          "linear-gradient(120deg, rgba(184,137,75,0.18) 0%, rgba(184,137,75,0.07) 100%)",
+        borderBottom: "1.5px solid var(--color-aged-gold)",
+        paddingInline: "2px",
+        color: "var(--color-spice-mahogany)",
+        fontWeight: 500,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function HlName({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      style={{
+        background:
+          "linear-gradient(120deg, rgba(106,54,25,0.13) 0%, rgba(106,54,25,0.05) 100%)",
+        borderBottom: "1.5px solid rgba(106,54,25,0.55)",
+        paddingInline: "2px",
+        color: "var(--color-deep-cacao)",
+        fontWeight: 500,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+// ── Scroll-reveal wrapper ───────────────────────────────────────────────────
 
 function Reveal({
   children,
@@ -37,6 +74,30 @@ function Reveal({
     </motion.div>
   );
 }
+
+// ── Social links data ───────────────────────────────────────────────────────
+// Icons are served from public/icons/ — update filenames to match your actual files.
+// Common conventions: instagram.png / instagram.svg, linkedin.png / linkedin.svg, website.png / globe.svg
+
+const SOCIAL_LINKS = [
+  {
+    href: "https://www.instagram.com/startupwithamit.in/",
+    icon: "/icons/instagram.png",   // ← update filename if different
+    label: "Instagram",
+  },
+  {
+    href: "https://www.linkedin.com/in/amitkumar1009/",
+    icon: "/icons/linkedin.png",    // ← update filename if different
+    label: "LinkedIn",
+  },
+  {
+    href: "https://maithiliharvest.com",
+    icon: "/icons/website.png",     // ← update filename if different (globe.png, web.png, etc.)
+    label: "Website",
+  },
+];
+
+// ── Page component ──────────────────────────────────────────────────────────
 
 export default function About() {
   return (
@@ -86,9 +147,10 @@ export default function About() {
                 maxWidth: "560px",
               }}
             >
-              We help people reconnect with the authentic tastes, aromas, and
-              traditions of Mithila — through carefully sourced, processed, and
-              packaged food products that carry the soul of Bihar's harvest culture.
+              Reconnecting India — and the world — with the authentic tastes,
+              aromas, and traditions of Mithila through carefully sourced,
+              ethically processed, and artisanally packaged food products that
+              carry the living soul of Bihar's harvest culture.
             </p>
           </Reveal>
         </div>
@@ -123,14 +185,23 @@ export default function About() {
                 }}
                 className="hidden md:block"
               >
-                <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", width: 96, height: 96 }}>
+                <div
+                  style={{
+                    position: "relative",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 96,
+                    height: 96,
+                  }}
+                >
                   <SpinningText
                     radius={5.6}
                     fontSize={0.72}
                     className="font-body"
                     style={{ color: "var(--color-aged-gold)", opacity: 0.95 }}
                   >
-                    {` FOUNDER • AGRI-ENTREPRENEUR • MITHILA HARVEST • `}
+                    {` FOUNDER • AMIT KUMAR • MITHILA HARVEST • `}
                   </SpinningText>
                   <div
                     style={{
@@ -141,12 +212,18 @@ export default function About() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      background: "linear-gradient(180deg, rgba(255,250,243,0.96), rgba(247,244,238,0.92))",
+                      background:
+                        "linear-gradient(180deg, rgba(255,250,243,0.96), rgba(247,244,238,0.92))",
                       border: "1px solid rgba(184,137,75,0.35)",
                       boxShadow: "0 14px 32px rgba(17,24,39,0.08)",
                     }}
                   >
-                    <Image src="/logo.svg" alt="Maithili Harvest" width={26} height={26} />
+                    <Image
+                      src="/logo.jpg"
+                      alt="Maithili Harvest"
+                      width={26}
+                      height={26}
+                    />
                   </div>
                 </div>
               </div>
@@ -160,11 +237,16 @@ export default function About() {
                 }}
               >
                 <Image
-                  src="/about/man-image.svg"
+                  src="/about/man-image.jpg"
                   alt="Amit Kumar — Founder, Maithili Harvest"
                   width={700}
                   height={800}
-                  style={{ display: "block", width: "100%", height: "auto", objectFit: "cover" }}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                  }}
                 />
               </div>
 
@@ -218,18 +300,20 @@ export default function About() {
               }}
             >
               <div>
+                {/* Highlighted founder name */}
                 <h3
                   style={{
                     fontFamily: "var(--font-display)",
                     fontSize: "1.8rem",
                     fontWeight: 400,
                     letterSpacing: "0.04em",
-                    color: "var(--color-deep-cacao)",
                     lineHeight: 1.2,
                   }}
                 >
-                  Amit Kumar
+                  <HlName>Amit Kumar</HlName>
                 </h3>
+
+                {/* Highlighted brand name */}
                 <p
                   style={{
                     fontFamily: "var(--font-editorial)",
@@ -238,14 +322,22 @@ export default function About() {
                     fontStyle: "italic",
                     letterSpacing: "0.03em",
                     color: "var(--color-spice-mahogany)",
-                    marginTop: "4px",
+                    marginTop: "6px",
                   }}
                 >
-                  Founder, Maithili Harvest Pvt. Ltd.
+                  Founder &amp; Director,{" "}
+                  <HlHarvest>Maithili Harvest</HlHarvest> Pvt. Ltd.
                 </p>
 
                 {/* Tags */}
-                <div style={{ display: "flex", gap: "8px", marginTop: "12px", flexWrap: "wrap" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "8px",
+                    marginTop: "12px",
+                    flexWrap: "wrap",
+                  }}
+                >
                   {["Agri-Entrepreneur", "Est. Feb 2026"].map((tag) => (
                     <span
                       key={tag}
@@ -267,13 +359,9 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Socials */}
-              <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-                {[
-                  { href: "https://www.instagram.com/maithiliharvest", icon: <MessageCircleMore size={18} />, label: "Instagram" },
-                  { href: "https://in.linkedin.com/in/amit-kumar-6a23a5184", icon: <ArrowUpRight size={18} />, label: "LinkedIn" },
-                  { href: "https://maithiliharvest.com", icon: <Link2 size={18} />, label: "Website" },
-                ].map(({ href, icon, label }) => (
+              {/* ── Social links using public/icons images ── */}
+              <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                {SOCIAL_LINKS.map(({ href, icon, label }) => (
                   <Link
                     key={label}
                     href={href}
@@ -287,12 +375,18 @@ export default function About() {
                       width: 36,
                       height: 36,
                       border: "0.5px solid var(--color-border-gold)",
-                      color: "var(--color-aged-gold)",
-                      transition: "border-color 0.2s ease, color 0.2s ease",
+                      borderRadius: "4px",
+                      transition: "border-color 0.2s ease, background 0.2s ease",
                       textDecoration: "none",
                     }}
                   >
-                    {icon}
+                    <Image
+                      src={icon}
+                      alt={label}
+                      width={18}
+                      height={18}
+                      style={{ objectFit: "contain" }}
+                    />
                   </Link>
                 ))}
               </div>
@@ -314,11 +408,14 @@ export default function About() {
                 }}
               >
                 <span style={{ color: "var(--color-spice-mahogany)", fontWeight: 400 }}>
-                  Maithili Harvest isn't just a business — it's a mission.
+                  <HlHarvest>Maithili Harvest</HlHarvest> is more than a
+                  business — it is a calling.
                 </span>{" "}
-                What began as a deep respect for Bihar's agricultural roots grew into a
-                registered food and agri-startup, incorporated in February 2026, dedicated
-                to bringing the finest traditional and regional products to modern markets.
+                What began as a deep reverence for Bihar's ancient agricultural
+                traditions has grown into a formally registered food and
+                agri-startup, incorporated in February 2026, dedicated to
+                bringing the finest traditional and regional products to modern
+                Indian and global markets.
               </p>
             </Reveal>
 
@@ -334,11 +431,14 @@ export default function About() {
                 }}
               >
                 <span style={{ color: "var(--color-spice-mahogany)", fontWeight: 400 }}>
-                  Amit has built this brand from the ground up —
+                  <HlName>Amit Kumar</HlName> has built this brand entirely
+                  from the ground up —
                 </span>{" "}
-                navigating import-export licensing, FSSAI food safety registrations, and
-                e-commerce packaging standards firsthand. Every product on our shelf carries
-                his personal commitment to authenticity, quality, and fair sourcing.
+                navigating the full arc of compliance firsthand: import-export
+                licensing (IEC), FSSAI food safety registrations, and
+                e-commerce packaging standards. Every product on the shelf
+                carries his personal commitment to authenticity, quality, and
+                fair sourcing directly from local Mithila farmers.
               </p>
             </Reveal>
 
@@ -354,10 +454,12 @@ export default function About() {
                 }}
               >
                 <span style={{ color: "var(--color-spice-mahogany)", fontWeight: 400 }}>
-                  From hand-picked spices to exotic indoor plants —
+                  From hand-selected indigenous spices to exotic indoor plants —
                 </span>{" "}
-                Maithili Harvest is expanding what "local food" can mean. We believe the
-                harvest of Mithila deserves a place in every Indian kitchen, and far beyond.
+                <HlHarvest>Maithili Harvest</HlHarvest> is actively expanding
+                what "local food" can mean at scale. The mission is clear: the
+                harvest of Mithila deserves a place in every Indian kitchen, and
+                in homes far beyond.
               </p>
             </Reveal>
 
@@ -386,8 +488,9 @@ export default function About() {
                     color: "var(--color-spice-mahogany)",
                   }}
                 >
-                  "The soil of Mithila has fed generations. Our work is simply to carry that
-                  nourishment forward — with care, integrity, and pride."
+                  "The soil of Mithila has nourished generations. Our work is
+                  simply to carry that nourishment forward — with integrity,
+                  care, and enduring pride in where we come from."
                 </p>
                 <p
                   style={{
@@ -400,7 +503,7 @@ export default function About() {
                     marginTop: "1rem",
                   }}
                 >
-                  — Amit Kumar, Founder
+                  — <HlName>Amit Kumar</HlName>, Founder
                 </p>
               </div>
             </Reveal>
@@ -409,7 +512,7 @@ export default function About() {
             <Reveal direction="up" delay={0.42}>
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
                 <Image
-                  src="/about/signature.svg"
+                  src="/about/signature.png"
                   alt="Amit Kumar Signature"
                   width={200}
                   height={90}

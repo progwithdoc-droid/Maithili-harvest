@@ -15,9 +15,9 @@ export default function WorldPresence() {
   ];
 
   const stats = [
-    { value: "8+", label: "Countries" },
+    { value: "2+", label: "Countries" },
     { value: "25+", label: "Cities" },
-    { value: "500+", label: "Happy Customers" },
+    { value: "5000+", label: "Happy Customers" },
     { value: "100%", label: "Authentic Sourcing" },
   ];
 
