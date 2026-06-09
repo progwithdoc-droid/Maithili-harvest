@@ -17,7 +17,7 @@ export default function TimelineDemo() {
 
         <div className="grid gap-4 md:grid-cols-2">
           <Image
-            src="/about/man-image.jpg"
+            src="/about/man-image.png"
             alt="Darbhanga Store"
             width={800}
             height={600}
@@ -72,7 +72,7 @@ export default function TimelineDemo() {
           </div>
 
           <Image
-            src="/about/man-image.jpg"
+            src="/about/man-image.png"
             alt="Puchkawala"
             width={800}
             height={600}
@@ -96,7 +96,7 @@ export default function TimelineDemo() {
 
         <div className="grid gap-4 md:grid-cols-3">
           <Image
-            src="/about/man-image.jpg"
+            src="/about/man-image.png"
             alt="Food Delivery"
             width={600}
             height={500}
@@ -135,7 +135,7 @@ export default function TimelineDemo() {
 
         <div className="grid gap-4 md:grid-cols-2">
           <Image
-            src="/about/man-image.jpg"
+            src="/about/man-image.png"
             alt="Corporate Catering"
             width={800}
             height={600}
@@ -173,7 +173,7 @@ export default function TimelineDemo() {
 
         <div className="grid gap-4 md:grid-cols-3">
           <Image
-            src="/about/man-image.jpg"
+            src="/about/man-image.png"
             alt="Research"
             width={600}
             height={500}
@@ -181,7 +181,7 @@ export default function TimelineDemo() {
           />
 
           <Image
-            src="/about/man-image.jpg"
+            src="/about/man-image.png"
             alt="Packaging"
             width={600}
             height={500}
@@ -189,7 +189,7 @@ export default function TimelineDemo() {
           />
 
           <Image
-            src="/about/man-image.jpg"
+            src="/about/man-image.png"
             alt="Development"
             width={600}
             height={500}
@@ -227,7 +227,7 @@ export default function TimelineDemo() {
           </div>
 
           <Image
-            src="/about/man-image.jpg"
+            src="/about/man-image.png"
             alt="Maithili Harvest"
             width={900}
             height={700}

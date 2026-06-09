@@ -65,8 +65,8 @@ export default function Footer() {
       <div className="section-container py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="flex items-center gap-2 no-underline">
-              <Image src="/logo.svg" alt="Logo" width={28} height={28} />
+            <Link href="/" className="footer-brand-link flex items-center gap-2 no-underline">
+              <Image src="/Logo.jpg" alt="Logo" width={28} height={28} className="footer-logo-img rounded-full object-cover transition-all duration-200" />
               <span className="font-display text-lg text-[var(--color-cream)]">
                 Maithili Harvest
               </span>
@@ -83,7 +83,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-sm text-[var(--color-beige)] no-underline transition-colors hover:text-[var(--color-gold)]"
+                    className="footer-link inline-block text-sm no-underline"
                   >
                     {item.label}
                   </Link>
@@ -101,7 +101,7 @@ export default function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-[var(--color-beige)] no-underline transition-colors hover:text-[var(--color-gold)]"
+                    className="footer-link inline-block text-sm no-underline"
                   >
                     {item.label}
                   </Link>
@@ -140,8 +140,8 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="section-container grid grid-cols-1 gap-6 py-10 sm:grid-cols-3">
           {contactItems.map(({ Icon, label, value }) => (
-            <div key={label} className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--color-gold)]/30 text-[var(--color-gold)]">
+            <div key={label} className="footer-contact-item flex items-center gap-3">
+              <div className="footer-contact-icon flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--color-gold)]/30 text-[var(--color-gold)] transition-all duration-200">
                 <Icon size={16} />
               </div>
               <div>
@@ -166,7 +166,7 @@ export default function Footer() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[11px] tracking-wide text-[var(--color-beige)]/60 no-underline transition-colors hover:text-[var(--color-cream)]"
+                className="footer-legal-link text-[11px] tracking-wide no-underline"
               >
                 {item.label}
               </Link>

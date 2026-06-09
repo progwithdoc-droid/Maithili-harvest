@@ -10,13 +10,14 @@ import { featuredProducts, trustedCompanies, heroVideos } from "./data";
 
 function CompanyLogo({ name, logo }: { name: string; logo: string }) {
   return (
-    <div className="flex shrink-0 items-center justify-center rounded-xl border border-[var(--color-beige)] bg-white/90 px-8 py-4 shadow-[var(--shadow-xs)] backdrop-blur-sm">
+    <div className="flex h-[72px] w-[160px] shrink-0 items-center justify-center rounded-xl border border-[var(--color-beige)] bg-white px-6 py-3 shadow-[var(--shadow-sm)]">
       <Image
         src={logo}
         alt={name}
-        width={120}
-        height={40}
-        className="h-8 w-auto object-contain opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+        width={140}
+        height={48}
+        className="h-11 w-auto max-w-[130px] object-contain"
+        priority
       />
     </div>
   );

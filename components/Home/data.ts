@@ -7,13 +7,21 @@ export const heroVideos = {
   hero5: "/videos/hero5.mp4",
 } as const;
 
+/**
+ * Hero demo video — paste any YouTube URL (watch, youtu.be, or embed).
+ * Example: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+ */
+export const heroDemoVideo = {
+  url: "",
+  title: "See Maithili Harvest in action",
+};
+
 export const trustedCompanies = [
-  { name: "FreshMart", logo: "/companies/freshmart.svg" },
-  { name: "HarvestCo", logo: "/companies/harvestco.svg" },
-  { name: "PureFoods", logo: "/companies/purefoods.svg" },
-  { name: "FarmDirect", logo: "/companies/farmdirect.svg" },
-  { name: "SpiceRoute", logo: "/companies/spiceroute.svg" },
-  { name: "GreenBasket", logo: "/companies/greenbasket.svg" },
+  { name: "Amazon", logo: "/companies/amazones.jpg" },
+  { name: "Blinkit", logo: "/companies/blinkit.png" },
+  { name: "Flipkart", logo: "/companies/flipkart.jpg" },
+  { name: "Swiggy", logo: "/companies/swiggy.png" },
+  { name: "Zomato", logo: "/companies/zomato.png" },
 ];
 
 export const featuredProducts = products.slice(0, 4);
@@ -24,35 +32,35 @@ export const kitchenTestimonials = [
       "The mustard oil has that sharp, honest pungency I remember from my grandmother's kitchen in Madhubani.",
     name: "Priya Sharma",
     designation: "Home Chef · Patna",
-    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop",
+    src: "/testimonials/priya.avif",
   },
   {
     quote:
       "We switched our restaurant's base spices to Maithili Harvest. Guests notice the depth immediately.",
     name: "Rajesh Kumar",
     designation: "Restaurant Owner · Delhi",
-    src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
+    src: "/testimonials/rajesh.svg",
   },
   {
     quote:
       "The ghee is unlike anything on supermarket shelves — granular, fragrant, and worth every rupee.",
     name: "Ananya Devi",
     designation: "Food Blogger · Mumbai",
-    src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800&auto=format&fit=crop",
+    src: "/testimonials/anaya.avif",
   },
   {
     quote:
       "Finally, spices that taste like the Mithila I grew up in. The turmeric colour alone tells the story.",
     name: "Vikram Jha",
     designation: "Physician · Kolkata",
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+    src: "/products/Achar-1.webp",
   },
   {
     quote:
       "Our family orders the thekua every Chhath. It arrives fresh, crisp, and exactly like the ones from home.",
     name: "Meera Sinha",
     designation: "Teacher · Darbhanga",
-    src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
+    src: "/products/thekua.jpg",
   },
 ];
 
@@ -126,7 +134,7 @@ export const brandPillars = [
       "Every product is traceable to a specific farm or artisan collective in Mithila. We publish sourcing notes, harvest dates, and farmer profiles.",
     tag: "Traceability",
     metric: "100% farm-mapped",
-    image: "/hero/traceability.svg",
+    image: "/Hero/fssai-1.jpg",
   },
   {
     title: "Harvested at peak",
@@ -134,7 +142,7 @@ export const brandPillars = [
       "We work with farmers who harvest at botanical peak. Spices are sun-dried, not machine-dehydrated. Oils are cold-pressed within 48 hours.",
     tag: "Freshness",
     metric: "48hr cold-press",
-    image: "/hero/freshness.svg",
+    image: "/products/makahana.webp",
   },
   {
     title: "No shortcuts",
@@ -142,7 +150,7 @@ export const brandPillars = [
       "No artificial colours, no anti-caking agents, no blended fillers. What you receive is what was grown — stone-ground and hand-packed.",
     tag: "Purity",
     metric: "Zero additives",
-    image: "/hero/purity.svg",
+    image: "/Hero/nablapproved.png",
   },
   {
     title: "Fair to farmers",
@@ -150,6 +158,6 @@ export const brandPillars = [
       "We pay above-market rates directly to producers. A portion of every sale funds agricultural training and women's cooperatives in rural Bihar.",
     tag: "Community",
     metric: "2× market price",
-    image: "/hero/community.svg",
+    image: "/products/thekua.jpg",
   },
 ];

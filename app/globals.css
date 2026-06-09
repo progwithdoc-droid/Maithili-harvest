@@ -25,6 +25,7 @@
 
   --color-border:           #D6CFB4;
   --color-border-gold:      rgba(211, 157, 85, 0.45);
+  --color-forest-herb:      #3A6B4F;
 
   --background:             var(--color-cream);
   --foreground:             var(--color-text-primary);
@@ -47,10 +48,10 @@
   --ring:                   var(--color-gold);
   --radius:                 0.75rem;
 
-  --font-display:   "Geist Sans", "Inter", system-ui, sans-serif;
-  --font-mono:      "Geist Mono", "Fira Code", monospace;
+  --font-display:   var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-mono:      var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   --font-editorial: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  --font-body:      "Geist Sans", system-ui, sans-serif;
+  --font-body:      var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
 
   --section-gap:    5rem;
   --content-width:  1200px;
@@ -326,4 +327,127 @@
 
 .animate-spotlight {
   animation: spotlight 2s ease 0.75s 1 forwards;
+}
+
+/* ── Navbar link hovers ── */
+.nav-link {
+  position: relative;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-maroon);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link--active::after {
+  transform: scaleX(1);
+}
+
+.nav-link--active {
+  color: var(--color-maroon);
+}
+
+.nav-brand-link {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-brand-link:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.nav-brand-link:hover .nav-logo-ring {
+  border-color: var(--color-gold-dark);
+  box-shadow: var(--shadow-gold);
+}
+
+.nav-mobile-link {
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+}
+
+.nav-mobile-link:hover {
+  color: var(--color-maroon);
+  background: var(--color-beige-light);
+  padding-left: 2rem;
+}
+
+.nav-menu-btn {
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.nav-menu-btn:hover {
+  border-color: var(--color-gold);
+  background: var(--color-gold-light);
+  color: var(--color-maroon-dark);
+}
+
+/* ── Footer hovers ── */
+.footer-brand-link {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-brand-link:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.footer-brand-link:hover .footer-logo-img {
+  filter: brightness(1.1);
+}
+
+.footer-link {
+  color: var(--color-beige);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--color-gold);
+  transform: translateX(4px);
+}
+
+.footer-contact-item {
+  transition: transform 0.2s ease;
+}
+
+.footer-contact-item:hover {
+  transform: translateY(-2px);
+}
+
+.footer-contact-item:hover .footer-contact-icon {
+  border-color: var(--color-gold);
+  background: rgba(211, 157, 85, 0.12);
+  color: var(--color-gold-light);
+}
+
+.footer-legal-link {
+  color: rgba(214, 207, 180, 0.6);
+  transition: color 0.2s ease;
+}
+
+.footer-legal-link:hover {
+  color: var(--color-cream);
+}
+
+.about-social-link:hover {
+  border-color: var(--color-gold) !important;
+  background: rgba(211, 157, 85, 0.12);
+  color: var(--color-maroon);
+  transform: translateY(-2px);
 }

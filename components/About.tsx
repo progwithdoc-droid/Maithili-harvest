@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "motion/react";
 import { SpinningText } from "@/components/motion-primitives/spinning-text";
+import { InstagramIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
+import { Globe } from "lucide-react";
 
 // ── Highlight components ────────────────────────────────────────────────────
 
@@ -75,27 +77,23 @@ function Reveal({
   );
 }
 
-// ── Social links data ───────────────────────────────────────────────────────
-// Icons are served from public/icons/ — update filenames to match your actual files.
-// Common conventions: instagram.png / instagram.svg, linkedin.png / linkedin.svg, website.png / globe.svg
-
 const SOCIAL_LINKS = [
   {
     href: "https://www.instagram.com/startupwithamit.in/",
-    icon: "/icons/instagram.png",   // ← update filename if different
+    icon: InstagramIcon,
     label: "Instagram",
   },
   {
     href: "https://www.linkedin.com/in/amitkumar1009/",
-    icon: "/icons/linkedin.png",    // ← update filename if different
+    icon: LinkedinIcon,
     label: "LinkedIn",
   },
   {
     href: "https://maithiliharvest.com",
-    icon: "/icons/website.png",     // ← update filename if different (globe.png, web.png, etc.)
+    icon: Globe,
     label: "Website",
   },
-];
+] as const;
 
 // ── Page component ──────────────────────────────────────────────────────────
 
@@ -178,8 +176,8 @@ export default function About() {
               <div
                 style={{
                   position: "absolute",
-                  left: "-36px",
-                  top: "-36px",
+                  left: "-48px",
+                  top: "-48px",
                   zIndex: 30,
                   display: "block",
                 }}
@@ -191,40 +189,18 @@ export default function About() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    width: 96,
-                    height: 96,
+                    width: 140,
+                    height: 140,
                   }}
                 >
                   <SpinningText
-                    radius={5.6}
-                    fontSize={0.72}
-                    className="font-body"
-                    style={{ color: "var(--color-aged-gold)", opacity: 0.95 }}
+                    radius={7.8}
+                    fontSize={0.95}
+                    className="font-body font-semibold tracking-wider"
+                    style={{ color: "var(--color-aged-gold)" }}
                   >
                     {` FOUNDER • AMIT KUMAR • MITHILA HARVEST • `}
                   </SpinningText>
-                  <div
-                    style={{
-                      position: "absolute",
-                      width: 58,
-                      height: 58,
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      background:
-                        "linear-gradient(180deg, rgba(255,250,243,0.96), rgba(247,244,238,0.92))",
-                      border: "1px solid rgba(184,137,75,0.35)",
-                      boxShadow: "0 14px 32px rgba(17,24,39,0.08)",
-                    }}
-                  >
-                    <Image
-                      src="/logo.jpg"
-                      alt="Maithili Harvest"
-                      width={26}
-                      height={26}
-                    />
-                  </div>
                 </div>
               </div>
 
@@ -237,7 +213,7 @@ export default function About() {
                 }}
               >
                 <Image
-                  src="/about/man-image.jpg"
+                  src="/about/man-image.png"
                   alt="Amit Kumar — Founder, Maithili Harvest"
                   width={700}
                   height={800}
@@ -359,15 +335,15 @@ export default function About() {
                 </div>
               </div>
 
-              {/* ── Social links using public/icons images ── */}
               <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-                {SOCIAL_LINKS.map(({ href, icon, label }) => (
+                {SOCIAL_LINKS.map(({ href, icon: Icon, label }) => (
                   <Link
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
+                    className="about-social-link"
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -376,17 +352,12 @@ export default function About() {
                       height: 36,
                       border: "0.5px solid var(--color-border-gold)",
                       borderRadius: "4px",
-                      transition: "border-color 0.2s ease, background 0.2s ease",
+                      color: "var(--color-aged-gold)",
+                      transition: "border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease",
                       textDecoration: "none",
                     }}
                   >
-                    <Image
-                      src={icon}
-                      alt={label}
-                      width={18}
-                      height={18}
-                      style={{ objectFit: "contain" }}
-                    />
+                    <Icon size={18} />
                   </Link>
                 ))}
               </div>

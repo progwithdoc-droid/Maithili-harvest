@@ -42,11 +42,17 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
         style={{ boxShadow: scrolled ? "var(--shadow-sm)" : "none" }}
       >
         <div className="section-container flex h-full items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 no-underline">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-(--color-gold)">
-              <Image src="/logo.svg" alt="Logo" width={22} height={22} />
+          <Link href="/" className="nav-brand-link flex shrink-0 items-center gap-3 no-underline">
+            <div className="nav-logo-ring relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-(--color-gold) transition-all duration-200">
+              <Image
+                src="/Logo.jpg"
+                alt="Logo"
+                fill
+                sizes="40px"
+                className="object-cover object-center"
+              />
             </div>
-            <span className="font-display text-lg tracking-wide text-(--color-maroon)">
+            <span className="font-display text-lg leading-none tracking-wide text-(--color-maroon)">
               {brandName}
             </span>
           </Link>
@@ -58,12 +64,9 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative text-[11px] font-semibold uppercase tracking-[0.18em] no-underline transition-colors duration-200"
-                  style={{
-                    color: isActive
-                      ? "var(--color-maroon)"
-                      : "var(--color-text-secondary)",
-                  }}
+                  className={`nav-link text-[11px] font-semibold uppercase tracking-[0.18em] no-underline ${
+                    isActive ? "nav-link--active" : ""
+                  }`}
                 >
                   {item.label}
                   {isActive && (
@@ -97,7 +100,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center border border-(--color-beige) p-2 text-(--color-maroon)"
+              className="nav-menu-btn flex items-center border border-(--color-beige) p-2 text-(--color-maroon)"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={18} /> : <Menu size={18} />}
@@ -121,12 +124,9 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block border-b border-(--color-beige) px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] no-underline"
-                    style={{
-                      color: isActive
-                        ? "var(--color-maroon)"
-                        : "var(--color-text-secondary)",
-                    }}
+                    className={`nav-mobile-link block border-b border-(--color-beige) px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] no-underline ${
+                      isActive ? "nav-link--active" : ""
+                    }`}
                   >
                     {item.label}
                   </Link>
