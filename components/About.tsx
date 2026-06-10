@@ -99,7 +99,7 @@ const SOCIAL_LINKS = [
 
 export default function About() {
   return (
-    <section className="bg-[var(--color-linen-white)] py-12 md:py-24">
+    <section className="bg-(--color-linen-white) py-12 md:py-24">
       <div className="section-container">
 
         {/* ── Top: Badge + Headline + Intro ── */}

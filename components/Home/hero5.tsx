@@ -4,8 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Star } from "lucide-react";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { VideoBackground } from "./VideoBackground";
-import { customerReviews, heroBackgroundVideo } from "./data";
+import { customerReviews } from "./data";
 
 function StarRow({ rating }: { rating: number }) {
   return (
@@ -60,13 +59,8 @@ function ReviewCard({ review }: { review: (typeof customerReviews)[0] }) {
 
 export default function Hero5() {
   return (
-    <section className="section-gap relative overflow-hidden">
-      <VideoBackground
-        src={heroBackgroundVideo}
-        overlayClassName="bg-gradient-to-b from-[var(--color-cream)]/88 via-[var(--color-beige-light)]/80 to-[var(--color-cream)]/90"
-      />
-
-      <div className="section-container relative z-10">
+    <section className="section-gap bg-(--color-beige-light)/30">
+      <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

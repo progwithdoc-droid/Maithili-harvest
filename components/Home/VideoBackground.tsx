@@ -1,14 +1,46 @@
 "use client";
 
 import { useState } from "react";
-import { getYouTubeEmbedUrl, getYouTubeVideoId } from "./youtube";
 
 type VideoBackgroundProps = {
   src: string;
-  /** Tailwind gradient classes for the overlay */
   overlayClassName?: string;
   className?: string;
 };
+
+function getYouTubeVideoId(url: string): string | null {
+  if (!url.trim()) return null;
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=)([\w-]{11})/,
+    /(?:youtu\.be\/)([\w-]{11})/,
+    /(?:youtube\.com\/embed\/)([\w-]{11})/,
+    /(?:youtube\.com\/shorts\/)([\w-]{11})/,
+  ];
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match?.[1]) return match[1];
+  }
+  return null;
+}
+
+function getYouTubeBackgroundEmbed(url: string): string | null {
+  const id = getYouTubeVideoId(url);
+  if (!id) return null;
+  const params = new URLSearchParams({
+    autoplay: "1",
+    mute: "1",
+    loop: "1",
+    playlist: id,
+    controls: "0",
+    rel: "0",
+    modestbranding: "1",
+    playsinline: "1",
+    showinfo: "0",
+    iv_load_policy: "3",
+    disablekb: "1",
+  });
+  return `https://www.youtube.com/embed/${id}?${params.toString()}`;
+}
 
 export function VideoBackground({
   src,
@@ -16,15 +48,7 @@ export function VideoBackground({
   className = "",
 }: VideoBackgroundProps) {
   const [failed, setFailed] = useState(false);
-  const youtubeId = getYouTubeVideoId(src);
-  const youtubeEmbed = youtubeId
-    ? getYouTubeEmbedUrl(src, {
-        autoplay: true,
-        mute: true,
-        loop: true,
-        controls: false,
-      })
-    : null;
+  const youtubeEmbed = getYouTubeBackgroundEmbed(src);
 
   return (
     <div
@@ -37,7 +61,6 @@ export function VideoBackground({
           title=""
           allow="autoplay; encrypted-media; picture-in-picture"
           className="absolute top-1/2 left-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 scale-105 border-0"
-          onError={() => setFailed(true)}
         />
       )}
 
@@ -57,4 +80,10 @@ export function VideoBackground({
       <div className={`absolute inset-0 ${overlayClassName}`} />
     </div>
   );
+}
+
+export function getDemoYouTubeEmbedUrl(url: string): string | null {
+  const id = getYouTubeVideoId(url);
+  if (!id) return null;
+  return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&playsinline=1`;
 }

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 
-const SESSION_KEY = "mh-preloader-seen";
 const MIN_DISPLAY_MS = 2200;
 const FORCE_COMPLETE_MS = 5500;
 
@@ -16,8 +15,6 @@ export default function Preloader() {
   const [phase, setPhase] = useState<Phase>("loading");
 
   useEffect(() => {
-    if (sessionStorage.getItem(SESSION_KEY)) return;
-
     setVisible(true);
     document.body.style.overflow = "hidden";
 
@@ -26,7 +23,6 @@ export default function Preloader() {
     let raf = 0;
 
     const finish = () => {
-      sessionStorage.setItem(SESSION_KEY, "1");
       setProgress(100);
       setPhase("closing");
 

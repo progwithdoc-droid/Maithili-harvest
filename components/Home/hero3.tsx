@@ -5,38 +5,65 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Plus } from "lucide-react";
 import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
-import { VideoBackground } from "./VideoBackground";
-import { featuredProducts, trustedCompanies, heroBackgroundVideo } from "./data";
+import { featuredProducts, trustedCompanies } from "./data";
 
+/* ─── Company Logo Card ──────────────────────────────────────────────────── */
 function CompanyLogo({ name, logo }: { name: string; logo: string }) {
   return (
-    <div className="flex h-16 w-[130px] shrink-0 items-center justify-center rounded-xl border border-[var(--color-beige)] bg-white px-4 py-2 shadow-[var(--shadow-sm)] sm:h-[72px] sm:w-[160px] sm:px-6 sm:py-3">
+    <div
+      className="
+        flex shrink-0 items-center justify-center
+        h-16 w-32.5
+        sm:h-18 sm:w-38.75
+        rounded-xl
+        border border-(--color-beige)
+        bg-white
+        px-4 py-3
+        sm:px-5
+        shadow-(--shadow-sm)
+      "
+    >
       <Image
         src={logo}
         alt={name}
         width={140}
         height={48}
-        className="h-9 w-auto max-w-[110px] object-contain sm:h-11 sm:max-w-[130px]"
+        className="h-8 w-auto max-w-25 object-contain sm:h-10 sm:max-w-30"
         priority
       />
     </div>
   );
 }
 
-function ProductCard({
-  product,
-}: {
-  product: (typeof featuredProducts)[0];
-}) {
+/* ─── Marquee Row ────────────────────────────────────────────────────────── */
+function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
+  return (
+    <div className="relative overflow-hidden py-2.5">
+      {/* Fade edges */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-white to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-white to-transparent sm:w-24" />
+
+      <InfiniteSlider speed={38} gap={14} reverse={reverse}>
+        {trustedCompanies.map((company) => (
+          <CompanyLogo key={`${company.name}-${reverse ? "r" : "f"}`} {...company} />
+        ))}
+      </InfiniteSlider>
+    </div>
+  );
+}
+
+/* ─── Product Card ───────────────────────────────────────────────────────── */
+function ProductCard({ product }: { product: (typeof featuredProducts)[0] }) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className="overflow-hidden rounded-2xl border border-[var(--color-beige)] bg-white/92 shadow-[var(--shadow-sm)] backdrop-blur-md"
+      className="overflow-hidden rounded-2xl border border-(--color-beige) bg-white shadow-(--shadow-sm)"
     >
-      <div className="relative flex h-[200px] items-center justify-center bg-[var(--color-beige-light)]/60">
+      {/* Image area */}
+      <div className="relative flex h-45 items-center justify-center bg-(--color-beige-light)/60 sm:h-50">
         {product.badge && (
-          <span className="brand-badge--gold absolute left-4 top-4 z-10">
+          <span className="brand-badge--gold absolute left-3 top-3 z-10 text-[10px] sm:left-4 sm:top-4">
             {product.badge}
           </span>
         )}
@@ -45,29 +72,31 @@ function ProductCard({
           alt={product.name}
           width={120}
           height={120}
-          className="object-contain"
+          className="h-25 w-auto object-contain sm:h-30"
         />
         <motion.div
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
-          className="absolute inset-0 flex items-center justify-center bg-[var(--color-maroon)]/50"
+          className="absolute inset-0 flex items-center justify-center bg-(--color-maroon)/50"
         >
           <Link href={`/products/${product.slug}`} className="btn-gold text-[10px]">
             View Product
           </Link>
         </motion.div>
       </div>
-      <div className="p-5">
+
+      {/* Info area */}
+      <div className="p-4 sm:p-5">
         <span className="brand-tag">{product.category}</span>
-        <h3 className="font-display mt-2 text-lg font-semibold text-[var(--color-maroon)]">
+        <h3 className="font-display mt-2 text-base font-semibold text-(--color-maroon) sm:text-lg">
           {product.name}
         </h3>
-        <div className="mt-4 flex items-center justify-between">
+        <div className="mt-3 flex items-center justify-between sm:mt-4">
           <div>
-            <span className="font-display text-lg font-semibold">
+            <span className="font-display text-base font-semibold sm:text-lg">
               ₹{product.price}
             </span>
-            <span className="ml-1 text-xs text-[var(--color-text-muted)]">
+            <span className="ml-1 text-xs text-(--color-text-muted)">
               / {product.unit}
             </span>
           </div>
@@ -80,84 +109,84 @@ function ProductCard({
   );
 }
 
-function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
-  return (
-    <div className="relative overflow-hidden py-3">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[var(--color-cream)]/90 to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[var(--color-cream)]/90 to-transparent" />
-      <InfiniteSlider speed={35} gap={20} reverse={reverse}>
-        {trustedCompanies.map((company) => (
-          <CompanyLogo key={`${company.name}-${reverse}`} {...company} />
-        ))}
-      </InfiniteSlider>
-    </div>
-  );
-}
-
+/* ─── Main Section ───────────────────────────────────────────────────────── */
 export default function Hero3() {
   return (
-    <section className="section-gap relative overflow-hidden">
-      <VideoBackground
-        src={heroBackgroundVideo}
-        overlayClassName="bg-gradient-to-b from-[var(--color-cream)]/90 via-[var(--color-cream)]/82 to-[var(--color-cream)]/88"
-      />
+    <section className="section-gap overflow-hidden bg-white">
 
-      <div className="relative z-10">
+      {/* ── Trusted brands marquee ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.55 }}
+        className="mb-12 sm:mb-16"
+      >
+        <p className="section-container mb-5 text-center brand-tag sm:mb-6">
+          Trusted by leading brands
+        </p>
+        <MarqueeRow reverse={false} />
+        <MarqueeRow reverse />
+      </motion.div>
+
+      {/* ── Featured products ── */}
+      <div className="section-container">
+
+        {/* Section header */}
+        <div className="mb-8 flex flex-col gap-5 sm:mb-10 sm:gap-6 md:mb-12 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span className="brand-tag">Featured</span>
+            <h2 className="font-editorial mt-3 text-[clamp(1.75rem,4vw,3rem)] leading-tight text-(--color-maroon)">
+              Honest food, honestly priced.
+            </h2>
+          </div>
+          <Link
+            href="/products"
+            className="btn-secondary shrink-0 self-start md:self-auto"
+          >
+            Shop All →
+          </Link>
+        </div>
+
+        {/* Product grid */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          {featuredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+
+        {/* CTA banner */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.55 }}
+          className="
+            mt-10 sm:mt-14 lg:mt-16
+            overflow-hidden rounded-2xl
+            border border-(--color-gold)/30
+            bg-(--color-maroon)
+            p-6 sm:p-8 md:p-12
+          "
         >
-          <p className="section-container mb-6 text-center brand-tag">
-            Trusted by leading brands
-          </p>
-          <MarqueeRow reverse={false} />
-          <MarqueeRow reverse />
-        </motion.div>
-
-        <div className="section-container">
-          <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div className="flex flex-col gap-5 sm:gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <span className="brand-tag">Featured</span>
-              <h2 className="font-editorial mt-3 text-[clamp(2rem,4vw,3rem)] text-[var(--color-maroon)]">
-                Honest food, honestly priced.
-              </h2>
+              <span className="brand-tag text-(--color-gold)">
+                Full Catalogue
+              </span>
+              <h3 className="font-editorial mt-3 max-w-lg text-xl text-(--color-cream) sm:text-2xl md:text-3xl">
+                Over 40 products from Mithila&apos;s best farms.
+              </h3>
             </div>
-            <Link href="/products" className="btn-secondary shrink-0">
-              Shop All →
+            <Link
+              href="/products"
+              className="btn-gold shrink-0 self-start md:self-auto"
+            >
+              Shop Now →
             </Link>
           </div>
+        </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative mt-16 overflow-hidden rounded-2xl border border-[var(--color-gold)]/30 bg-[var(--color-maroon)]/90 p-8 backdrop-blur-sm md:p-12"
-          >
-            <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-              <div>
-                <span className="brand-tag text-[var(--color-gold)]">
-                  Full Catalogue
-                </span>
-                <h3 className="font-editorial mt-3 max-w-lg text-2xl text-[var(--color-cream)] md:text-3xl">
-                  Over 40 products from Mithila&apos;s best farms.
-                </h3>
-              </div>
-              <Link href="/products" className="btn-gold shrink-0">
-                Shop Now →
-              </Link>
-            </div>
-          </motion.div>
-        </div>
       </div>
     </section>
   );

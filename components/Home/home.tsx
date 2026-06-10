@@ -1,5 +1,7 @@
 "use client";
 
+import TimelineDemo from "../timeline-demo";
+import WorldMapDemo from "../world-map-demo";
 import Hero1 from "./hero1";
 import Hero2 from "./hero2";
 import Hero3 from "./hero3";
@@ -14,6 +16,8 @@ export default function Home() {
       <Hero3 />
       <Hero4 />
       <Hero5 />
+      <TimelineDemo/>
+      <WorldMapDemo/>
     </main>
   );
 }

@@ -61,7 +61,7 @@ export const StickyScroll = ({
               <div className="mt-8 lg:hidden">
                 <div
                   className={cn(
-                    "h-[220px] overflow-hidden rounded-2xl",
+                    "h-[min(320px,50vw)] overflow-hidden rounded-2xl",
                     contentClassName,
                   )}
                 >
@@ -76,7 +76,7 @@ export const StickyScroll = ({
         <div className="relative hidden lg:block">
           <div
             className={cn(
-              "sticky top-[calc(var(--nav-height)+1rem)] h-[min(420px,55vh)] w-full overflow-hidden rounded-2xl xl:top-[calc(var(--nav-height)+1.5rem)] xl:h-[min(480px,60vh)]",
+              "sticky top-[calc(var(--nav-height)+1rem)] h-[min(560px,72vh)] w-full overflow-hidden rounded-2xl xl:top-[calc(var(--nav-height)+1.5rem)] xl:h-[min(600px,75vh)]",
               contentClassName,
             )}
           >

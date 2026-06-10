@@ -16,7 +16,7 @@ const stats = [
 
 export default function Hero4() {
   return (
-    <section className="section-gap bg-[var(--color-off-white)]">
+    <section className="section-gap bg-(--color-off-white)">
       <div className="section-container max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,7 +25,7 @@ export default function Hero4() {
           transition={{ duration: 0.6 }}
         >
           <span className="brand-tag">Testimonials</span>
-          <h2 className="font-editorial mt-3 mb-6 text-[clamp(2rem,4vw,2.75rem)] text-[var(--color-ink)]">
+          <h2 className="font-editorial mt-3 mb-6 text-[clamp(2rem,4vw,2.75rem)] text-(--color-ink)">
             Trusted in every kitchen.
           </h2>
           <AnimatedTestimonials testimonials={kitchenTestimonials} autoplay />
@@ -46,12 +46,12 @@ export default function Hero4() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <Card className="brand-card border-[var(--color-border)] text-center shadow-none">
+              <Card className="brand-card border-(--color-border) text-center shadow-none">
                 <CardContent className="flex flex-col items-center justify-center p-4 sm:p-6">
-                  <span className="font-display text-lg font-bold text-[var(--color-blue)] sm:text-2xl md:text-3xl">
+                  <span className="font-display text-lg font-bold text-(--color-blue) sm:text-2xl md:text-3xl">
                     {stat.value}
                   </span>
-                  <span className="mt-1 text-xs text-[var(--color-text-muted)]">
+                  <span className="mt-1 text-xs text-(--color-text-muted)">
                     {stat.label}
                   </span>
                 </CardContent>

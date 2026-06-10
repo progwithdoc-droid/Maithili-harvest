@@ -1,9 +1,8 @@
 import { products } from "@/components/products/data";
 
 /**
- * One background video for Hero1, Hero3 & Hero5.
- * Use a local MP4: "/videos/background.mp4"
- * Or a YouTube URL (plays muted, looped behind the section).
+ * Background video for Hero1 & Hero3 only.
+ * MP4: "/videos/background.mp4"  |  YouTube URL also supported.
  */
 export const heroBackgroundVideo =
   "https://youtu.be/hWVJucr3Il8?si=RpVZyeMgaFzj4zsI";
