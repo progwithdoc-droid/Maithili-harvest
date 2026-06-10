@@ -8,21 +8,23 @@ const pillarContent = brandPillars.map((pillar) => ({
   title: pillar.title,
   description: pillar.description,
   content: (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-(--color-gold)/30 bg-(--color-cream) p-4 shadow-(--shadow-lg) sm:p-6">
-      <div className="relative h-full w-full min-h-[220px] lg:min-h-[360px]">
-        <Image
-          src={pillar.image}
-          alt={pillar.title}
-          fill
-          priority
-          className="object-contain object-center"
-          sizes="(max-width: 1024px) 100vw, 480px"
-        />
+    <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-(--color-beige) bg-white shadow-(--shadow-md)">
+      <div className="relative flex flex-1 items-center justify-center bg-(--color-cream) p-5 sm:p-8">
+        <div className="relative h-full w-full min-h-[200px] lg:min-h-[320px]">
+          <Image
+            src={pillar.image}
+            alt={pillar.title}
+            fill
+            priority
+            className="object-contain object-center"
+            sizes="(max-width: 1024px) 100vw, 480px"
+          />
+        </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-(--color-maroon)/95 via-(--color-maroon)/50 to-transparent px-5 pb-4 pt-10">
-        <span className="brand-tag text-(--color-gold)">{pillar.tag}</span>
-        <p className="mt-1 font-display text-sm font-semibold text-(--color-cream)">
+      <div className="flex items-center justify-between gap-4 border-t border-(--color-beige) bg-(--color-beige-light)/40 px-5 py-4">
+        <span className="brand-tag text-(--color-gold-dark)">{pillar.tag}</span>
+        <p className="font-display text-right text-sm font-semibold text-(--color-maroon)">
           {pillar.metric}
         </p>
       </div>
@@ -32,7 +34,7 @@ const pillarContent = brandPillars.map((pillar) => ({
 
 export default function Hero2() {
   return (
-    <section className="section-gap bg-(--color-beige-light)/40">
+    <section className="section-gap bg-(--color-cream)">
       <div className="section-container mb-8 sm:mb-10 lg:mb-12">
         <span className="brand-tag">Our Promise</span>
         <h2 className="font-editorial mt-3 max-w-2xl text-[clamp(1.75rem,4vw,3rem)] leading-tight text-(--color-maroon)">

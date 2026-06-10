@@ -1,10 +1,10 @@
 import { products } from "@/components/products/data";
 
 /**
- * Background video for Hero1 & Hero3 only.
+ * Hero1 background video only — not used in Hero2, Hero3, Hero4, or Hero5.
  * MP4: "/videos/background.mp4"  |  YouTube URL also supported.
  */
-export const heroBackgroundVideo =
+export const hero1BackgroundVideo =
   "https://youtu.be/hWVJucr3Il8?si=RpVZyeMgaFzj4zsI";
 
 /** Demo video — Hero1 right-side player only */

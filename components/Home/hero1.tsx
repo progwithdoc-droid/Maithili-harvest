@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Play } from "lucide-react";
 import { VideoBackground, getDemoYouTubeEmbedUrl } from "./VideoBackground";
-import { heroBackgroundVideo, heroDemoVideo } from "./data";
+import { hero1BackgroundVideo, heroDemoVideo } from "./data";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -23,11 +23,10 @@ export default function Hero1() {
   const embedUrl = getDemoYouTubeEmbedUrl(heroDemoVideo.url);
 
   return (
-    <section className="relative min-h-[calc(100dvh-var(--nav-height))] overflow-hidden">
-      {/* Full-section background — not the right-side demo box */}
+    <section className="relative min-h-[calc(100dvh-var(--nav-height))] overflow-hidden bg-(--color-cream)">
       <VideoBackground
-        src={heroBackgroundVideo}
-        overlayClassName="bg-gradient-to-r from-[var(--color-maroon)]/85 via-[var(--color-maroon)]/65 to-[var(--color-maroon)]/45"
+        src={hero1BackgroundVideo}
+        overlayClassName="bg-gradient-to-r from-(--color-cream)/95 via-(--color-cream)/75 to-(--color-cream)/25"
       />
 
       <div
@@ -44,7 +43,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="brand-tag text-(--color-gold)"
+            className="brand-tag text-(--color-gold-dark)"
           >
             Artisan Food · Mithila, Bihar
           </motion.span>
@@ -54,10 +53,10 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-editorial mt-4 text-[clamp(2rem,6vw,4.25rem)] leading-[1.08] text-(--color-cream) sm:mt-5"
+            className="font-editorial mt-4 text-[clamp(2rem,6vw,4.25rem)] leading-[1.08] text-(--color-maroon) sm:mt-5"
           >
             From the heart of{" "}
-            <span className="italic text-(--color-gold-light)">Mithila</span>
+            <span className="italic text-(--color-gold-dark)">Mithila</span>
           </motion.h1>
 
           <motion.p
@@ -65,7 +64,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-(--color-beige) sm:mt-5 sm:text-base lg:mx-0 lg:max-w-md"
+            className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-(--color-text-secondary) sm:mt-5 sm:text-base lg:mx-0 lg:max-w-md"
           >
             Stone-ground spices, cold-pressed oils, and heirloom grains — curated
             directly from the farms of Bihar.
@@ -81,16 +80,12 @@ export default function Hero1() {
             <Link href="/products" className="btn-gold">
               Explore Products
             </Link>
-            <Link
-              href="/about"
-              className="btn-secondary border-(--color-gold)/50 text-(--color-cream) hover:border-(--color-gold) hover:bg-white/10"
-            >
+            <Link href="/about" className="btn-secondary">
               Our Story
             </Link>
           </motion.div>
         </div>
 
-        {/* Demo video only — separate from background */}
         <motion.div
           custom={4}
           initial="hidden"
@@ -98,15 +93,15 @@ export default function Hero1() {
           variants={fadeUp}
           className="w-full lg:justify-self-end"
         >
-          <div className="overflow-hidden rounded-2xl border-2 border-(--color-gold)/45 bg-(--color-maroon-dark)/40 shadow-(--shadow-lg) backdrop-blur-md">
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-5">
-              <p className="brand-tag text-(--color-gold)">Brand Demo</p>
-              <span className="text-[10px] uppercase tracking-[0.14em] text-(--color-beige)/70">
+          <div className="overflow-hidden rounded-2xl border border-(--color-gold)/40 bg-white/95 shadow-(--shadow-lg)">
+            <div className="flex items-center justify-between border-b border-(--color-beige) px-4 py-3 sm:px-5">
+              <p className="brand-tag text-(--color-gold-dark)">Brand Demo</p>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-(--color-text-muted)">
                 Watch now
               </span>
             </div>
 
-            <div className="relative aspect-video w-full bg-black/30">
+            <div className="relative aspect-video w-full bg-(--color-beige-light)/50">
               {embedUrl ? (
                 <iframe
                   src={embedUrl}
@@ -117,15 +112,15 @@ export default function Hero1() {
                 />
               ) : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-(--color-gold)/50 bg-(--color-maroon)/60 text-(--color-gold) sm:h-14 sm:w-14">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-(--color-gold)/50 bg-(--color-gold-light)/40 text-(--color-gold-dark) sm:h-14 sm:w-14">
                     <Play size={22} fill="currentColor" />
                   </div>
-                  <p className="font-display text-base text-(--color-cream) sm:text-lg">
+                  <p className="font-display text-base text-(--color-maroon) sm:text-lg">
                     {heroDemoVideo.title}
                   </p>
-                  <p className="max-w-xs text-xs leading-relaxed text-(--color-beige)/80 sm:text-sm">
+                  <p className="max-w-xs text-xs leading-relaxed text-(--color-text-muted) sm:text-sm">
                     Add your YouTube link in{" "}
-                    <code className="text-(--color-gold-light)">components/Home/data.ts</code>
+                    <code className="text-(--color-gold-dark)">components/Home/data.ts</code>
                   </p>
                 </div>
               )}
