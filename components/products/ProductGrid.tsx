@@ -24,13 +24,7 @@ export default function ProductGrid({
   /* ── Empty state ── */
   if (products.length === 0) {
     return (
-      <div
-        style={{
-          padding: "5rem 2rem",
-          textAlign: "center",
-          border: "0.5px solid var(--color-border-gold)",
-        }}
-      >
+      <div className="border border-[var(--color-border-gold)] px-6 py-12 text-center sm:px-8 sm:py-16 md:py-20">
         <p
           style={{
             fontFamily: "var(--font-display)",

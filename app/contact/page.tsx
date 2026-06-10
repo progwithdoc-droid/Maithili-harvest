@@ -44,7 +44,7 @@ export default function ContactPage() {
 
   return (
     <main className="bg-[var(--color-cream)]">
-      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-20 pt-12">
+      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-12 pt-8 sm:pb-20 sm:pt-12">
         <div className="section-container">
           <p className="brand-tag mb-5 text-[var(--color-gold)]">Get in Touch</p>
           <h1 className="font-editorial max-w-lg text-[clamp(2rem,5vw,3.5rem)] leading-tight text-[var(--color-cream)]">
@@ -57,7 +57,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="section-container grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
           {/* LEFT */}
           <div className="flex flex-col gap-10">

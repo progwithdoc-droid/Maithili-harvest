@@ -62,7 +62,7 @@ export default async function BlogPostPage({
         <div className="mx-auto max-w-2xl">
           {/* Recipe meta */}
           {isRecipe && (
-            <div className="mb-10 grid grid-cols-3 gap-4 rounded-2xl border border-[var(--color-beige)] bg-white p-6">
+            <div className="mb-10 grid grid-cols-1 gap-4 rounded-2xl border border-[var(--color-beige)] bg-white p-4 min-[400px]:grid-cols-3 sm:p-6">
               {post.prepTime && (
                 <div className="text-center">
                   <Clock className="mx-auto mb-2 h-5 w-5 text-[var(--color-gold)]" />

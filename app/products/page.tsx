@@ -41,7 +41,7 @@ export default function ProductsPage() {
 
   return (
     <main className="bg-[var(--color-cream)]">
-      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-16 pt-12">
+      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="section-container">
           <p className="brand-tag mb-4 text-[var(--color-gold)]">Our Products</p>
           <h1 className="font-editorial max-w-xl text-[clamp(2rem,5vw,3.5rem)] leading-tight text-[var(--color-cream)]">
@@ -54,20 +54,20 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="sticky top-[72px] z-30 border-b border-[var(--color-beige)] bg-[var(--color-cream)]/95 py-6 backdrop-blur-md">
-        <div className="section-container flex flex-col gap-4">
+      <section className="sticky top-[var(--nav-height)] z-30 border-b border-[var(--color-beige)] bg-[var(--color-cream)]/95 py-4 backdrop-blur-md sm:py-6">
+        <div className="section-container flex flex-col gap-3 sm:gap-4">
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search by name, category or taste…"
           />
-          <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
             <CategoryFilter
               categories={categories}
               active={activeCategory}
               onChange={setActiveCategory}
             />
-            <p className="whitespace-nowrap text-[11px] uppercase tracking-widest text-[var(--color-text-muted)]">
+            <p className="text-[11px] uppercase tracking-widest text-[var(--color-text-muted)] sm:shrink-0">
               {filteredProducts.length}{" "}
               {filteredProducts.length === 1 ? "product" : "products"}
             </p>

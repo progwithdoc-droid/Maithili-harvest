@@ -47,26 +47,11 @@ export default function TestimonialSection() {
   }, [paused]);
 
   return (
-    <section
-      style={{
-        backgroundColor: "var(--color-linen-white)",
-        paddingTop: "6rem",
-        paddingBottom: "6rem",
-        borderTop: "0.5px solid var(--color-border-gold)",
-      }}
-    >
+    <section className="border-t border-[var(--color-border-gold)] bg-[var(--color-linen-white)] py-12 md:py-24">
       <div className="section-container">
 
         {/* Header row */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "2.5rem",
-            marginBottom: "4.5rem",
-            alignItems: "end",
-          }}
-        >
+        <div className="mb-10 grid grid-cols-1 items-end gap-8 md:mb-16 md:grid-cols-2 md:gap-10">
           <div>
             <p className="brand-tag" style={{ marginBottom: "1.25rem" }}>
               Testimonials
@@ -104,25 +89,12 @@ export default function TestimonialSection() {
         </div>
 
         {/* Stats + Card grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "4rem",
-            alignItems: "center",
-          }}
-        >
+        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
           {/* Left — stats */}
           <div>
             {/* Stats row */}
             <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                borderTop: "0.5px solid var(--color-border-gold)",
-                borderBottom: "0.5px solid var(--color-border-gold)",
-                marginBottom: "3rem",
-              }}
+              className="mb-8 grid grid-cols-1 border-y border-[var(--color-border-gold)] min-[400px]:grid-cols-3 md:mb-12"
             >
               {[
                 { value: "100+", label: "Happy Clients" },
@@ -131,14 +103,11 @@ export default function TestimonialSection() {
               ].map((stat, i, arr) => (
                 <div
                   key={stat.label}
-                  style={{
-                    textAlign: "center",
-                    padding: "1.75rem 0.5rem",
-                    borderRight:
-                      i < arr.length - 1
-                        ? "0.5px solid var(--color-border-gold)"
-                        : "none",
-                  }}
+                  className={`px-3 py-5 text-center sm:px-4 sm:py-7 ${
+                    i < arr.length - 1
+                      ? "border-b border-[var(--color-border-gold)] min-[400px]:border-b-0 min-[400px]:border-r"
+                      : ""
+                  }`}
                 >
                   <p
                     style={{
@@ -242,7 +211,7 @@ export default function TestimonialSection() {
 
           {/* Right — animated card stack with hover-to-pause */}
           <div
-            style={{ position: "relative", height: "320px" }}
+            className="relative min-h-[300px] md:h-[320px]"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >

@@ -25,7 +25,7 @@ export default function BlogPage() {
   return (
     <main className="bg-[var(--color-cream)]">
       {/* Hero */}
-      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-16 pt-12">
+      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="section-container">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -55,7 +55,7 @@ export default function BlogPage() {
       </section>
 
       {/* Filter tabs */}
-      <section className="sticky top-[72px] z-30 border-b border-[var(--color-beige)] bg-[var(--color-cream)]/95 py-4 backdrop-blur-md">
+      <section className="sticky top-[var(--nav-height)] z-30 border-b border-[var(--color-beige)] bg-[var(--color-cream)]/95 py-4 backdrop-blur-md">
         <div className="section-container flex gap-2">
           {tabs.map((tab) => (
             <button

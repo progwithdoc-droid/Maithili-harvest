@@ -1,18 +1,16 @@
 import { products } from "@/components/products/data";
 
-/** Drop your MP4 files in /public/videos/ */
-export const heroVideos = {
-  hero1: "/videos/hero1.mp4",
-  hero3: "/videos/hero3.mp4",
-  hero5: "/videos/hero5.mp4",
-} as const;
-
 /**
- * Hero demo video — paste any YouTube URL (watch, youtu.be, or embed).
- * Example: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+ * One background video for Hero1, Hero3 & Hero5.
+ * Use a local MP4: "/videos/background.mp4"
+ * Or a YouTube URL (plays muted, looped behind the section).
  */
+export const heroBackgroundVideo =
+  "https://youtu.be/hWVJucr3Il8?si=RpVZyeMgaFzj4zsI";
+
+/** Demo video — Hero1 right-side player only */
 export const heroDemoVideo = {
-  url: "",
+  url: "https://youtu.be/9OquUp6x5IU?si=Z7vA5MfE4rEAY9-j",
   title: "See Maithili Harvest in action",
 };
 

@@ -8,7 +8,7 @@ const pillarContent = brandPillars.map((pillar) => ({
   title: pillar.title,
   description: pillar.description,
   content: (
-    <div className="relative h-full min-h-70 w-full overflow-hidden rounded-2xl border-2 border-(--color-gold)/30 shadow-(--shadow-lg)">
+    <div className="relative h-full min-h-[220px] w-full overflow-hidden rounded-2xl border-2 border-(--color-gold)/30 shadow-(--shadow-lg) sm:min-h-[280px]">
       <Image
         src={pillar.image}
         alt={pillar.title}

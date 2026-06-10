@@ -4,7 +4,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Play } from "lucide-react";
 import { VideoBackground } from "./VideoBackground";
-import { heroVideos, heroDemoVideo } from "./data";
+import { heroBackgroundVideo, heroDemoVideo } from "./data";
+import { getYouTubeEmbedUrl } from "./youtube";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -19,37 +20,17 @@ const fadeUp = {
   }),
 };
 
-function getYouTubeEmbedUrl(url: string): string | null {
-  if (!url.trim()) return null;
-
-  const patterns = [
-    /(?:youtube\.com\/watch\?v=)([\w-]{11})/,
-    /(?:youtu\.be\/)([\w-]{11})/,
-    /(?:youtube\.com\/embed\/)([\w-]{11})/,
-    /(?:youtube\.com\/shorts\/)([\w-]{11})/,
-  ];
-
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match?.[1]) {
-      return `https://www.youtube.com/embed/${match[1]}?rel=0&modestbranding=1`;
-    }
-  }
-
-  return null;
-}
-
 export default function Hero1() {
   const embedUrl = getYouTubeEmbedUrl(heroDemoVideo.url);
 
   return (
-    <section className="relative min-h-[calc(100dvh-72px)] overflow-hidden">
+    <section className="relative min-h-[calc(100dvh-var(--nav-height))] overflow-hidden">
       <VideoBackground
-        src={heroVideos.hero1}
+        src={heroBackgroundVideo}
         overlayClassName="bg-gradient-to-r from-[var(--color-maroon)]/88 via-[var(--color-maroon)]/72 to-[var(--color-maroon)]/55"
       />
 
-      <div className="section-container relative z-10 grid min-h-[calc(100dvh-72px)] items-center gap-10 py-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
+      <div className="section-container relative z-10 grid min-h-[calc(100dvh-var(--nav-height))] items-center gap-8 py-10 sm:gap-10 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
         <div className="max-w-xl">
           <motion.span
             custom={0}

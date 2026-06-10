@@ -36,7 +36,7 @@ export default function Hero4() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-10 grid grid-cols-3 gap-4"
+          className="mt-10 grid grid-cols-1 gap-3 min-[420px]:grid-cols-3 sm:gap-4"
         >
           {stats.map((stat, i) => (
             <motion.div
@@ -47,8 +47,8 @@ export default function Hero4() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <Card className="brand-card border-[var(--color-border)] text-center shadow-none">
-                <CardContent className="flex flex-col items-center justify-center p-6">
-                  <span className="font-display text-2xl font-bold text-[var(--color-blue)] md:text-3xl">
+                <CardContent className="flex flex-col items-center justify-center p-4 sm:p-6">
+                  <span className="font-display text-lg font-bold text-[var(--color-blue)] sm:text-2xl md:text-3xl">
                     {stat.value}
                   </span>
                   <span className="mt-1 text-xs text-[var(--color-text-muted)]">

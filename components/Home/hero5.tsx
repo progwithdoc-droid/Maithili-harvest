@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { Star } from "lucide-react";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { VideoBackground } from "./VideoBackground";
-import { customerReviews, heroVideos } from "./data";
+import { customerReviews, heroBackgroundVideo } from "./data";
 
 function StarRow({ rating }: { rating: number }) {
   return (
@@ -62,7 +62,7 @@ export default function Hero5() {
   return (
     <section className="section-gap relative overflow-hidden">
       <VideoBackground
-        src={heroVideos.hero5}
+        src={heroBackgroundVideo}
         overlayClassName="bg-gradient-to-b from-[var(--color-cream)]/88 via-[var(--color-beige-light)]/80 to-[var(--color-cream)]/90"
       />
 
@@ -104,7 +104,7 @@ export default function Hero5() {
           transition={{ duration: 0.6 }}
           className="mt-16 flex flex-col items-center gap-6 text-center"
         >
-          <p className="font-editorial max-w-md text-xl italic text-[var(--color-text-secondary)]">
+          <p className="font-editorial max-w-md px-2 text-lg italic text-[var(--color-text-secondary)] sm:text-xl">
             Taste the difference that honest sourcing makes — from our farms to
             your table.
           </p>

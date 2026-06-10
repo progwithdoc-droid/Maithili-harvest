@@ -43,14 +43,7 @@ export default function ShopModal({ open, onClose }: ShopModalProps) {
       onClick={onClose}
     >
       <div
-        style={{
-          position: "relative",
-          width: "90%",
-          maxWidth: "480px",
-          backgroundColor: "var(--color-linen-white)",
-          border: "0.5px solid var(--color-border-gold)",
-          padding: "3rem 2.5rem",
-        }}
+        className="relative mx-4 max-h-[90dvh] w-full max-w-[480px] overflow-y-auto border border-[var(--color-border-gold)] bg-[var(--color-linen-white)] p-6 sm:mx-0 sm:p-10"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
@@ -109,14 +102,8 @@ export default function ShopModal({ open, onClose }: ShopModalProps) {
 
           <div>
             <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 400,
-                fontSize: "1.6rem",
-                letterSpacing: "0.04em",
-                color: "var(--color-deep-cacao)",
-                lineHeight: 1.2,
-              }}
+              className="font-display text-xl leading-tight tracking-wide text-[var(--color-deep-cacao)] sm:text-2xl"
+              style={{ fontWeight: 400 }}
             >
               Shop on {brands[current].name}
             </h2>

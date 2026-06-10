@@ -22,9 +22,9 @@ export default function WorldPresence() {
   ];
 
   return (
-    <section className="border-t border-[var(--color-beige)] bg-[var(--color-beige-light)]/30 py-20">
+    <section className="border-t border-[var(--color-beige)] bg-[var(--color-beige-light)]/30 py-12 md:py-20">
       <div className="section-container">
-        <div className="mb-14 text-center">
+        <div className="mb-8 text-center md:mb-14">
           <p className="brand-tag mb-4">Global Reach</p>
           <h2 className="font-editorial text-[clamp(1.8rem,4vw,2.8rem)] text-[var(--color-maroon)]">
             We Are Available All Around the World
@@ -43,9 +43,9 @@ export default function WorldPresence() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="border-b border-r border-[var(--color-beige)] p-6 text-center last:border-r-0 sm:border-b-0"
+              className="border-b border-r border-[var(--color-beige)] p-4 text-center last:border-r-0 sm:border-b-0 sm:p-6 even:border-r-0 sm:even:border-r"
             >
-              <p className="font-display text-2xl font-bold text-[var(--color-maroon)] md:text-3xl">
+              <p className="font-display text-xl font-bold text-[var(--color-maroon)] sm:text-2xl md:text-3xl">
                 {stat.value}
               </p>
               <p className="mt-1 text-[11px] uppercase tracking-widest text-[var(--color-text-muted)]">

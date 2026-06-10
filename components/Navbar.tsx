@@ -38,12 +38,12 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 h-18 border-b border-(--color-beige) bg-(--color-cream)/95 backdrop-blur-md transition-shadow duration-300"
+        className="fixed inset-x-0 top-0 z-50 h-[var(--nav-height)] border-b border-(--color-beige) bg-(--color-cream)/95 backdrop-blur-md transition-shadow duration-300"
         style={{ boxShadow: scrolled ? "var(--shadow-sm)" : "none" }}
       >
         <div className="section-container flex h-full items-center justify-between">
-          <Link href="/" className="nav-brand-link flex shrink-0 items-center gap-3 no-underline">
-            <div className="nav-logo-ring relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-(--color-gold) transition-all duration-200">
+          <Link href="/" className="nav-brand-link flex min-w-0 shrink items-center gap-2 no-underline sm:gap-3">
+            <div className="nav-logo-ring relative h-9 w-9 shrink-0 overflow-hidden rounded-full border border-(--color-gold) transition-all duration-200 sm:h-10 sm:w-10">
               <Image
                 src="/Logo.jpg"
                 alt="Logo"
@@ -52,7 +52,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
                 className="object-cover object-center"
               />
             </div>
-            <span className="font-display text-lg leading-none tracking-wide text-(--color-maroon)">
+            <span className="font-display truncate text-base leading-none tracking-wide text-(--color-maroon) sm:max-w-none sm:text-lg">
               {brandName}
             </span>
           </Link>

@@ -99,17 +99,11 @@ const SOCIAL_LINKS = [
 
 export default function About() {
   return (
-    <section
-      style={{
-        backgroundColor: "var(--color-linen-white)",
-        paddingTop: "6rem",
-        paddingBottom: "6rem",
-      }}
-    >
+    <section className="bg-[var(--color-linen-white)] py-12 md:py-24">
       <div className="section-container">
 
         {/* ── Top: Badge + Headline + Intro ── */}
-        <div style={{ display: "grid", gap: "3rem", gridTemplateColumns: "1fr" }}>
+        <div className="grid grid-cols-1 gap-8 md:gap-12">
           <Reveal direction="up">
             <p className="brand-tag" style={{ marginBottom: "1.5rem" }}>
               About the Founder
@@ -155,18 +149,11 @@ export default function About() {
 
         {/* ── Divider ── */}
         <Reveal direction="none" delay={0.1}>
-          <hr className="brand-divider" style={{ margin: "4rem 0" }} />
+          <hr className="brand-divider my-10 md:my-16" />
         </Reveal>
 
         {/* ── Main 2-col grid ── */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "5rem",
-            alignItems: "start",
-          }}
-        >
+        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16 lg:gap-20">
 
           {/* LEFT — Image column */}
           <Reveal direction="left" delay={0.05}>
@@ -228,16 +215,10 @@ export default function About() {
 
               {/* Partnership badge */}
               <div
+                className="absolute bottom-3 left-3 right-3 mx-auto max-w-max rounded px-3 py-2 text-center sm:bottom-5 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:px-5 sm:whitespace-nowrap"
                 style={{
-                  position: "absolute",
-                  bottom: "20px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
                   backgroundColor: "var(--color-linen-white)",
                   border: "0.5px solid var(--color-border-gold)",
-                  padding: "10px 20px",
-                  whiteSpace: "nowrap",
-                  borderRadius: "4px",
                 }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -280,7 +261,7 @@ export default function About() {
                 <h3
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "1.8rem",
+                    fontSize: "clamp(1.4rem, 4vw, 1.8rem)",
                     fontWeight: 400,
                     letterSpacing: "0.04em",
                     lineHeight: 1.2,

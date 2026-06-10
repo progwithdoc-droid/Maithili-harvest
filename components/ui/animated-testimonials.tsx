@@ -43,10 +43,10 @@ export const AnimatedTestimonials = ({
     return Math.floor(Math.random() * 21) - 10;
   };
   return (
-    <div className="mx-auto max-w-sm px-4 py-10 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
+    <div className="mx-auto max-w-sm px-0 py-6 font-sans antialiased sm:px-4 sm:py-10 md:max-w-4xl md:px-8 lg:px-12">
+      <div className="relative grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-20">
         <div>
-          <div className="relative h-80 w-full">
+          <div className="relative mx-auto h-64 w-full max-w-xs sm:h-80 sm:max-w-none">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -112,13 +112,13 @@ export const AnimatedTestimonials = ({
               ease: "easeInOut",
             }}
           >
-            <h3 className="font-display text-2xl font-semibold text-[var(--color-obsidian)]">
+            <h3 className="font-display text-xl font-semibold text-[var(--color-obsidian)] sm:text-2xl">
               {testimonials[active].name}
             </h3>
             <p className="text-sm text-[var(--color-text-muted)]">
               {testimonials[active].designation}
             </p>
-            <motion.p className="mt-8 font-editorial text-lg italic leading-relaxed text-[var(--color-text-secondary)]">
+            <motion.p className="mt-6 font-editorial text-base italic leading-relaxed text-[var(--color-text-secondary)] sm:mt-8 sm:text-lg">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}

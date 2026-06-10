@@ -40,7 +40,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[var(--color-maroon)] text-[var(--color-cream)]">
-      <div className="border-b border-white/10 py-16">
+      <div className="border-b border-white/10 py-10 md:py-16">
         <div className="section-container flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="brand-tag text-[var(--color-gold)]">Taste Mithila</p>
@@ -62,7 +62,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="section-container py-16">
+      <div className="section-container py-10 md:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="footer-brand-link flex items-center gap-2 no-underline">
@@ -154,7 +154,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="section-container flex flex-wrap items-center justify-between gap-4 py-6">
+        <div className="section-container flex flex-col items-start justify-between gap-4 py-6 sm:flex-row sm:items-center">
           <p className="text-[11px] tracking-wide text-[var(--color-beige)]/60">
             © 2026 Maithili Harvest Pvt. Ltd. All rights reserved.
           </p>

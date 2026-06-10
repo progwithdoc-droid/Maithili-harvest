@@ -40,7 +40,7 @@ export const StickyScroll = ({
           {content.map((item, index) => (
             <div
               key={item.title + index}
-              className="flex min-h-[70vh] flex-col justify-center py-12 lg:min-h-[100vh] lg:py-20"
+              className="flex min-h-[55vh] flex-col justify-center py-8 sm:min-h-[65vh] sm:py-12 lg:min-h-[100vh] lg:py-20"
             >
               <motion.h2
                 animate={{ opacity: activeCard === index ? 1 : 0.25 }}
@@ -76,7 +76,7 @@ export const StickyScroll = ({
         <div className="relative hidden lg:block">
           <div
             className={cn(
-              "sticky top-28 h-[min(420px,55vh)] w-full overflow-hidden rounded-2xl xl:top-32 xl:h-[min(480px,60vh)]",
+              "sticky top-[calc(var(--nav-height)+1rem)] h-[min(420px,55vh)] w-full overflow-hidden rounded-2xl xl:top-[calc(var(--nav-height)+1.5rem)] xl:h-[min(480px,60vh)]",
               contentClassName,
             )}
           >

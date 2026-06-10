@@ -6,17 +6,17 @@ import { motion } from "motion/react";
 import { Plus } from "lucide-react";
 import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
 import { VideoBackground } from "./VideoBackground";
-import { featuredProducts, trustedCompanies, heroVideos } from "./data";
+import { featuredProducts, trustedCompanies, heroBackgroundVideo } from "./data";
 
 function CompanyLogo({ name, logo }: { name: string; logo: string }) {
   return (
-    <div className="flex h-[72px] w-[160px] shrink-0 items-center justify-center rounded-xl border border-[var(--color-beige)] bg-white px-6 py-3 shadow-[var(--shadow-sm)]">
+    <div className="flex h-16 w-[130px] shrink-0 items-center justify-center rounded-xl border border-[var(--color-beige)] bg-white px-4 py-2 shadow-[var(--shadow-sm)] sm:h-[72px] sm:w-[160px] sm:px-6 sm:py-3">
       <Image
         src={logo}
         alt={name}
         width={140}
         height={48}
-        className="h-11 w-auto max-w-[130px] object-contain"
+        className="h-9 w-auto max-w-[110px] object-contain sm:h-11 sm:max-w-[130px]"
         priority
       />
     </div>
@@ -98,7 +98,7 @@ export default function Hero3() {
   return (
     <section className="section-gap relative overflow-hidden">
       <VideoBackground
-        src={heroVideos.hero3}
+        src={heroBackgroundVideo}
         overlayClassName="bg-gradient-to-b from-[var(--color-cream)]/90 via-[var(--color-cream)]/82 to-[var(--color-cream)]/88"
       />
 
