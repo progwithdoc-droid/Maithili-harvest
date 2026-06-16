@@ -45,7 +45,7 @@ export default function Footer() {
           <div>
             <p className="brand-tag text-[var(--color-gold)]">Taste Mithila</p>
             <h2 className="font-editorial mt-2 text-[clamp(1.8rem,4vw,2.5rem)] text-[var(--color-cream)]">
-              Ready to taste the heart of Mithila?
+              Bring Mithila home to your kitchen
             </h2>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -72,7 +72,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--color-beige)]">
-              From the soil of Mithila to your kitchen — authentic flavours, honest sourcing.
+              Pickles, makhana, ghee, spices, and snacks from Mithila — honest
+              sourcing, real flavour.
             </p>
           </div>
 

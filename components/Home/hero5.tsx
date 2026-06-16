@@ -4,7 +4,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Star } from "lucide-react";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { customerReviews } from "./data";
+import { VideoBackground } from "./VideoBackground";
+import { customerReviews, heroVideos } from "./data";
 
 function StarRow({ rating }: { rating: number }) {
   return (
@@ -58,9 +59,18 @@ function ReviewCard({ review }: { review: (typeof customerReviews)[0] }) {
 }
 
 export default function Hero5() {
+  const bg = heroVideos.hero5;
+
   return (
-    <section className="section-gap bg-(--color-beige-light)/30">
-      <div className="section-container">
+    <section className="section-gap relative overflow-hidden">
+      <VideoBackground
+        src={bg.src}
+        fallbackSrc={bg.fallback}
+        poster={bg.poster}
+        overlayClassName="bg-gradient-to-b from-[var(--color-cream)]/88 via-[var(--color-beige-light)]/80 to-[var(--color-cream)]/90"
+      />
+
+      <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -70,10 +80,10 @@ export default function Hero5() {
         >
           <span className="brand-tag">Reviews</span>
           <h2 className="font-editorial mt-3 text-[clamp(2rem,4vw,3rem)] text-[var(--color-maroon)]">
-            Voices from the table.
+            Real reviews from real tables.
           </h2>
           <p className="mt-4 text-[var(--color-text-secondary)]">
-            Hover each card to discover which product they love.
+            Hover each card to see which Maithili Harvest product they love most.
           </p>
         </motion.div>
 
@@ -99,8 +109,7 @@ export default function Hero5() {
           className="mt-16 flex flex-col items-center gap-6 text-center"
         >
           <p className="font-editorial max-w-md px-2 text-lg italic text-[var(--color-text-secondary)] sm:text-xl">
-            Taste the difference that honest sourcing makes — from our farms to
-            your table.
+            Honest ingredients from Mithila — from our farms to your kitchen.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/products" className="btn-gold">

@@ -11,7 +11,7 @@ import { kitchenTestimonials } from "./data";
 const stats = [
   { value: "2,400+", label: "Happy customers" },
   { value: "4.9★", label: "Average rating" },
-  { value: "40+", label: "Artisan products" },
+  { value: "8+", label: "Signature products" },
 ];
 
 export default function Hero4() {
@@ -26,7 +26,7 @@ export default function Hero4() {
         >
           <span className="brand-tag">Testimonials</span>
           <h2 className="font-editorial mt-3 mb-6 text-[clamp(2rem,4vw,2.75rem)] text-(--color-ink)">
-            Trusted in every kitchen.
+            Loved in kitchens across India.
           </h2>
           <AnimatedTestimonials testimonials={kitchenTestimonials} autoplay />
         </motion.div>

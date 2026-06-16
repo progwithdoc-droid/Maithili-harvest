@@ -1,7 +1,7 @@
 "use client";
 
 import TimelineDemo from "../timeline-demo";
-import WorldMapDemo from "../world-map-demo";
+import WorldPresence from "../WorldPresence";
 import Hero1 from "./hero1";
 import Hero2 from "./hero2";
 import Hero3 from "./hero3";
@@ -16,8 +16,16 @@ export default function Home() {
       <Hero3 />
       <Hero4 />
       <Hero5 />
-      <TimelineDemo/>
-      <WorldMapDemo/>
+      <section className="section-gap bg-(--color-cream)">
+        <div className="section-container">
+          <span className="brand-tag">Our Journey</span>
+          <h2 className="font-editorial mt-3 text-[clamp(1.75rem,4vw,3rem)] leading-tight text-(--color-maroon)">
+            Our Story
+          </h2>
+        </div>
+      </section>
+      <TimelineDemo />
+      <WorldPresence />
     </main>
   );
 }

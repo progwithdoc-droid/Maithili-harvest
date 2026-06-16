@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Play } from "lucide-react";
 import { VideoBackground, getDemoYouTubeEmbedUrl } from "./VideoBackground";
-import { hero1BackgroundVideo, heroDemoVideo } from "./data";
+import { heroDemoVideo, heroVideos } from "./data";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -21,12 +21,15 @@ const fadeUp = {
 
 export default function Hero1() {
   const embedUrl = getDemoYouTubeEmbedUrl(heroDemoVideo.url);
+  const bg = heroVideos.hero1;
 
   return (
-    <section className="relative min-h-[calc(100dvh-var(--nav-height))] overflow-hidden bg-(--color-cream)">
+    <section className="relative min-h-[calc(100dvh-var(--nav-height))] overflow-hidden">
       <VideoBackground
-        src={hero1BackgroundVideo}
-        overlayClassName="bg-gradient-to-r from-(--color-cream)/95 via-(--color-cream)/75 to-(--color-cream)/25"
+        src={bg.src}
+        fallbackSrc={bg.fallback}
+        poster={bg.poster}
+        overlayClassName="bg-gradient-to-r from-[var(--color-cream)]/92 via-[var(--color-cream)]/78 to-[var(--color-cream)]/35"
       />
 
       <div
@@ -43,7 +46,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="brand-tag text-(--color-gold-dark)"
+            className="brand-tag text-[var(--color-gold-dark)]"
           >
             Artisan Food · Mithila, Bihar
           </motion.span>
@@ -53,10 +56,10 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-editorial mt-4 text-[clamp(2rem,6vw,4.25rem)] leading-[1.08] text-(--color-maroon) sm:mt-5"
+            className="font-editorial mt-4 text-[clamp(2rem,6vw,4.25rem)] leading-[1.08] text-[var(--color-maroon)] sm:mt-5"
           >
-            From the heart of{" "}
-            <span className="italic text-(--color-gold-dark)">Mithila</span>
+            The flavours of{" "}
+            <span className="italic text-[var(--color-gold-dark)]">Mithila</span>, packed with care
           </motion.h1>
 
           <motion.p
@@ -64,10 +67,10 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-(--color-text-secondary) sm:mt-5 sm:text-base lg:mx-0 lg:max-w-md"
+            className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-[var(--color-text-secondary)] sm:mt-5 sm:text-base lg:mx-0 lg:max-w-md"
           >
-            Stone-ground spices, cold-pressed oils, and heirloom grains — curated
-            directly from the farms of Bihar.
+            Pickles, makhana, ghee, spices, and handmade snacks from Bihar — made with
+            recipes rooted in Maithili tradition.
           </motion.p>
 
           <motion.div
@@ -93,15 +96,15 @@ export default function Hero1() {
           variants={fadeUp}
           className="w-full lg:justify-self-end"
         >
-          <div className="overflow-hidden rounded-2xl border border-(--color-gold)/40 bg-white/95 shadow-(--shadow-lg)">
-            <div className="flex items-center justify-between border-b border-(--color-beige) px-4 py-3 sm:px-5">
-              <p className="brand-tag text-(--color-gold-dark)">Brand Demo</p>
-              <span className="text-[10px] uppercase tracking-[0.14em] text-(--color-text-muted)">
+          <div className="overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-white/95 shadow-[var(--shadow-lg)] backdrop-blur-sm">
+            <div className="flex items-center justify-between border-b border-[var(--color-beige)] px-4 py-3 sm:px-5">
+              <p className="brand-tag text-[var(--color-gold-dark)]">Brand Demo</p>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
                 Watch now
               </span>
             </div>
 
-            <div className="relative aspect-video w-full bg-(--color-beige-light)/50">
+            <div className="relative aspect-video w-full bg-[var(--color-beige-light)]/50">
               {embedUrl ? (
                 <iframe
                   src={embedUrl}
@@ -112,15 +115,11 @@ export default function Hero1() {
                 />
               ) : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-(--color-gold)/50 bg-(--color-gold-light)/40 text-(--color-gold-dark) sm:h-14 sm:w-14">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--color-gold)]/50 bg-[var(--color-gold-light)]/40 text-[var(--color-gold-dark)] sm:h-14 sm:w-14">
                     <Play size={22} fill="currentColor" />
                   </div>
-                  <p className="font-display text-base text-(--color-maroon) sm:text-lg">
+                  <p className="font-display text-base text-[var(--color-maroon)] sm:text-lg">
                     {heroDemoVideo.title}
-                  </p>
-                  <p className="max-w-xs text-xs leading-relaxed text-(--color-text-muted) sm:text-sm">
-                    Add your YouTube link in{" "}
-                    <code className="text-(--color-gold-dark)">components/Home/data.ts</code>
                   </p>
                 </div>
               )}

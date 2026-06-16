@@ -1,16 +1,37 @@
 import { products } from "@/components/products/data";
 
 /**
- * Hero1 background video only — not used in Hero2, Hero3, Hero4, or Hero5.
- * MP4: "/videos/background.mp4"  |  YouTube URL also supported.
+ * Hero background videos — drop MP4s in public/videos/ to override defaults.
+ * poster: fallback image if video is missing or fails to load.
  */
-export const hero1BackgroundVideo =
-  "https://youtu.be/hWVJucr3Il8?si=RpVZyeMgaFzj4zsI";
+export const hero1BackgroundImage = "/videos/bg.jpg";
 
-/** Demo video — Hero1 right-side player only */
+export const heroVideos = {
+  hero1: {
+    src: "/videos/hero1.mp4",
+    poster: "/videos/bg.jpg",
+    /** Remote fallback until you add hero1.mp4 locally */
+    fallback:
+      "https://videos.pexels.com/video-files/1526909/1526909-uhd_2560_1440_25fps.mp4",
+  },
+  hero3: {
+    src: "/videos/hero3.mp4",
+    poster: "/videos/bg.jpg",
+    fallback:
+      "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
+  },
+  hero5: {
+    src: "/videos/hero5.mp4",
+    poster: "/videos/bg.jpg",
+    fallback:
+      "https://videos.pexels.com/video-files/6613146/6613146-uhd_2560_1440_25fps.mp4",
+  },
+} as const;
+
+/** Demo video — Hero1 right-side player */
 export const heroDemoVideo = {
   url: "https://youtu.be/9OquUp6x5IU?si=Z7vA5MfE4rEAY9-j",
-  title: "See Maithili Harvest in action",
+  title: "See how Maithili Harvest is made",
 };
 
 export const trustedCompanies = [
@@ -33,9 +54,9 @@ export const kitchenTestimonials = [
   },
   {
     quote:
-      "We switched our restaurant's base spices to Maithili Harvest. Guests notice the depth immediately.",
+      "We use Maithili Harvest spices in our kitchen. Guests notice the depth in every dal and sabzi.",
     name: "Rajesh Kumar",
-    designation: "Restaurant Owner · Delhi",
+    designation: "Caterer · Delhi",
     src: "/testimonials/rajesh.svg",
   },
   {
@@ -128,15 +149,15 @@ export const brandPillars = [
   {
     title: "Know your source",
     description:
-      "Every product is traceable to a specific farm or artisan collective in Mithila. We publish sourcing notes, harvest dates, and farmer profiles.",
+      "Every jar and packet can be traced back to farms and artisan groups in Mithila. We share where it was grown, when it was harvested, and who made it.",
     tag: "Traceability",
-    metric: "100% farm-mapped",
+    metric: "Farm-mapped sourcing",
     image: "/Hero/fssai-1.jpg",
   },
   {
     title: "Harvested at peak",
     description:
-      "We work with farmers who harvest at botanical peak. Spices are sun-dried, not machine-dehydrated. Oils are cold-pressed within 48 hours.",
+      "Spices are sun-dried at the right season. Oils are cold-pressed within days of harvest. Makhana and grains are picked when flavour is at its best.",
     tag: "Freshness",
     metric: "48hr cold-press",
     image: "/products/makahana.webp",
@@ -144,7 +165,7 @@ export const brandPillars = [
   {
     title: "No shortcuts",
     description:
-      "No artificial colours, no anti-caking agents, no blended fillers. What you receive is what was grown — stone-ground and hand-packed.",
+      "No artificial colours, no fillers, no blending tricks. What you open is what was grown — stone-ground, slow-cooked, and hand-packed.",
     tag: "Purity",
     metric: "Zero additives",
     image: "/Hero/nablapproved.png",
@@ -152,9 +173,9 @@ export const brandPillars = [
   {
     title: "Fair to farmers",
     description:
-      "We pay above-market rates directly to producers. A portion of every sale funds agricultural training and women's cooperatives in rural Bihar.",
+      "We pay producers above market rates and invest in farming skills and women's cooperatives across rural Bihar.",
     tag: "Community",
-    metric: "2× market price",
+    metric: "Direct partnerships",
     image: "/products/thekua.jpg",
   },
 ];

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
+import ThekuaSurprise from "@/components/ThekuaSurprise";
 
 /* ── Google Fonts ── */
 const geistSans = Geist({
@@ -56,6 +57,7 @@ export default function RootLayout({
         className="min-h-screen overflow-x-clip bg-[var(--color-cream)] pt-[var(--nav-height)] text-[var(--foreground)] antialiased"
       >
         <Preloader />
+        <ThekuaSurprise />
         <Navbar />
         {children}
         <Footer />

@@ -1,12 +1,72 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type VideoBackgroundProps = {
+  /** Prefer local path e.g. /videos/hero1.mp4 */
   src: string;
+  /** Remote or alternate URL if local file is missing */
+  fallbackSrc?: string;
+  /** Shown if all video sources fail */
+  poster?: string;
   overlayClassName?: string;
   className?: string;
 };
+
+export function VideoBackground({
+  src,
+  fallbackSrc,
+  poster,
+  overlayClassName = "bg-[var(--color-cream)]/85",
+  className = "",
+}: VideoBackgroundProps) {
+  const [activeSrc, setActiveSrc] = useState(src);
+  const [failed, setFailed] = useState(false);
+
+  const handleError = () => {
+    if (fallbackSrc && activeSrc !== fallbackSrc) {
+      setActiveSrc(fallbackSrc);
+      return;
+    }
+    setFailed(true);
+  };
+
+  return (
+    <div
+      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+      aria-hidden="true"
+    >
+      {poster && failed && (
+        <Image
+          src={poster}
+          alt=""
+          fill
+          className="scale-105 object-cover"
+          sizes="100vw"
+          priority
+        />
+      )}
+
+      {!failed && activeSrc && (
+        <video
+          key={activeSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={poster}
+          className="h-full w-full scale-105 object-cover"
+          onError={handleError}
+        >
+          <source src={activeSrc} type="video/mp4" />
+        </video>
+      )}
+
+      <div className={`absolute inset-0 ${overlayClassName}`} />
+    </div>
+  );
+}
 
 function getYouTubeVideoId(url: string): string | null {
   if (!url.trim()) return null;
@@ -21,65 +81,6 @@ function getYouTubeVideoId(url: string): string | null {
     if (match?.[1]) return match[1];
   }
   return null;
-}
-
-function getYouTubeBackgroundEmbed(url: string): string | null {
-  const id = getYouTubeVideoId(url);
-  if (!id) return null;
-  const params = new URLSearchParams({
-    autoplay: "1",
-    mute: "1",
-    loop: "1",
-    playlist: id,
-    controls: "0",
-    rel: "0",
-    modestbranding: "1",
-    playsinline: "1",
-    showinfo: "0",
-    iv_load_policy: "3",
-    disablekb: "1",
-  });
-  return `https://www.youtube.com/embed/${id}?${params.toString()}`;
-}
-
-export function VideoBackground({
-  src,
-  overlayClassName = "bg-[var(--color-cream)]/85",
-  className = "",
-}: VideoBackgroundProps) {
-  const [failed, setFailed] = useState(false);
-  const youtubeEmbed = getYouTubeBackgroundEmbed(src);
-
-  return (
-    <div
-      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
-      aria-hidden="true"
-    >
-      {!failed && youtubeEmbed && (
-        <iframe
-          src={youtubeEmbed}
-          title=""
-          allow="autoplay; encrypted-media; picture-in-picture"
-          className="absolute top-1/2 left-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 scale-105 border-0"
-        />
-      )}
-
-      {!failed && !youtubeEmbed && src && (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="h-full w-full scale-105 object-cover"
-          onError={() => setFailed(true)}
-        >
-          <source src={src} type="video/mp4" />
-        </video>
-      )}
-
-      <div className={`absolute inset-0 ${overlayClassName}`} />
-    </div>
-  );
 }
 
 export function getDemoYouTubeEmbedUrl(url: string): string | null {

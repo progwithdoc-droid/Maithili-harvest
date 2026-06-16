@@ -38,8 +38,8 @@ export default function Hero2() {
       <div className="section-container mb-8 sm:mb-10 lg:mb-12">
         <span className="brand-tag">Our Promise</span>
         <h2 className="font-editorial mt-3 max-w-2xl text-[clamp(1.75rem,4vw,3rem)] leading-tight text-(--color-maroon)">
-          Not mass-produced.{" "}
-          <span className="italic text-(--color-gold-dark)">Hand-curated.</span>
+          Grown in Mithila.{" "}
+          <span className="italic text-(--color-gold-dark)">Made with care.</span>
         </h2>
       </div>
 

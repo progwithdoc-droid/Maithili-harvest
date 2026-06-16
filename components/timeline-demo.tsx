@@ -1,245 +1,195 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { Timeline } from "@/components/ui/timeline";
+
+function TimelineImage({
+  src,
+  alt,
+  className = "h-72",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
+  return (
+    <div className={`relative w-full overflow-hidden rounded-2xl border border-(--color-beige) bg-(--color-cream) ${className}`}>
+      <Image
+        src={src}
+        alt={alt}
+        width={900}
+        height={700}
+        className="h-full w-full object-cover object-center"
+      />
+    </div>
+  );
+}
+
+function InfoCard({
+  title,
+  children,
+  badge,
+}: {
+  title: string;
+  children: ReactNode;
+  badge?: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-(--color-beige) bg-white p-6 shadow-(--shadow-sm)">
+      <h3 className="mb-2 font-display text-lg font-semibold text-(--color-maroon)">
+        {title}
+      </h3>
+      <div className="text-sm leading-relaxed text-(--color-text-secondary)">
+        {children}
+      </div>
+      {badge && (
+        <div className="mt-4 inline-flex rounded-full bg-(--color-gold-light)/50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-(--color-maroon-dark)">
+          {badge}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function TimelineDemo() {
   const data = [
     {
-    title: "2020",
-    content: (
-      <div className="space-y-6">
-        <p className="max-w-3xl text-sm md:text-base text-neutral-700 dark:text-neutral-200">
-          The entrepreneurial journey began in Darbhanga, Bihar. With a
-          passion for serving quality food and everyday essentials, Amit Kumar
-          opened a small retail store. Built on trust, customer relationships,
-          and dedication, the shop quickly became a recognized local business.
-          This was the foundation of what would later become Maithili Harvest.
-        </p>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <Image
-            src="/about/man-image.png"
-            alt="Darbhanga Store"
-            width={800}
-            height={600}
-            className="h-72 w-full rounded-2xl object-cover"
-          />
-
-          <div className="rounded-2xl border bg-white p-6 shadow-sm dark:bg-neutral-900">
-            <h3 className="mb-2 text-lg font-semibold">
-              First Retail Store
-            </h3>
-
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">
+      title: "2020",
+      content: (
+        <div className="space-y-6">
+          <p className="max-w-3xl text-sm leading-relaxed text-(--color-text-secondary) md:text-base">
+            The entrepreneurial journey began in Darbhanga, Bihar. With a passion
+            for serving quality food and everyday essentials, Amit Kumar opened a
+            small retail store built on trust, customer relationships, and
+            dedication — the foundation of what would later become Maithili
+            Harvest.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            <TimelineImage src="/about/man-image.png" alt="First retail store in Darbhanga" />
+            <InfoCard title="First Retail Store" badge="Darbhanga, Bihar">
               Opened the first local food and grocery shop in Darbhanga and
               started building customer trust through quality products and
               service.
-            </p>
-
-            <div className="mt-4 inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">
-               Darbhanga, Bihar
-            </div>
+            </InfoCard>
           </div>
         </div>
-      </div>
-    ),
-  },
-
-  {
-    title: "2021",
-    content: (
-      <div className="space-y-6">
-        <p className="max-w-3xl text-sm md:text-base text-neutral-700 dark:text-neutral-200">
-          A new chapter began in Kolkata. While pursuing a Bachelor of Computer
-          Applications (BCA), Amit launched "Puchkawala", combining traditional
-          flavors with modern business practices. This period introduced him to
-          branding, customer experience, and food entrepreneurship at scale.
-        </p>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border bg-white p-6 shadow-sm dark:bg-neutral-900">
-            <h3 className="mb-2 text-lg font-semibold">
-              Launch of Puchkawala
-            </h3>
-
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">
-              Started a street-food venture while studying in Kolkata,
-              introducing authentic flavors to a wider audience.
-            </p>
-
-            <div className="mt-4 inline-flex rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
-               Kolkata, West Bengal
-            </div>
-          </div>
-
-          <Image
-            src="/about/man-image.png"
-            alt="Puchkawala"
-            width={800}
-            height={600}
-            className="h-72 w-full rounded-2xl object-cover"
-          />
-        </div>
-      </div>
-    ),
-  },
-
-  {
-    title: "2022",
-    content: (
-      <div className="space-y-6">
-        <p className="max-w-3xl text-sm md:text-base text-neutral-700 dark:text-neutral-200">
-          The business embraced digital transformation by partnering with
-          leading food delivery platforms. Joining Zomato and Swiggy enabled
-          thousands of customers across Kolkata to enjoy the products while
-          significantly increasing operational reach.
-        </p>
-
-        <div className="grid gap-4 md:grid-cols-3">
-          <Image
-            src="/about/man-image.png"
-            alt="Food Delivery"
-            width={600}
-            height={500}
-            className="h-64 w-full rounded-2xl object-cover"
-          />
-
-          <div className="rounded-2xl border bg-white p-6 shadow-sm dark:bg-neutral-900">
-            <h4 className="font-semibold">Zomato</h4>
-            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
-              Expanded customer reach through online ordering and delivery.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border bg-white p-6 shadow-sm dark:bg-neutral-900">
-            <h4 className="font-semibold">Swiggy</h4>
-            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
-              Improved accessibility and convenience for customers across the
-              city.
-            </p>
+      ),
+    },
+    {
+      title: "2021",
+      content: (
+        <div className="space-y-6">
+          <p className="max-w-3xl text-sm leading-relaxed text-(--color-text-secondary) md:text-base">
+            A new chapter began in Kolkata with the launch of Puchkawala —
+            bringing authentic Mithila street flavours to a wider audience while
+            learning branding, customer experience, and food entrepreneurship.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            <InfoCard title="Launch of Puchkawala" badge="Kolkata, West Bengal">
+              Started a street-food venture in Kolkata, introducing crispy phuchka
+              and traditional flavours to new customers across the city.
+            </InfoCard>
+            <TimelineImage src="/products/puchka.jpeg" alt="Puchkawala street food" />
           </div>
         </div>
-      </div>
-    ),
-  },
-
-  {
-    title: "2023",
-    content: (
-      <div className="space-y-6">
-        <p className="max-w-3xl text-sm md:text-base text-neutral-700 dark:text-neutral-200">
-          With growing recognition, the company expanded into corporate catering
-          and event food services. From office gatherings to college festivals,
-          private celebrations, and corporate events, the team delivered food
-          experiences to larger audiences.
-        </p>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <Image
-            src="/about/man-image.png"
-            alt="Corporate Catering"
-            width={800}
-            height={600}
-            className="h-72 w-full rounded-2xl object-cover"
-          />
-
-          <div className="rounded-2xl border bg-white p-6 shadow-sm dark:bg-neutral-900">
-            <h3 className="mb-2 text-lg font-semibold">
-              Corporate Event Services
-            </h3>
-
-            <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
-              <li>✓ Corporate Catering</li>
-              <li>✓ College Festivals</li>
-              <li>✓ Office Events</li>
-              <li>✓ Private Celebrations</li>
-              <li>✓ Bulk Food Orders</li>
-            </ul>
+      ),
+    },
+    {
+      title: "2022",
+      content: (
+        <div className="space-y-6">
+          <p className="max-w-3xl text-sm leading-relaxed text-(--color-text-secondary) md:text-base">
+            Amit began his Bachelor of Computer Applications (BCA) in Kolkata —
+            balancing academics with entrepreneurship. This year strengthened
+            both business discipline and digital thinking for the brand ahead.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            <TimelineImage src="/about/bca.jpeg" alt="BCA journey — campus life" />
+            <TimelineImage src="/about/bca2.jpeg" alt="BCA studies in Kolkata" />
+          </div>
+          <InfoCard title="Started BCA" badge="Kolkata · 2022">
+            Enrolled in Bachelor of Computer Applications while continuing to
+            grow the food business — merging technology skills with real-world
+            entrepreneurial experience.
+          </InfoCard>
+        </div>
+      ),
+    },
+    {
+      title: "2023",
+      content: (
+        <div className="space-y-6">
+          <p className="max-w-3xl text-sm leading-relaxed text-(--color-text-secondary) md:text-base">
+            The business embraced digital transformation by partnering with
+            leading food delivery platforms. Joining Zomato and Swiggy enabled
+            thousands of customers across Kolkata to enjoy the products while
+            significantly increasing operational reach.
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            <TimelineImage src="/about/man-image.png" alt="Food delivery expansion" className="h-64 md:col-span-1" />
+            <InfoCard title="Zomato">
+              Expanded customer reach through online ordering and doorstep delivery
+              across Kolkata.
+            </InfoCard>
+            <InfoCard title="Swiggy">
+              Improved accessibility and convenience for customers through
+              platform partnerships.
+            </InfoCard>
           </div>
         </div>
-      </div>
-    ),
-  },
-
-  {
-    title: "2024 - 2025",
-    content: (
-      <div className="space-y-6">
-        <p className="max-w-3xl text-sm md:text-base text-neutral-700 dark:text-neutral-200">
-          During these years, extensive market research, product development,
-          branding, packaging innovation, and supplier partnerships laid the
-          groundwork for a larger vision. Traditional Mithila foods were
-          carefully selected and prepared for a premium consumer brand.
-        </p>
-
-        <div className="grid gap-4 md:grid-cols-3">
-          <Image
-            src="/about/man-image.png"
-            alt="Research"
-            width={600}
-            height={500}
-            className="h-56 w-full rounded-2xl object-cover"
-          />
-
-          <Image
-            src="/about/man-image.png"
-            alt="Packaging"
-            width={600}
-            height={500}
-            className="h-56 w-full rounded-2xl object-cover"
-          />
-
-          <Image
-            src="/about/man-image.png"
-            alt="Development"
-            width={600}
-            height={500}
-            className="h-56 w-full rounded-2xl object-cover"
-          />
-        </div>
-      </div>
-    ),
-  },
-
-  {
-    title: "2026",
-    content: (
-      <div className="space-y-6">
-        <p className="max-w-3xl text-sm md:text-base text-neutral-700 dark:text-neutral-200">
-          Maithili Harvest was officially launched with a mission to bring the
-          authentic taste of Mithila to households across India. From Makhana,
-          Pickles, Sattu, Traditional Sweets, Rice, Spices, and Heritage Foods,
-          the brand represents culture, quality, and authenticity.
-        </p>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border bg-white p-6 shadow-sm dark:bg-neutral-900">
-            <h3 className="mb-3 text-lg font-semibold">
-              Maithili Harvest Launch
-            </h3>
-
-            <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
-              <li>✓ Premium Food Brand</li>
-              <li>✓ FSSAI Registered</li>
-              <li>✓ Traditional Mithila Products</li>
-              <li>✓ Online Marketplace Presence</li>
-              <li>✓ Pan-India Expansion Vision</li>
-            </ul>
+      ),
+    },
+    {
+      title: "2024 – 2025",
+      content: (
+        <div className="space-y-6">
+          <p className="max-w-3xl text-sm leading-relaxed text-(--color-text-secondary) md:text-base">
+            With growing recognition, the team expanded into corporate catering,
+            event food services, and brand operations. Market research, packaging
+            innovation, and supplier partnerships laid the groundwork for
+            Maithili Harvest.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            <TimelineImage src="/about/office.jpeg" alt="Office and operations" />
+            <InfoCard title="Growth & Operations" badge="Corporate · Events">
+              <ul className="space-y-2">
+                <li>✓ Corporate catering & office events</li>
+                <li>✓ College festivals & celebrations</li>
+                <li>✓ Product development & packaging</li>
+                <li>✓ Supplier & marketplace partnerships</li>
+              </ul>
+            </InfoCard>
           </div>
-
-          <Image
-            src="/about/man-image.png"
-            alt="Maithili Harvest"
-            width={900}
-            height={700}
-            className="h-72 w-full rounded-2xl object-cover"
-          />
         </div>
-      </div>
-    ),
-  },
+      ),
+    },
+    {
+      title: "2026",
+      content: (
+        <div className="space-y-6">
+          <p className="max-w-3xl text-sm leading-relaxed text-(--color-text-secondary) md:text-base">
+            Maithili Harvest was officially launched with a mission to bring the
+            authentic taste of Mithila to households across India — from Makhana,
+            pickles, and traditional sweets to heritage grains and spices.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            <InfoCard title="Maithili Harvest Launch" badge="Registered · 2026">
+              <ul className="space-y-2">
+                <li>✓ Premium food brand from Mithila</li>
+                <li>✓ FSSAI registered products</li>
+                <li>✓ Traditional & regional specialities</li>
+                <li>✓ Online marketplace presence</li>
+                <li>✓ Pan-India expansion vision</li>
+              </ul>
+            </InfoCard>
+            <TimelineImage src="/Logo.jpg" alt="Maithili Harvest brand launch" />
+          </div>
+        </div>
+      ),
+    },
   ];
+
   return (
-    <div className="relative w-full overflow-clip">
+    <div className="relative w-full overflow-clip bg-(--color-cream)">
       <Timeline data={data} />
     </div>
   );

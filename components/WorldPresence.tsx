@@ -25,13 +25,13 @@ export default function WorldPresence() {
     <section className="border-t border-[var(--color-beige)] bg-[var(--color-beige-light)]/30 py-12 md:py-20">
       <div className="section-container">
         <div className="mb-8 text-center md:mb-14">
-          <p className="brand-tag mb-4">Global Reach</p>
+          <p className="brand-tag mb-4">Our Reach</p>
           <h2 className="font-editorial text-[clamp(1.8rem,4vw,2.8rem)] text-[var(--color-maroon)]">
-            We Are Available All Around the World
+            From Darbhanga to doorsteps worldwide
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base italic text-[var(--color-text-secondary)]">
-            From the fertile plains of Darbhanga, Bihar — our products travel to
-            kitchens, restaurants, and pantries across continents.
+            Our pickles, snacks, and pantry staples travel from the heart of
+            Mithila to homes and gatherings across continents.
           </p>
         </div>
 

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Plus } from "lucide-react";
 import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
-import { featuredProducts, trustedCompanies } from "./data";
+import { VideoBackground } from "./VideoBackground";
+import { featuredProducts, trustedCompanies, heroVideos } from "./data";
 
 /* ─── Company Logo Card ──────────────────────────────────────────────────── */
 function CompanyLogo({ name, logo }: { name: string; logo: string }) {
@@ -40,8 +41,8 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
   return (
     <div className="relative overflow-hidden py-2.5">
       {/* Fade edges */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-white to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-white to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--color-cream)]/95 to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--color-cream)]/95 to-transparent sm:w-24" />
 
       <InfiniteSlider speed={38} gap={14} reverse={reverse}>
         {trustedCompanies.map((company) => (
@@ -111,8 +112,18 @@ function ProductCard({ product }: { product: (typeof featuredProducts)[0] }) {
 
 /* ─── Main Section ───────────────────────────────────────────────────────── */
 export default function Hero3() {
+  const bg = heroVideos.hero3;
+
   return (
-    <section className="section-gap overflow-hidden bg-white">
+    <section className="section-gap relative overflow-hidden">
+      <VideoBackground
+        src={bg.src}
+        fallbackSrc={bg.fallback}
+        poster={bg.poster}
+        overlayClassName="bg-gradient-to-b from-[var(--color-cream)]/90 via-[var(--color-cream)]/82 to-[var(--color-cream)]/88"
+      />
+
+      <div className="relative z-10">
 
       {/* ── Trusted brands marquee ── */}
       <motion.div
@@ -123,7 +134,7 @@ export default function Hero3() {
         className="mb-12 sm:mb-16"
       >
         <p className="section-container mb-5 text-center brand-tag sm:mb-6">
-          Trusted by leading brands
+          Available on leading platforms
         </p>
         <MarqueeRow reverse={false} />
         <MarqueeRow reverse />
@@ -137,7 +148,7 @@ export default function Hero3() {
           <div>
             <span className="brand-tag">Featured</span>
             <h2 className="font-editorial mt-3 text-[clamp(1.75rem,4vw,3rem)] leading-tight text-(--color-maroon)">
-              Honest food, honestly priced.
+              Beloved Mithila staples, ready to order.
             </h2>
           </div>
           <Link
@@ -175,7 +186,7 @@ export default function Hero3() {
                 Full Catalogue
               </span>
               <h3 className="font-editorial mt-3 max-w-lg text-xl text-(--color-cream) sm:text-2xl md:text-3xl">
-                Over 40 products from Mithila&apos;s best farms.
+                Pickles, makhana, thekua, spices, and more from our home region.
               </h3>
             </div>
             <Link
@@ -187,6 +198,7 @@ export default function Hero3() {
           </div>
         </motion.div>
 
+      </div>
       </div>
     </section>
   );
