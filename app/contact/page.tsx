@@ -1,16 +1,61 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { FacebookIcon, LinkedinIcon, YoutubeIcon, InstagramIcon } from "@/components/icons/SocialIcons";
+import { motion } from "motion/react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Copy,
+  Check,
+  ArrowUpRight,
+} from "lucide-react";
+import {
+  FacebookIcon,
+  LinkedinIcon,
+  YoutubeIcon,
+  InstagramIcon,
+} from "@/components/icons/SocialIcons";
+import { getDemoYouTubeEmbedUrl } from "@/components/Home/VideoBackground";
+import { heroDemoVideo, hero1BackgroundImage } from "@/components/Home/data";
 import WorldPresence from "@/components/WorldPresence";
 
-const contactDetails = [
-  { Icon: Phone, label: "Phone", value: "+91 XXXXX XXXXX" },
-  { Icon: Mail, label: "Email", value: "hello@maithiliharvest.com" },
-  { Icon: MapPin, label: "Address", value: "Darbhanga, Bihar — 846001, India" },
-  { Icon: Clock, label: "Response Time", value: "Within 24 business hours" },
+const EMAIL = "hello@maithiliharvest.com";
+const PHONE_DISPLAY = "+91 XXXXX XXXXX";
+const PHONE_TEL = "+91XXXXXXXXXX";
+
+const contactCards = [
+  {
+    Icon: Mail,
+    label: "Email",
+    value: EMAIL,
+    href: `mailto:${EMAIL}`,
+    action: "Send Email",
+  },
+  {
+    Icon: Phone,
+    label: "Phone",
+    value: PHONE_DISPLAY,
+    href: `tel:${PHONE_TEL}`,
+    action: "Call Us",
+  },
+  {
+    Icon: MapPin,
+    label: "Address",
+    value: "Darbhanga, Bihar — 846001, India",
+    href: "https://maps.google.com/?q=Darbhanga,Bihar",
+    action: "View Map",
+  },
+  {
+    Icon: Clock,
+    label: "Reply Time",
+    value: "Within 24 business hours",
+    href: null,
+    action: null,
+  },
 ];
 
 const socialLinks = [
@@ -20,77 +65,190 @@ const socialLinks = [
   { Icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/maithiliharvest" },
 ];
 
+const mailTopics = [
+  { id: "order", label: "Order", subject: "Order Enquiry" },
+  { id: "wholesale", label: "Wholesale", subject: "Wholesale / B2B Enquiry" },
+  { id: "partnership", label: "Partnership", subject: "Partnership Proposal" },
+  { id: "press", label: "Press", subject: "Press & Media" },
+] as const;
+
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [sent, setSent] = useState(false);
+  const [topicId, setTopicId] = useState<(typeof mailTopics)[number]["id"]>("order");
+  const [copied, setCopied] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const topic = mailTopics.find((t) => t.id === topicId) ?? mailTopics[0];
+  const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(topic.subject)}&body=${encodeURIComponent("Hi Maithili Harvest team,\n\n")}`;
+  const embedUrl = getDemoYouTubeEmbedUrl(heroDemoVideo.url);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (form.name && form.email && form.message) setSent(true);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* clipboard unavailable */
+    }
   };
 
   return (
     <main className="bg-[var(--color-cream)]">
-      <section className="border-b border-[var(--color-beige)] bg-[var(--color-maroon)] pb-12 pt-8 sm:pb-20 sm:pt-12">
-        <div className="section-container">
-          <p className="brand-tag mb-5 text-[var(--color-gold)]">Get in Touch</p>
-          <h1 className="font-editorial max-w-lg text-[clamp(2rem,5vw,3.5rem)] leading-tight text-[var(--color-cream)]">
-            We&apos;d love to hear from you.
-          </h1>
-          <p className="mt-5 max-w-md text-base italic text-[var(--color-beige)]">
-            Whether it&apos;s a wholesale enquiry, a partnership idea, or a question
-            about our products — write to us.
-          </p>
+      {/* Hero with image + headline */}
+      <section className="relative overflow-hidden border-b border-[var(--color-beige)]">
+        <div className="absolute inset-0">
+          <Image
+            src={hero1BackgroundImage}
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-maroon)]/88 via-[var(--color-maroon)]/72 to-[var(--color-maroon)]/55" />
+        </div>
+
+        <div className="section-container relative z-10 py-16 sm:py-24">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="brand-tag mb-4 text-[var(--color-gold)]"
+          >
+            Get in Touch
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="font-editorial max-w-2xl text-[clamp(2.25rem,5vw,4rem)] leading-tight text-[var(--color-cream)]"
+          >
+            Let&apos;s start a conversation.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mt-5 max-w-lg text-lg text-[var(--color-beige)]"
+          >
+            No forms, no waiting — tap your email app and write to us directly.
+          </motion.p>
         </div>
       </section>
 
-      <section className="py-12 md:py-20">
-        <div className="section-container grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* LEFT */}
-          <div className="flex flex-col gap-10">
-            <div>
-              <p className="brand-tag mb-4">Contact Details</p>
-              <div className="flex flex-col">
-                {contactDetails.map(({ Icon, label, value }, i) => (
-                  <div
-                    key={label}
-                    className="flex items-start gap-4 py-5"
-                    style={{
-                      borderBottom:
-                        i < contactDetails.length - 1
-                          ? "1px solid var(--color-beige)"
-                          : "none",
-                    }}
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-gold)]/40 text-[var(--color-maroon)]">
-                      <Icon size={16} />
-                    </div>
-                    <div>
-                      <p className="brand-tag mb-1">{label}</p>
-                      <p className="text-sm text-[var(--color-text-primary)]">{value}</p>
-                    </div>
-                  </div>
-                ))}
+      <section className="py-14 md:py-20">
+        <div className="section-container grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Left — email CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="brand-tag mb-3">Write To Us</p>
+            <h2 className="font-editorial mb-6 text-3xl text-[var(--color-maroon)] sm:text-4xl">
+              One tap to our inbox.
+            </h2>
+
+            <div className="mb-5 flex flex-wrap gap-2">
+              {mailTopics.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setTopicId(t.id)}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+                    topicId === t.id
+                      ? "border-[var(--color-maroon)] bg-[var(--color-maroon)] text-[var(--color-cream)]"
+                      : "border-[var(--color-beige)] bg-white text-[var(--color-text-secondary)] hover:border-[var(--color-gold)]"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="overflow-hidden rounded-2xl border border-[var(--color-beige)] bg-white p-8 shadow-[var(--shadow-md)]">
+              <p className="brand-tag mb-2 text-[var(--color-text-muted)]">
+                Subject: {topic.subject}
+              </p>
+              <p className="break-all font-editorial text-2xl text-[var(--color-maroon)] sm:text-3xl">
+                {EMAIL}
+              </p>
+
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href={mailto} className="btn-primary inline-flex items-center gap-2">
+                  Open Mail App
+                  <ArrowUpRight size={16} />
+                </Link>
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="btn-secondary inline-flex items-center gap-2"
+                >
+                  {copied ? <Check size={16} /> : <Copy size={16} />}
+                  {copied ? "Copied!" : "Copy Email"}
+                </button>
               </div>
             </div>
 
-            {/* Social icons */}
-            <div>
+            {/* Contact cards grid */}
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {contactCards.map(({ Icon, label, value, href, action }) => (
+                <div
+                  key={label}
+                  className="rounded-xl border border-[var(--color-beige)] bg-white p-5"
+                >
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-gold)]/40 text-[var(--color-maroon)]">
+                    <Icon size={18} />
+                  </div>
+                  <p className="brand-tag mb-1">{label}</p>
+                  <p className="text-base font-medium text-[var(--color-text-primary)]">
+                    {value}
+                  </p>
+                  {href && action && (
+                    <Link
+                      href={href}
+                      target={label === "Address" ? "_blank" : undefined}
+                      rel={label === "Address" ? "noopener noreferrer" : undefined}
+                      className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-gold-dark)] no-underline hover:text-[var(--color-maroon)]"
+                    >
+                      {action} <ArrowUpRight size={14} />
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right — video + socials */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex flex-col gap-6"
+          >
+            <div className="overflow-hidden rounded-2xl border border-[var(--color-gold)]/30 bg-white shadow-[var(--shadow-md)]">
+              <div className="border-b border-[var(--color-beige)] px-5 py-3">
+                <p className="brand-tag text-[var(--color-gold-dark)]">Behind the brand</p>
+              </div>
+              <div className="relative aspect-video bg-[var(--color-beige-light)]">
+                {embedUrl ? (
+                  <iframe
+                    src={embedUrl}
+                    title={heroDemoVideo.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 h-full w-full border-0"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center p-6 text-center text-[var(--color-text-muted)]">
+                    {heroDemoVideo.title}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--color-beige)] bg-[var(--color-gold-light)]/40 p-6">
               <p className="brand-tag mb-4">Follow Us</p>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 {socialLinks.map(({ Icon, label, href }) => (
                   <Link
                     key={label}
@@ -98,112 +256,28 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-beige)] bg-white text-[var(--color-maroon)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:bg-[var(--color-gold-light)] hover:shadow-[var(--shadow-md)]"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--color-beige)] bg-white text-[var(--color-maroon)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:shadow-[var(--shadow-sm)]"
                   >
-                    <Icon size={18} />
+                    <Icon size={20} />
                   </Link>
                 ))}
               </div>
-              <p className="mt-3 text-xs text-[var(--color-text-muted)]">
-                Connect with us on social media for recipes, harvest updates &amp; more.
+              <p className="mt-4 text-base leading-relaxed text-[var(--color-text-secondary)]">
+                Recipes, harvest stories, and new product drops — follow us for
+                the taste of Mithila.
               </p>
             </div>
 
-            <div className="border-l-2 border-[var(--color-gold)] pl-5">
-              <p className="font-editorial text-base italic leading-relaxed text-[var(--color-maroon)]">
-                &ldquo;We believe great relationships — like great food — are built on
-                honest conversation and shared values.&rdquo;
+            <blockquote className="border-l-4 border-[var(--color-gold)] pl-5">
+              <p className="font-editorial text-lg italic leading-relaxed text-[var(--color-maroon)]">
+                &ldquo;Great food — like great relationships — starts with an
+                honest hello.&rdquo;
               </p>
-              <p className="brand-tag mt-3">— Amit Kumar, Founder</p>
-            </div>
-          </div>
-
-          {/* RIGHT — form */}
-          <div>
-            <p className="brand-tag mb-6">Send a Message</p>
-
-            {sent ? (
-              <div className="rounded-2xl border border-[var(--color-beige)] bg-white p-8 border-l-4 border-l-[var(--color-gold)]">
-                <h3 className="font-display text-xl text-[var(--color-maroon)]">
-                  Message received.
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                  Thank you, {form.name}. We&apos;ll get back to you at{" "}
-                  <span className="font-semibold text-[var(--color-gold-dark)]">
-                    {form.email}
-                  </span>{" "}
-                  within 24 hours.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {[
-                    { id: "contact-name", name: "name", label: "Name", type: "text", placeholder: "Your name" },
-                    { id: "contact-email", name: "email", label: "Email", type: "email", placeholder: "your@email.com" },
-                  ].map((field) => (
-                    <div key={field.id}>
-                      <label htmlFor={field.id} className="brand-tag mb-2 block">
-                        {field.label}
-                      </label>
-                      <input
-                        id={field.id}
-                        name={field.name}
-                        type={field.type}
-                        required
-                        className="brand-input"
-                        placeholder={field.placeholder}
-                        value={form[field.name as keyof typeof form]}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                <div>
-                  <label htmlFor="contact-subject" className="brand-tag mb-2 block">
-                    Subject
-                  </label>
-                  <select
-                    id="contact-subject"
-                    name="subject"
-                    className="brand-input"
-                    value={form.subject}
-                    onChange={handleChange}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <option value="">Select a topic</option>
-                    <option value="order">Order Enquiry</option>
-                    <option value="wholesale">Wholesale / B2B</option>
-                    <option value="partnership">Partnership</option>
-                    <option value="press">Press & Media</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="contact-message" className="brand-tag mb-2 block">
-                    Message
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    required
-                    rows={5}
-                    className="brand-input"
-                    placeholder="Tell us how we can help…"
-                    value={form.message}
-                    onChange={handleChange}
-                    style={{ resize: "vertical", minHeight: "130px" }}
-                  />
-                </div>
-
-                <button type="submit" className="btn-primary self-start">
-                  Send Message
-                </button>
-              </form>
-            )}
-          </div>
+              <cite className="brand-tag mt-3 block not-italic">
+                — Amit Kumar, Founder
+              </cite>
+            </blockquote>
+          </motion.div>
         </div>
       </section>
 

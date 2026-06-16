@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ShoppingBag, Star, Truck } from "lucide-react";
 
 import { products } from "@/components/products/data";
+import { PRODUCT_PRICE_LABEL } from "@/components/products/ProductPrice";
 
 type ProductPageProps = {
   params: Promise<{
@@ -118,12 +119,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginTop: "1rem", flexWrap: "wrap" }}>
-                <span style={{ fontFamily: "var(--font-editorial)", fontSize: "1.5rem", color: "var(--color-aged-gold)" }}>₹{product.price}</span>
-                {product.unit && (
-                  <span style={{ color: "var(--color-text-muted)", fontFamily: "var(--font-body)", letterSpacing: "0.08em", textTransform: "uppercase", fontSize: "11px" }}>
-                    {product.unit}
-                  </span>
-                )}
+                <span style={{ fontFamily: "var(--font-editorial)", fontSize: "1.5rem", color: "var(--color-aged-gold)" }}>{PRODUCT_PRICE_LABEL}</span>
               </div>
 
               <div style={{ display: "grid", gap: "0.75rem", marginTop: "1.25rem" }}>

@@ -67,7 +67,7 @@ export default function Hero5() {
         src={bg.src}
         fallbackSrc={bg.fallback}
         poster={bg.poster}
-        overlayClassName="bg-gradient-to-b from-[var(--color-cream)]/88 via-[var(--color-beige-light)]/80 to-[var(--color-cream)]/90"
+        overlayClassName="bg-[var(--color-maroon)]/10"
       />
 
       <div className="section-container relative z-10">

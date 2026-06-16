@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/components/products/types";
+import { PRODUCT_PRICE_LABEL } from "@/components/products/ProductPrice";
 
 // ProductCardProps ensures TypeScript knows the exact shape of `product`,
 // eliminating the "implicitly has 'any' type" error.
@@ -30,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </p>
 
                 <div className="mt-2 flex justify-between">
-                    <span>₹{product.price}</span>
+                    <span className="text-sm font-semibold text-[var(--color-gold-dark)]">{PRODUCT_PRICE_LABEL}</span>
 
                     <span>
                         ⭐ {product.zomatoRating}

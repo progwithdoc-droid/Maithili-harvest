@@ -18,11 +18,14 @@ export function VideoBackground({
   src,
   fallbackSrc,
   poster,
-  overlayClassName = "bg-[var(--color-cream)]/85",
+  overlayClassName = "bg-[var(--color-maroon)]/12",
   className = "",
 }: VideoBackgroundProps) {
   const [activeSrc, setActiveSrc] = useState(src);
   const [failed, setFailed] = useState(false);
+
+  const mediaClass =
+    "h-full w-full scale-105 object-cover brightness-[0.9] contrast-[1.06] saturate-[1.05]";
 
   const handleError = () => {
     if (fallbackSrc && activeSrc !== fallbackSrc) {
@@ -42,7 +45,7 @@ export function VideoBackground({
           src={poster}
           alt=""
           fill
-          className="scale-105 object-cover"
+          className={`${mediaClass}`}
           sizes="100vw"
           priority
         />
@@ -56,7 +59,7 @@ export function VideoBackground({
           loop
           playsInline
           poster={poster}
-          className="h-full w-full scale-105 object-cover"
+          className={mediaClass}
           onError={handleError}
         >
           <source src={activeSrc} type="video/mp4" />

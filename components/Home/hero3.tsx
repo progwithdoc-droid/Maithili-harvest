@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Plus } from "lucide-react";
+import { PRODUCT_PRICE_LABEL } from "@/components/products/ProductPrice";
 import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
 import { VideoBackground } from "./VideoBackground";
 import { featuredProducts, trustedCompanies, heroVideos } from "./data";
@@ -94,11 +95,8 @@ function ProductCard({ product }: { product: (typeof featuredProducts)[0] }) {
         </h3>
         <div className="mt-3 flex items-center justify-between sm:mt-4">
           <div>
-            <span className="font-display text-base font-semibold sm:text-lg">
-              ₹{product.price}
-            </span>
-            <span className="ml-1 text-xs text-(--color-text-muted)">
-              / {product.unit}
+            <span className="font-display text-base font-semibold text-[var(--color-gold-dark)] sm:text-lg">
+              {PRODUCT_PRICE_LABEL}
             </span>
           </div>
           <button type="button" className="btn-icon" aria-label="Add to cart">
@@ -120,7 +118,7 @@ export default function Hero3() {
         src={bg.src}
         fallbackSrc={bg.fallback}
         poster={bg.poster}
-        overlayClassName="bg-gradient-to-b from-[var(--color-cream)]/90 via-[var(--color-cream)]/82 to-[var(--color-cream)]/88"
+        overlayClassName="bg-[var(--color-maroon)]/10"
       />
 
       <div className="relative z-10">

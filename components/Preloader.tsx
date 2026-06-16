@@ -1,54 +1,61 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 
-const MIN_DISPLAY_MS = 2200;
-const FORCE_COMPLETE_MS = 5500;
+const MIN_DISPLAY_MS = 2400;
+const FORCE_COMPLETE_MS = 6000;
 
 type Phase = "loading" | "closing" | "opening" | "done";
 
+const WELCOME_MESSAGES = [
+  "Welcome to Maithili Harvest",
+  "मैथिली हार्वेस्ट में आपका स्वागत है",
+  "मैथिली हार्वेस्टमे अहाँक स्वागत अछि",
+];
+
 export default function Preloader() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState<Phase>("loading");
+  const [welcomeIndex, setWelcomeIndex] = useState(0);
+  const finishedRef = useRef(false);
 
   useEffect(() => {
-    setVisible(true);
     document.body.style.overflow = "hidden";
 
     const start = Date.now();
-    let loaded = false;
+    let loaded = document.readyState === "complete";
     let raf = 0;
 
     const finish = () => {
+      if (finishedRef.current) return;
+      finishedRef.current = true;
+
       setProgress(100);
       setPhase("closing");
 
-      window.setTimeout(() => setPhase("opening"), 380);
+      window.setTimeout(() => setPhase("opening"), 500);
 
       window.setTimeout(() => {
         setVisible(false);
         setPhase("done");
         document.body.style.overflow = "";
-      }, 1250);
+      }, 1400);
     };
 
     const tryFinish = () => {
       const elapsed = Date.now() - start;
-      if (loaded && elapsed >= MIN_DISPLAY_MS) {
-        finish();
-      } else if (elapsed >= FORCE_COMPLETE_MS) {
-        finish();
-      }
+      if (loaded && elapsed >= MIN_DISPLAY_MS) finish();
+      else if (elapsed >= FORCE_COMPLETE_MS) finish();
     };
 
     const tick = () => {
       const elapsed = Date.now() - start;
       const target = loaded
-        ? Math.min(100, 70 + ((elapsed - MIN_DISPLAY_MS * 0.4) / MIN_DISPLAY_MS) * 30)
-        : Math.min(88, (elapsed / MIN_DISPLAY_MS) * 88);
+        ? Math.min(100, 72 + ((elapsed - MIN_DISPLAY_MS * 0.35) / MIN_DISPLAY_MS) * 28)
+        : Math.min(90, (elapsed / MIN_DISPLAY_MS) * 90);
 
       setProgress((prev) => Math.max(prev, target));
       tryFinish();
@@ -62,11 +69,7 @@ export default function Preloader() {
       tryFinish();
     };
 
-    if (document.readyState === "complete") {
-      loaded = true;
-    } else {
-      window.addEventListener("load", onLoad);
-    }
+    if (!loaded) window.addEventListener("load", onLoad);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -75,10 +78,15 @@ export default function Preloader() {
     };
   }, []);
 
-  const curtainTopY =
-    phase === "loading" ? "-100%" : phase === "closing" ? "0%" : "-100%";
-  const curtainBottomY =
-    phase === "loading" ? "100%" : phase === "closing" ? "0%" : "100%";
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setWelcomeIndex((i) => (i + 1) % WELCOME_MESSAGES.length);
+    }, 900);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const topCurtainY = phase === "closing" ? "0%" : "-100%";
+  const bottomCurtainY = phase === "closing" ? "0%" : "100%";
 
   return (
     <AnimatePresence>
@@ -88,84 +96,68 @@ export default function Preloader() {
           className="preloader-root"
           initial={{ opacity: 1 }}
           animate={{ opacity: phase === "opening" ? 0 : 1 }}
-          transition={{ duration: 0.3, delay: phase === "opening" ? 0.5 : 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, delay: phase === "opening" ? 0.45 : 0 }}
         >
+          <div className="preloader-grain" aria-hidden="true" />
+          <div className="preloader-glow" aria-hidden="true" />
+
+          {/* Cream curtains close over maroon, then slide away */}
           <motion.div
             className="preloader-curtain preloader-curtain--left"
-            animate={{ y: curtainTopY }}
-            transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+            initial={{ y: "-100%" }}
+            animate={{ y: topCurtainY }}
+            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
           />
           <motion.div
             className="preloader-curtain preloader-curtain--right"
-            animate={{ y: curtainBottomY }}
-            transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+            initial={{ y: "100%" }}
+            animate={{ y: bottomCurtainY }}
+            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
           />
-
-          <div className="preloader-grain" aria-hidden="true" />
-          <div className="preloader-glow" aria-hidden="true" />
 
           <motion.div
             className="preloader-content"
             animate={
               phase !== "loading"
-                ? { opacity: 0, y: -16, scale: 0.97 }
+                ? { opacity: 0, y: -12, scale: 0.98 }
                 : { opacity: 1, y: 0, scale: 1 }
             }
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.35 }}
           >
-            <motion.div
-              className="preloader-logo-wrap"
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-            >
+            <div className="preloader-logo-wrap">
               <div className="preloader-ring preloader-ring--outer" />
               <div className="preloader-ring preloader-ring--inner" />
               <div className="preloader-logo">
                 <Image
                   src="/Logo.jpg"
                   alt=""
-                  width={64}
-                  height={64}
-                  className="h-full w-full object-cover object-center"
+                  width={88}
+                  height={88}
+                  className="h-full w-full object-cover"
                   priority
                 />
               </div>
-            </motion.div>
+            </div>
 
-            <motion.p
-              className="preloader-tag brand-tag"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.45 }}
-            >
-              Taste Mithila
-            </motion.p>
+            <p className="brand-tag preloader-tag">Taste Mithila</p>
+            <h1 className="preloader-title font-display">Maithili Harvest</h1>
+            <p className="preloader-subtitle">Artisan food from the heart of Bihar</p>
 
-            <motion.h1
-              className="preloader-title font-display"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
-            >
-              Maithili Harvest
-            </motion.h1>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={welcomeIndex}
+                className="mt-4 text-sm tracking-wide text-[var(--color-gold-light)]"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3 }}
+              >
+                {WELCOME_MESSAGES[welcomeIndex]}
+              </motion.p>
+            </AnimatePresence>
 
-            <motion.p
-              className="preloader-subtitle"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              Artisan food from the heart of Bihar
-            </motion.p>
-
-            <motion.div
-              className="preloader-progress-wrap"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.85 }}
-            >
+            <div className="preloader-progress-wrap">
               <div className="preloader-progress-track">
                 <div
                   className="preloader-progress-fill"
@@ -173,9 +165,9 @@ export default function Preloader() {
                 />
               </div>
               <span className="preloader-progress-label">
-                {Math.round(progress)}%
+                Loading {Math.round(progress)}%
               </span>
-            </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       )}

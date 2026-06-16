@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { Product } from "./types";
+import { PRODUCT_PRICE_LABEL } from "./ProductPrice";
 
 interface ProductGridProps {
   /** Filtered products array to render */
@@ -221,22 +222,8 @@ function ProductCardInline({ product }: { product: Product }) {
                 color: "var(--color-aged-gold)",
               }}
             >
-              ₹{product.price}
+              {PRODUCT_PRICE_LABEL}
             </span>
-            {product.unit && (
-              <span
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 300,
-                  fontSize: "10px",
-                  letterSpacing: "0.06em",
-                  color: "var(--color-text-muted)",
-                  marginLeft: "5px",
-                }}
-              >
-                / {product.unit}
-              </span>
-            )}
           </div>
 
           {/* Zomato rating */}

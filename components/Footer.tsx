@@ -44,7 +44,7 @@ export default function Footer() {
         <div className="section-container flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="brand-tag text-[var(--color-gold)]">Taste Mithila</p>
-            <h2 className="font-editorial mt-2 text-[clamp(1.8rem,4vw,2.5rem)] text-[var(--color-cream)]">
+            <h2 className="font-editorial mt-2 text-[clamp(2rem,4.5vw,2.75rem)] text-[var(--color-cream)]">
               Bring Mithila home to your kitchen
             </h2>
           </div>
@@ -52,11 +52,8 @@ export default function Footer() {
             <Link href="/products" className="btn-gold">
               Shop Now
             </Link>
-            <Link
-              href="/about"
-              className="btn-secondary border-[var(--color-gold)]/40 text-[var(--color-cream)] hover:border-[var(--color-gold)] hover:bg-white/10"
-            >
-              Our Story
+            <Link href="/contact" className="btn-outline-light">
+              Contact Now
             </Link>
           </div>
         </div>
@@ -84,7 +81,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="footer-link inline-block text-sm no-underline"
+                    className="footer-link inline-block text-base no-underline"
                   >
                     {item.label}
                   </Link>
@@ -102,7 +99,7 @@ export default function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="footer-link inline-block text-sm no-underline"
+                    className="footer-link inline-block text-base no-underline"
                   >
                     {item.label}
                   </Link>

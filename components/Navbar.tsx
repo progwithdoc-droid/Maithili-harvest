@@ -64,7 +64,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`nav-link text-[11px] font-semibold uppercase tracking-[0.18em] no-underline ${
+                  className={`nav-link text-[13px] font-semibold uppercase tracking-[0.16em] no-underline ${
                     isActive ? "nav-link--active" : ""
                   }`}
                 >
@@ -124,7 +124,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`nav-mobile-link block border-b border-(--color-beige) px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] no-underline ${
+                    className={`nav-mobile-link block border-b border-(--color-beige) px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.16em] no-underline ${
                       isActive ? "nav-link--active" : ""
                     }`}
                   >

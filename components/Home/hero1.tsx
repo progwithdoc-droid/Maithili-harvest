@@ -29,7 +29,7 @@ export default function Hero1() {
         src={bg.src}
         fallbackSrc={bg.fallback}
         poster={bg.poster}
-        overlayClassName="bg-gradient-to-r from-[var(--color-cream)]/92 via-[var(--color-cream)]/78 to-[var(--color-cream)]/35"
+        overlayClassName="bg-gradient-to-r from-[var(--color-maroon)]/45 via-[var(--color-maroon)]/18 to-[var(--color-maroon)]/5"
       />
 
       <div
@@ -56,7 +56,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-editorial mt-4 text-[clamp(2rem,6vw,4.25rem)] leading-[1.08] text-[var(--color-maroon)] sm:mt-5"
+            className="font-editorial mt-4 text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] text-[var(--color-maroon)] sm:mt-5"
           >
             The flavours of{" "}
             <span className="italic text-[var(--color-gold-dark)]">Mithila</span>, packed with care
@@ -67,7 +67,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-[var(--color-text-secondary)] sm:mt-5 sm:text-base lg:mx-0 lg:max-w-md"
+            className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-[var(--color-text-secondary)] sm:mt-5 sm:text-lg lg:mx-0 lg:max-w-md"
           >
             Pickles, makhana, ghee, spices, and handmade snacks from Bihar — made with
             recipes rooted in Maithili tradition.
