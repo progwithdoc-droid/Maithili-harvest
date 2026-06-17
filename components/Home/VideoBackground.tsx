@@ -91,3 +91,58 @@ export function getDemoYouTubeEmbedUrl(url: string): string | null {
   if (!id) return null;
   return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&playsinline=1`;
 }
+
+/** Autoplaying, muted, looping embed for full-section backgrounds */
+export function getYouTubeBackgroundEmbedUrl(url: string): string | null {
+  const id = getYouTubeVideoId(url);
+  if (!id) return null;
+
+  const params = new URLSearchParams({
+    autoplay: "1",
+    mute: "1",
+    loop: "1",
+    playlist: id,
+    controls: "0",
+    rel: "0",
+    modestbranding: "1",
+    playsinline: "1",
+    iv_load_policy: "3",
+    disablekb: "1",
+    fs: "0",
+    cc_load_policy: "0",
+    enablejsapi: "0",
+  });
+
+  return `https://www.youtube.com/embed/${id}?${params.toString()}`;
+}
+
+type YouTubeBackgroundProps = {
+  url: string;
+  overlayClassName?: string;
+  className?: string;
+};
+
+export function YouTubeBackground({
+  url,
+  overlayClassName = "bg-[var(--color-maroon)]/12",
+  className = "",
+}: YouTubeBackgroundProps) {
+  const embedUrl = getYouTubeBackgroundEmbedUrl(url);
+
+  if (!embedUrl) return null;
+
+  return (
+    <div
+      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+      aria-hidden="true"
+    >
+      <iframe
+        src={embedUrl}
+        title="Background video"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        className="absolute left-1/2 top-1/2 h-[300%] w-[300%] -translate-x-1/2 -translate-y-1/2 border-0"
+      />
+      <div className={`absolute inset-0 ${overlayClassName}`} />
+    </div>
+  );
+}

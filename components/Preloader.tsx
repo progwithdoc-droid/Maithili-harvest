@@ -1,14 +1,14 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 
-const MIN_DISPLAY_MS = 3000;
-const FORCE_COMPLETE_MS = 7000;
+const WELCOME_MS = 3200;
+const LOGO_MS = 1400;
+const FORCE_COMPLETE_MS = 8000;
 
-type Phase = "welcome" | "logo" | "opening" | "done";
+type Phase = "welcome" | "logo" | "closing" | "opening" | "done";
 
 const WELCOME_MESSAGES = [
   "Welcome to Maithili Harvest",
@@ -23,6 +23,7 @@ export default function Preloader() {
   const [welcomeIndex, setWelcomeIndex] = useState(0);
 
   const finishedRef = useRef(false);
+  const phaseRef = useRef<Phase>("welcome");
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -31,48 +32,62 @@ export default function Preloader() {
     let loaded = document.readyState === "complete";
     let raf = 0;
 
-    const finish = () => {
-      if (finishedRef.current) return;
+    const setPhaseSafe = (next: Phase) => {
+      phaseRef.current = next;
+      setPhase(next);
+    };
 
+    const runExit = () => {
+      if (finishedRef.current) return;
       finishedRef.current = true;
 
       setProgress(100);
-      setPhase("logo");
+      setPhaseSafe("closing");
 
-      setTimeout(() => {
-        setPhase("opening");
-      }, 1200);
+      window.setTimeout(() => setPhaseSafe("opening"), 650);
 
-      setTimeout(() => {
+      window.setTimeout(() => {
         setVisible(false);
+        setPhaseSafe("done");
         document.body.style.overflow = "";
-      }, 2600);
+      }, 1500);
     };
 
-    const tryFinish = () => {
+    const tryAdvance = () => {
       const elapsed = Date.now() - start;
 
-      if (loaded && elapsed >= MIN_DISPLAY_MS) {
-        finish();
-      } else if (elapsed >= FORCE_COMPLETE_MS) {
-        finish();
+      if (phaseRef.current === "welcome") {
+        if (elapsed >= WELCOME_MS && loaded) {
+          setPhaseSafe("logo");
+        } else if (elapsed >= FORCE_COMPLETE_MS) {
+          setPhaseSafe("logo");
+        }
+        return;
+      }
+
+      if (phaseRef.current === "logo") {
+        const logoElapsed = elapsed - WELCOME_MS;
+        if (logoElapsed >= LOGO_MS && loaded) {
+          runExit();
+        } else if (elapsed >= FORCE_COMPLETE_MS) {
+          runExit();
+        }
       }
     };
 
     const tick = () => {
       const elapsed = Date.now() - start;
 
-      const target = loaded
-        ? Math.min(
-            100,
-            75 + ((elapsed - MIN_DISPLAY_MS * 0.3) / MIN_DISPLAY_MS) * 25
-          )
-        : Math.min(92, (elapsed / MIN_DISPLAY_MS) * 92);
+      if (phaseRef.current === "welcome") {
+        const target = Math.min(55, (elapsed / WELCOME_MS) * 55);
+        setProgress((prev) => Math.max(prev, target));
+      } else if (phaseRef.current === "logo") {
+        const logoElapsed = Math.max(0, elapsed - WELCOME_MS);
+        const target = Math.min(100, 55 + (logoElapsed / LOGO_MS) * 45);
+        setProgress((prev) => Math.max(prev, target));
+      }
 
-      setProgress((prev) => Math.max(prev, target));
-
-      tryFinish();
-
+      tryAdvance();
       raf = requestAnimationFrame(tick);
     };
 
@@ -80,7 +95,7 @@ export default function Preloader() {
 
     const onLoad = () => {
       loaded = true;
-      tryFinish();
+      tryAdvance();
     };
 
     if (!loaded) {
@@ -97,186 +112,111 @@ export default function Preloader() {
   useEffect(() => {
     if (phase !== "welcome") return;
 
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
       setWelcomeIndex((i) => (i + 1) % WELCOME_MESSAGES.length);
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => window.clearInterval(interval);
   }, [phase]);
+
+  const topCurtainY = phase === "closing" ? "0%" : "-100%";
+  const bottomCurtainY = phase === "closing" ? "0%" : "100%";
 
   if (!visible) return null;
 
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-9999 overflow-hidden bg-[#4b0f19]"
+        key="preloader"
+        className="preloader-root"
         initial={{ opacity: 1 }}
         animate={{ opacity: phase === "opening" ? 0 : 1 }}
-        transition={{ duration: 0.6 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.45, delay: phase === "opening" ? 0.35 : 0 }}
       >
-        {/* Grain */}
-        <div className="absolute inset-0 opacity-10 bg-[url('/grain.png')]" />
+        <div className="preloader-grain" aria-hidden="true" />
+        <div className="preloader-glow" aria-hidden="true" />
 
-        {/* Doors */}
+        {/* Cream curtains — only close/open at the very end */}
         <motion.div
-          className="absolute left-0 top-0 h-full w-1/2 bg-[#f4e6cb] z-30"
-          initial={{ x: "-100%" }}
-          animate={{
-            x:
-              phase === "opening"
-                ? "-100%"
-                : phase === "logo"
-                ? "0%"
-                : "-100%",
-          }}
-          transition={{
-            duration: 1,
-            ease: [0.76, 0, 0.24, 1],
-          }}
+          className="preloader-curtain preloader-curtain--left"
+          initial={{ y: "-100%" }}
+          animate={{ y: topCurtainY }}
+          transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+        />
+        <motion.div
+          className="preloader-curtain preloader-curtain--right"
+          initial={{ y: "100%" }}
+          animate={{ y: bottomCurtainY }}
+          transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
         />
 
-        <motion.div
-          className="absolute right-0 top-0 h-full w-1/2 bg-[#f4e6cb] z-30"
-          initial={{ x: "100%" }}
-          animate={{
-            x:
-              phase === "opening"
-                ? "100%"
-                : phase === "logo"
-                ? "0%"
-                : "100%",
-          }}
-          transition={{
-            duration: 1,
-            ease: [0.76, 0, 0.24, 1],
-          }}
-        />
-
-        {/* Welcome Text */}
-        {phase === "welcome" && (
-          <AnimatePresence mode="wait">
+        {/* Welcome — full-screen cycling text */}
+        <AnimatePresence mode="wait">
+          {phase === "welcome" && (
             <motion.div
-              key={welcomeIndex}
-              className="absolute inset-0 flex items-center justify-center px-8"
-              initial={{
-                opacity: 0,
-                scale: 1.3,
-                filter: "blur(12px)",
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                filter: "blur(0px)",
-              }}
-              exit={{
-                opacity: 0,
-                scale: 0.7,
-                filter: "blur(15px)",
-              }}
-              transition={{
-                duration: 0.8,
-              }}
+              key={`welcome-${welcomeIndex}`}
+              className="preloader-welcome"
+              initial={{ opacity: 0, scale: 1.15, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h1
-                style={{
-                  fontSize: "clamp(3rem,10vw,10rem)",
-                }}
-                className="font-display text-center text-white font-bold leading-tight"
-              >
+              <h1 className="preloader-welcome-text font-display">
                 {WELCOME_MESSAGES[welcomeIndex]}
               </h1>
-            </motion.div>
-          </AnimatePresence>
-        )}
-
-        {/* Logo Reveal */}
-        <AnimatePresence>
-          {phase !== "welcome" && (
-            <motion.div
-              className="absolute inset-0 flex flex-col items-center justify-center z-20"
-              initial={{
-                scale: 0.15,
-                opacity: 0,
-              }}
-              animate={{
-                scale: 1,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <motion.div
-                animate={{
-                  rotate: [0, 4, -4, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                }}
-                className="relative"
-              >
-                <div className="absolute -inset-7.5 rounded-full bg-yellow-400/30 blur-3xl animate-pulse" />
-
-                <div className="relative h-28 w-28 rounded-full overflow-hidden border-4 border-[#D4AF37]">
-                  <Image
-                    src="/Logo.jpg"
-                    alt="Maithili Harvest"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </motion.div>
-
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.3,
-                }}
-                className="mt-8 text-white text-4xl md:text-6xl font-display"
-              >
-                Maithili Harvest
-              </motion.h2>
-
-              <p className="mt-3 text-[#d4af37] tracking-[0.25em] uppercase">
-                Taste Mithila
-              </p>
-
-              <div className="mt-12 w-64">
-                <div className="h-0.75 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-[#D4AF37]"
-                    animate={{
-                      width: `${progress}%`,
-                    }}
-                  />
-                </div>
-
-                <p className="mt-3 text-center text-white/70 text-sm">
-                  Loading {Math.round(progress)}%
-                </p>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Center Light Burst */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          animate={{
-            opacity: phase === "opening" ? 1 : 0,
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-radial from-yellow-300/30 via-transparent to-transparent" />
-        </motion.div>
+        {/* Logo reveal — curtains stay off-screen so this stays visible */}
+        <AnimatePresence>
+          {(phase === "logo" || phase === "closing") && (
+            <motion.div
+              className="preloader-content"
+              initial={{ opacity: 0, scale: 0.88, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -12 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="preloader-logo-wrap">
+                <div className="preloader-ring preloader-ring--outer" />
+                <div className="preloader-ring preloader-ring--inner" />
+                <motion.div
+                  className="preloader-logo"
+                  animate={{ scale: [1, 1.04, 1] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Image
+                    src="/Logo.jpg"
+                    alt="Maithili Harvest"
+                    width={88}
+                    height={88}
+                    className="h-full w-full object-cover"
+                    priority
+                  />
+                </motion.div>
+              </div>
+
+              <p className="brand-tag preloader-tag">Taste Mithila</p>
+              <h2 className="preloader-title font-display">Maithili Harvest</h2>
+              <p className="preloader-subtitle">Artisan food from the heart of Bihar</p>
+
+              <div className="preloader-progress-wrap">
+                <div className="preloader-progress-track">
+                  <div
+                    className="preloader-progress-fill"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+                <span className="preloader-progress-label">
+                  Loading {Math.round(progress)}%
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </AnimatePresence>
   );
 }
-

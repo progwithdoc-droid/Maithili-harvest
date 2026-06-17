@@ -4,8 +4,8 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Play } from "lucide-react";
-import { VideoBackground, getDemoYouTubeEmbedUrl } from "./VideoBackground";
-import { heroDemoVideo, heroVideos } from "./data";
+import { YouTubeBackground, getDemoYouTubeEmbedUrl } from "./VideoBackground";
+import { heroDemoVideo } from "./data";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -22,14 +22,12 @@ const fadeUp = {
 
 export default function Hero1() {
   const embedUrl = getDemoYouTubeEmbedUrl(heroDemoVideo.url);
-  const bg = heroVideos.hero1;
 
   return (
     <section className="relative min-h-[calc(100dvh-var(--nav-height))] overflow-hidden">
-      <VideoBackground
-        src={bg.src}
-        fallbackSrc={bg.fallback}
-        overlayClassName="bg-gradient-to-r from-[var(--color-maroon)]/45 via-[var(--color-maroon)]/18 to-[var(--color-maroon)]/5"
+      <YouTubeBackground
+        url={heroDemoVideo.url}
+        overlayClassName="bg-gradient-to-r from-[var(--color-maroon)]/50 via-[var(--color-maroon)]/22 to-[var(--color-maroon)]/8"
       />
 
       <div

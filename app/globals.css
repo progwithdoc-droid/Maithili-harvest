@@ -729,3 +729,25 @@
   0%, 100% { filter: brightness(1); }
   50% { filter: brightness(1.15); }
 }
+
+.preloader-welcome {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  pointer-events: none;
+}
+
+.preloader-welcome-text {
+  max-width: 14ch;
+  text-align: center;
+  font-size: clamp(2rem, 9vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+  color: var(--color-cream);
+  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
