@@ -9,20 +9,18 @@ export const hero1BackgroundImage = "/videos/bg.jpg";
 export const heroVideos = {
   hero1: {
     src: "/videos/hero1.mp4",
-    poster: "/videos/bg.jpg",
     /** Remote fallback until you add hero1.mp4 locally */
     fallback:
       "https://videos.pexels.com/video-files/1526909/1526909-uhd_2560_1440_25fps.mp4",
   },
   hero3: {
     src: "/videos/hero3.mp4",
-    poster: "/videos/bg.jpg",
     fallback:
       "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
   },
   hero5: {
     src: "/videos/hero5.mp4",
-    poster: "/videos/bg.jpg",
+      poster: "/videos/bg.jpg",
     fallback:
       "https://videos.pexels.com/video-files/6613146/6613146-uhd_2560_1440_25fps.mp4",
   },
@@ -40,142 +38,141 @@ export const trustedCompanies = [
   { name: "Flipkart", logo: "/companies/flipkart.jpg" },
   { name: "Swiggy", logo: "/companies/swiggy.png" },
   { name: "Zomato", logo: "/companies/zomato.png" },
+  { name: "Amazon", logo: "/companies/amazones.jpg" },
+  { name: "Blinkit", logo: "/companies/blinkit.png" },
+  { name: "Flipkart", logo: "/companies/flipkart.jpg" },
+    { name: "Swiggy", logo: "/companies/swiggy.png" },
+  { name: "Zomato", logo: "/companies/zomato.png" },
 ];
 
 export const featuredProducts = products.slice(0, 4);
 
+
 export const kitchenTestimonials = [
   {
     quote:
-      "The mustard oil has that sharp, honest pungency I remember from my grandmother's kitchen in Madhubani.",
-    name: "Priya Sharma",
-    designation: "Home Chef · Patna",
+      "The Handmade Thekua captures the taste of traditional Mithila recipes beautifully. The texture is crisp, the sweetness is balanced, and it feels genuinely handcrafted rather than factory-made. It's the closest I've found to homemade Thekua.",
+    name: "Priya Jha",
+    designation: "Home Cook · Darbhanga",
     src: "/testimonials/priya.avif",
   },
+
   {
     quote:
-      "We use Maithili Harvest spices in our kitchen. Guests notice the depth in every dal and sabzi.",
-    name: "Rajesh Kumar",
-    designation: "Caterer · Delhi",
+      "What stands out about Maithili Harvest products is their consistency. The Makhana is uniformly fresh, crunchy, and clean, making it ideal for both snacking and recipe development. Quality remains dependable across every order.",
+    name: "Rahul Kumar",
+    designation: "Culinary Consultant · Patna",
     src: "/testimonials/rajesh.svg",
   },
+
   {
     quote:
-      "The ghee is unlike anything on supermarket shelves — granular, fragrant, and worth every rupee.",
-    name: "Ananya Devi",
-    designation: "Food Blogger · Mumbai",
+      "As someone who regularly creates food content, I pay close attention to ingredient quality. The dry fruits are exceptionally fresh, naturally flavorful, and packaged with care. The difference becomes obvious the moment you open the pack.",
+    name: "Ananya Singh",
+    designation: "Food Creator · Mumbai",
     src: "/testimonials/anaya.avif",
   },
-  {
-    quote:
-      "Finally, spices that taste like the Mithila I grew up in. The turmeric colour alone tells the story.",
-    name: "Vikram Jha",
-    designation: "Physician · Kolkata",
-    src: "/products/Achar-1.webp",
-  },
-  {
-    quote:
-      "Our family orders the thekua every Chhath. It arrives fresh, crisp, and exactly like the ones from home.",
-    name: "Meera Sinha",
-    designation: "Teacher · Darbhanga",
-    src: "/products/thekua.jpg",
-  },
 ];
+
+
+
 
 export const customerReviews = [
   {
     id: 1,
-    name: "Sunita Devi",
-    location: "Madhubani",
-    product: "Stone-Ground Turmeric",
-    rating: 5,
-    review:
-      "The colour is so deep and the aroma fills the whole kitchen. This is real haldi, not the pale powder from stores.",
-    initials: "SD",
-  },
-  {
-    id: 2,
-    name: "Arjun Mishra",
-    location: "Patna",
-    product: "Cold-Pressed Mustard Oil",
-    rating: 5,
-    review:
-      "Sharp, clean, and absolutely pure. I use it for pickles and the flavour is unmatched.",
-    initials: "AM",
-  },
-  {
-    id: 3,
-    name: "Kavita Rai",
-    location: "Delhi",
+    name: "Sunita Jha",
+    location: "Darbhanga, Bihar",
     product: "Handmade Thekua",
     rating: 5,
     review:
-      "Crisp, not oily, with the perfect jaggery sweetness. Tastes exactly like my mother's recipe.",
-    initials: "KR",
+      "The first bite instantly reminded me of the homemade Thekua prepared during Chhath Puja. Perfectly crisp, balanced sweetness, and no oily aftertaste. The freshness and traditional taste truly stand out.",
+    initials: "SJ",
   },
+
+  {
+    id: 2,
+    name: "Amit Kumar",
+    location: "Patna, Bihar",
+    product: "Premium Makhana",
+    rating: 5,
+    review:
+      "The quality of the Makhana is exceptional. Every piece is large, crunchy, and naturally fresh. It has become my family's preferred evening snack over packaged alternatives.",
+    initials: "AK",
+  },
+
+  {
+    id: 3,
+    name: "Priya Sharma",
+    location: "New Delhi",
+    product: "Roasted Dry Fruits",
+    rating: 5,
+    review:
+      "The dry fruits arrived well-packed and tasted noticeably fresher than products I usually purchase from local stores. The almonds and cashews were crisp, flavorful, and premium in quality.",
+    initials: "PS",
+  },
+
   {
     id: 4,
-    name: "Deepak Yadav",
-    location: "Ranchi",
-    product: "Cultured Desi Ghee",
+    name: "Rahul Mishra",
+    location: "Lucknow, Uttar Pradesh",
+    product: "Traditional Thekua",
     rating: 5,
     review:
-      "Granular texture, rich aroma — you can tell it's made the traditional way. Worth every penny.",
-    initials: "DY",
+      "Finding authentic regional snacks online is rare, but Maithili Harvest delivered exactly what was promised. The texture, aroma, and taste felt genuinely homemade and traditional.",
+    initials: "RM",
   },
+
   {
     id: 5,
-    name: "Neha Kapoor",
-    location: "Mumbai",
-    product: "Sona Masuri Rice",
-    rating: 4,
-    review:
-      "Soft, fragrant rice that cooks perfectly every time. My family noticed the difference immediately.",
-    initials: "NK",
-  },
-  {
-    id: 6,
-    name: "Ramesh Thakur",
-    location: "Darbhanga",
-    product: "Pani Phuchka",
+    name: "Neha Verma",
+    location: "Mumbai, Maharashtra",
+    product: "Premium Makhana",
     rating: 5,
     review:
-      "The pani has that perfect tang and spice. Brings back memories of street corners in Mithila.",
-    initials: "RT",
+      "I ordered Makhana for healthy snacking and was impressed by the consistency and freshness. The packaging preserved the crunch perfectly, and the quality exceeded my expectations.",
+    initials: "NV",
+  },
+
+  {
+    id: 6,
+    name: "Sanjay Thakur",
+    location: "Madhubani, Bihar",
+    product: "Assorted Mithila Collection",
+    rating: 5,
+    review:
+      "What impressed me most was the authenticity of the products. The flavors reflect the food traditions of Mithila, and the attention to quality is evident from the moment you open the package.",
+    initials: "ST",
   },
 ];
 
+
+
 export const brandPillars = [
   {
-    title: "Know your source",
+    title: "Certified Food Safety",
     description:
-      "Every jar and packet can be traced back to farms and artisan groups in Mithila. We share where it was grown, when it was harvested, and who made it.",
-    tag: "Traceability",
-    metric: "Farm-mapped sourcing",
+      "Every Maithili Harvest product is prepared and packed in compliance with FSSAI food safety standards. Our processes are designed to ensure hygiene, quality, and consistency from sourcing to delivery, giving you confidence in every purchase.",
+    tag: "FSSAI Registered",
+    metric: "Food Safety Compliant",
     image: "/Hero/fssai-1.jpg",
   },
+
   {
-    title: "Harvested at peak",
+    title: "Lab-Tested Quality",
     description:
-      "Spices are sun-dried at the right season. Oils are cold-pressed within days of harvest. Makhana and grains are picked when flavour is at its best.",
-    tag: "Freshness",
-    metric: "48hr cold-press",
-    image: "/products/makahana.webp",
-  },
-  {
-    title: "No shortcuts",
-    description:
-      "No artificial colours, no fillers, no blending tricks. What you open is what was grown — stone-ground, slow-cooked, and hand-packed.",
-    tag: "Purity",
-    metric: "Zero additives",
+      "Quality is verified through rigorous testing by NABL-accredited laboratories. Our products undergo quality and safety checks to ensure they meet established standards for purity, authenticity, and consumer trust.",
+    tag: "NABL Tested",
+    metric: "Quality Assured",
     image: "/Hero/nablapproved.png",
   },
+
   {
-    title: "Fair to farmers",
+    title: "Rooted in Mithila",
     description:
-      "We pay producers above market rates and invest in farming skills and women's cooperatives across rural Bihar.",
-    tag: "Community",
-    metric: "Direct partnerships",
+      "We work closely with farmers, artisans, and producer groups across the Mithila region to bring authentic traditional foods to modern households. Every purchase supports rural livelihoods while preserving generations of culinary heritage.",
+    tag: "Community First",
+    metric: "Direct Rural Partnerships",
     image: "/products/thekua.jpg",
   },
 ];
+

@@ -117,7 +117,6 @@ export default function Hero3() {
       <VideoBackground
         src={bg.src}
         fallbackSrc={bg.fallback}
-        poster={bg.poster}
         overlayClassName="bg-[var(--color-maroon)]/10"
       />
 

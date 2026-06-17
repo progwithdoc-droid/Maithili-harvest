@@ -9,7 +9,7 @@ export interface Product {
   name: string;
   category: string;
   taste: string;
-  price: number;
+  price: string | number;
   unit?: string;
   image: string;
   zomatoRating: number;

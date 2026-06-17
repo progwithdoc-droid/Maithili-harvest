@@ -47,7 +47,7 @@ export default function TestimonialSection() {
   }, [paused]);
 
   return (
-    <section className="border-t border-[var(--color-border-gold)] bg-[var(--color-linen-white)] py-12 md:py-24">
+    <section className="border-t border-(--color-border-gold) bg-(--color-linen-white) py-12 md:py-24">
       <div className="section-container">
 
         {/* Header row */}
@@ -94,7 +94,7 @@ export default function TestimonialSection() {
           <div>
             {/* Stats row */}
             <div
-              className="mb-8 grid grid-cols-1 border-y border-[var(--color-border-gold)] min-[400px]:grid-cols-3 md:mb-12"
+              className="mb-8 grid grid-cols-1 border-y border-(--color-border-gold) min-[400px]:grid-cols-3 md:mb-12"
             >
               {[
                 { value: "100+", label: "Happy Clients" },
@@ -105,7 +105,7 @@ export default function TestimonialSection() {
                   key={stat.label}
                   className={`px-3 py-5 text-center sm:px-4 sm:py-7 ${
                     i < arr.length - 1
-                      ? "border-b border-[var(--color-border-gold)] min-[400px]:border-b-0 min-[400px]:border-r"
+                      ? "border-b border-(--color-border-gold) min-[400px]:border-b-0 min-[400px]:border-r"
                       : ""
                   }`}
                 >
@@ -211,7 +211,7 @@ export default function TestimonialSection() {
 
           {/* Right — animated card stack with hover-to-pause */}
           <div
-            className="relative min-h-[300px] md:h-[320px]"
+            className="relative min-h-75 md:h-80"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >

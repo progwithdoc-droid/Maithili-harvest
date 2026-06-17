@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -28,7 +29,6 @@ export default function Hero1() {
       <VideoBackground
         src={bg.src}
         fallbackSrc={bg.fallback}
-        poster={bg.poster}
         overlayClassName="bg-gradient-to-r from-[var(--color-maroon)]/45 via-[var(--color-maroon)]/18 to-[var(--color-maroon)]/5"
       />
 
@@ -46,9 +46,9 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="brand-tag text-[var(--color-gold-dark)]"
+            className="brand-tag text-(--color-gold-dark)"
           >
-            Artisan Food · Mithila, Bihar
+            Heritage Foods of Mithila · Crafted with Authenticity
           </motion.span>
 
           <motion.h1
@@ -56,10 +56,13 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-editorial mt-4 text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] text-[var(--color-maroon)] sm:mt-5"
+            className="font-editorial mt-4 text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] text-(--color-maroon) sm:mt-5"
           >
-            The flavours of{" "}
-            <span className="italic text-[var(--color-gold-dark)]">Mithila</span>, packed with care
+            A celebration of{" "}
+            <span className="italic text-(--color-gold-dark)">
+              Mithila’s finest
+            </span>{" "}
+            culinary traditions
           </motion.h1>
 
           <motion.p
@@ -67,10 +70,12 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-[var(--color-text-secondary)] sm:mt-5 sm:text-lg lg:mx-0 lg:max-w-md"
+            className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-(--color-text-secondary) sm:mt-5 sm:text-lg lg:mx-0 lg:max-w-md"
           >
-            Pickles, makhana, ghee, spices, and handmade snacks from Bihar — made with
-            recipes rooted in Maithili tradition.
+            From handcrafted Thekua and premium Makhana to carefully selected
+            dry fruits, every Maithili Harvest product is rooted in tradition,
+            sourced with integrity, and crafted to deliver an authentic taste of
+            Mithila to homes across India.
           </motion.p>
 
           <motion.div
@@ -81,10 +86,11 @@ export default function Hero1() {
             className="mt-6 flex flex-wrap justify-center gap-3 sm:mt-8 lg:justify-start"
           >
             <Link href="/products" className="btn-gold">
-              Explore Products
+              Explore Collection
             </Link>
+
             <Link href="/about" className="btn-secondary">
-              Our Story
+              Discover Our Story
             </Link>
           </motion.div>
         </div>
@@ -96,15 +102,18 @@ export default function Hero1() {
           variants={fadeUp}
           className="w-full lg:justify-self-end"
         >
-          <div className="overflow-hidden rounded-2xl border border-[var(--color-gold)]/40 bg-white/95 shadow-[var(--shadow-lg)] backdrop-blur-sm">
-            <div className="flex items-center justify-between border-b border-[var(--color-beige)] px-4 py-3 sm:px-5">
-              <p className="brand-tag text-[var(--color-gold-dark)]">Brand Demo</p>
-              <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+          <div className="overflow-hidden rounded-2xl border border-(--color-gold)/40 bg-white/95 shadow-(--shadow-lg) backdrop-blur-sm">
+            <div className="flex items-center justify-between border-b border-(--color-beige) px-4 py-3 sm:px-5">
+              <p className="brand-tag text-(--color-gold-dark)">
+                The Maithili Harvest Story
+              </p>
+
+              <span className="text-[10px] uppercase tracking-[0.14em] text-(--color-text-muted)">
                 Watch now
               </span>
             </div>
 
-            <div className="relative aspect-video w-full bg-[var(--color-beige-light)]/50">
+            <div className="relative aspect-video w-full bg-(--color-beige-light)/50">
               {embedUrl ? (
                 <iframe
                   src={embedUrl}
@@ -115,10 +124,11 @@ export default function Hero1() {
                 />
               ) : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--color-gold)]/50 bg-[var(--color-gold-light)]/40 text-[var(--color-gold-dark)] sm:h-14 sm:w-14">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-(--color-gold)/50 bg-(--color-gold-light)/40 text-(--color-gold-dark) sm:h-14 sm:w-14">
                     <Play size={22} fill="currentColor" />
                   </div>
-                  <p className="font-display text-base text-[var(--color-maroon)] sm:text-lg">
+
+                  <p className="font-display text-base text-(--color-maroon) sm:text-lg">
                     {heroDemoVideo.title}
                   </p>
                 </div>
@@ -130,3 +140,4 @@ export default function Hero1() {
     </section>
   );
 }
+

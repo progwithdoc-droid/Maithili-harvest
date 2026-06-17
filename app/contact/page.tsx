@@ -91,9 +91,9 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="bg-[var(--color-cream)]">
+    <main className="bg-(--color-cream)">
       {/* Hero with image + headline */}
-      <section className="relative overflow-hidden border-b border-[var(--color-beige)]">
+      <section className="relative overflow-hidden border-b border-(--color-beige)">
         <div className="absolute inset-0">
           <Image
             src={hero1BackgroundImage}
@@ -103,14 +103,14 @@ export default function ContactPage() {
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-maroon)]/88 via-[var(--color-maroon)]/72 to-[var(--color-maroon)]/55" />
+          <div className="absolute inset-0 bg-linear-to-r from-(--color-maroon)/88 via-(--color-maroon)/72 to-(--color-maroon)/55" />
         </div>
 
         <div className="section-container relative z-10 py-16 sm:py-24">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="brand-tag mb-4 text-[var(--color-gold)]"
+            className="brand-tag mb-4 text-(--color-gold)"
           >
             Get in Touch
           </motion.p>
@@ -118,7 +118,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="font-editorial max-w-2xl text-[clamp(2.25rem,5vw,4rem)] leading-tight text-[var(--color-cream)]"
+            className="font-editorial max-w-2xl text-[clamp(2.25rem,5vw,4rem)] leading-tight text-(--color-cream)"
           >
             Let&apos;s start a conversation.
           </motion.h1>
@@ -155,8 +155,8 @@ export default function ContactPage() {
                   onClick={() => setTopicId(t.id)}
                   className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
                     topicId === t.id
-                      ? "border-[var(--color-maroon)] bg-[var(--color-maroon)] text-[var(--color-cream)]"
-                      : "border-[var(--color-beige)] bg-white text-[var(--color-text-secondary)] hover:border-[var(--color-gold)]"
+                      ? "border-(--color-maroon) bg-(--color-maroon) text-(--color-cream)"
+                      : "border-(--color-beige) bg-white text-(--color-text-secondary) hover:border-(--color-gold)"
                   }`}
                 >
                   {t.label}
@@ -164,7 +164,7 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-[var(--color-beige)] bg-white p-8 shadow-[var(--shadow-md)]">
+            <div className="overflow-hidden rounded-2xl border border-[var(--color-beige)] bg-white p-8 shadow-(--shadow-md)">
               <p className="brand-tag mb-2 text-[var(--color-text-muted)]">
                 Subject: {topic.subject}
               </p>
@@ -225,11 +225,11 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex flex-col gap-6"
           >
-            <div className="overflow-hidden rounded-2xl border border-[var(--color-gold)]/30 bg-white shadow-[var(--shadow-md)]">
-              <div className="border-b border-[var(--color-beige)] px-5 py-3">
-                <p className="brand-tag text-[var(--color-gold-dark)]">Behind the brand</p>
+            <div className="overflow-hidden rounded-2xl border border-(--color-gold)/30 bg-white shadow-(--shadow-md)">
+              <div className="border-b border-(--color-beige) px-5 py-3">
+                <p className="brand-tag text-(--color-gold-dark)">Behind the brand</p>
               </div>
-              <div className="relative aspect-video bg-[var(--color-beige-light)]">
+              <div className="relative aspect-video bg-(--color-beige-light)">
                 {embedUrl ? (
                   <iframe
                     src={embedUrl}
@@ -239,14 +239,14 @@ export default function ContactPage() {
                     className="absolute inset-0 h-full w-full border-0"
                   />
                 ) : (
-                  <div className="flex h-full items-center justify-center p-6 text-center text-[var(--color-text-muted)]">
+                  <div className="flex h-full items-center justify-center p-6 text-center text-(--color-text-muted)">
                     {heroDemoVideo.title}
                   </div>
                 )}
               </div>
             </div>
 
-            <div className="rounded-2xl border border-[var(--color-beige)] bg-[var(--color-gold-light)]/40 p-6">
+            <div className="rounded-2xl border border-(--color-beige) bg-(--color-gold-light)/40 p-6">
               <p className="brand-tag mb-4">Follow Us</p>
               <div className="flex flex-wrap gap-3">
                 {socialLinks.map(({ Icon, label, href }) => (
@@ -256,20 +256,20 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--color-beige)] bg-white text-[var(--color-maroon)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:shadow-[var(--shadow-sm)]"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-(--color-beige) bg-white text-(--color-maroon) transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:shadow-[var(--shadow-sm)]"
                   >
                     <Icon size={20} />
                   </Link>
                 ))}
               </div>
-              <p className="mt-4 text-base leading-relaxed text-[var(--color-text-secondary)]">
+              <p className="mt-4 text-base leading-relaxed text-(--color-text-secondary)">
                 Recipes, harvest stories, and new product drops — follow us for
                 the taste of Mithila.
               </p>
             </div>
 
-            <blockquote className="border-l-4 border-[var(--color-gold)] pl-5">
-              <p className="font-editorial text-lg italic leading-relaxed text-[var(--color-maroon)]">
+            <blockquote className="border-l-4 border-(--color-gold) pl-5">
+              <p className="font-editorial text-lg italic leading-relaxed text-(--color-maroon)">
                 &ldquo;Great food — like great relationships — starts with an
                 honest hello.&rdquo;
               </p>
