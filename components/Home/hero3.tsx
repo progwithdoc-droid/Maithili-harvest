@@ -6,8 +6,7 @@ import { motion } from "motion/react";
 import { Plus } from "lucide-react";
 import { PRODUCT_PRICE_LABEL } from "@/components/products/ProductPrice";
 import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
-import { VideoBackground } from "./VideoBackground";
-import { featuredProducts, trustedCompanies, heroVideos } from "./data";
+import { featuredProducts, trustedCompanies } from "./data";
 
 /* ─── Company Logo Card ──────────────────────────────────────────────────── */
 function CompanyLogo({ name, logo }: { name: string; logo: string }) {
@@ -41,9 +40,9 @@ function CompanyLogo({ name, logo }: { name: string; logo: string }) {
 function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
   return (
     <div className="relative overflow-hidden py-2.5">
-      {/* Fade edges */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--color-cream)]/95 to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--color-cream)]/95 to-transparent sm:w-24" />
+      {/* Fade edges — dark tone to match bg.png */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#2a0e0e]/90 to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#2a0e0e]/90 to-transparent sm:w-24" />
 
       <InfiniteSlider speed={38} gap={14} reverse={reverse}>
         {trustedCompanies.map((company) => (
@@ -110,15 +109,19 @@ function ProductCard({ product }: { product: (typeof featuredProducts)[0] }) {
 
 /* ─── Main Section ───────────────────────────────────────────────────────── */
 export default function Hero3() {
-  const bg = heroVideos.hero3;
-
   return (
     <section className="section-gap relative overflow-hidden">
-      <VideoBackground
-        src={bg.src}
-        fallbackSrc={bg.fallback}
-        overlayClassName="bg-[var(--color-maroon)]/10"
-      />
+      {/* ── Static background image ── */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <Image
+          src="/videos/bg.png"
+          alt=""
+          fill
+          className="object-cover brightness-[0.45] saturate-[1.1]"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+      </div>
 
       <div className="relative z-10">
 
@@ -130,7 +133,7 @@ export default function Hero3() {
         transition={{ duration: 0.55 }}
         className="mb-12 sm:mb-16"
       >
-        <p className="section-container mb-5 text-center brand-tag sm:mb-6">
+        <p className="section-container mb-5 text-center brand-tag text-[var(--color-gold)] sm:mb-6">
           Available on leading platforms
         </p>
         <MarqueeRow reverse={false} />
@@ -143,8 +146,8 @@ export default function Hero3() {
         {/* Section header */}
         <div className="mb-8 flex flex-col gap-5 sm:mb-10 sm:gap-6 md:mb-12 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="brand-tag">Featured</span>
-            <h2 className="font-editorial mt-3 text-[clamp(1.75rem,4vw,3rem)] leading-tight text-(--color-maroon)">
+            <span className="brand-tag text-[var(--color-gold)]">Featured</span>
+            <h2 className="font-editorial mt-3 text-[clamp(1.75rem,4vw,3rem)] leading-tight text-[var(--color-cream)]">
               Beloved Mithila staples, ready to order.
             </h2>
           </div>

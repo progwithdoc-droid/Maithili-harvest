@@ -1,10 +1,10 @@
-
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Play } from "lucide-react";
-import { YouTubeBackground, getDemoYouTubeEmbedUrl } from "./VideoBackground";
+import { getDemoYouTubeEmbedUrl } from "./youtubeUtils";
 import { heroDemoVideo } from "./data";
 
 const fadeUp = {
@@ -25,10 +25,19 @@ export default function Hero1() {
 
   return (
     <section className="relative min-h-[calc(100dvh-var(--nav-height))] overflow-hidden">
-      <YouTubeBackground
-        url={heroDemoVideo.url}
-        overlayClassName="bg-gradient-to-r from-[var(--color-maroon)]/50 via-[var(--color-maroon)]/22 to-[var(--color-maroon)]/8"
-      />
+      {/* ── Static background image ── */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <Image
+          src="/videos/bg.png"
+          alt=""
+          fill
+          className="object-cover brightness-[0.55] saturate-[1.1]"
+          sizes="100vw"
+          priority
+        />
+        {/* gradient: solid left for text, fades right for the video card */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10" />
+      </div>
 
       <div
         className="
@@ -44,7 +53,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="brand-tag text-(--color-gold-dark)"
+            className="brand-tag text-[var(--color-gold)]"
           >
             Heritage Foods of Mithila · Crafted with Authenticity
           </motion.span>
@@ -54,11 +63,11 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-editorial mt-4 text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] text-(--color-maroon) sm:mt-5"
+            className="font-editorial mt-4 text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] text-[var(--color-cream)] sm:mt-5"
           >
             A celebration of{" "}
-            <span className="italic text-(--color-gold-dark)">
-              Mithila’s finest
+            <span className="italic text-[var(--color-gold)]">
+              Mithila's finest
             </span>{" "}
             culinary traditions
           </motion.h1>
@@ -68,7 +77,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-(--color-text-secondary) sm:mt-5 sm:text-lg lg:mx-0 lg:max-w-md"
+            className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-[var(--color-beige)] sm:mt-5 sm:text-lg lg:mx-0 lg:max-w-md"
           >
             From handcrafted Thekua and premium Makhana to carefully selected
             dry fruits, every Maithili Harvest product is rooted in tradition,

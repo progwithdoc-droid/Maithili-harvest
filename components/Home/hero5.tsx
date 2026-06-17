@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Star } from "lucide-react";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { VideoBackground } from "./VideoBackground";
-import { customerReviews, heroVideos } from "./data";
+import { customerReviews } from "./data";
 
 function StarRow({ rating }: { rating: number }) {
   return (
@@ -59,16 +59,19 @@ function ReviewCard({ review }: { review: (typeof customerReviews)[0] }) {
 }
 
 export default function Hero5() {
-  const bg = heroVideos.hero5;
-
   return (
     <section className="section-gap relative overflow-hidden">
-      <VideoBackground
-        src={bg.src}
-        fallbackSrc={bg.fallback}
-        poster={bg.poster}
-        overlayClassName="bg-[var(--color-maroon)]/10"
-      />
+      {/* ── Static background image ── */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <Image
+          src="/videos/bg.png"
+          alt=""
+          fill
+          className="object-cover brightness-[0.45] saturate-[1.1]"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/75" />
+      </div>
 
       <div className="section-container relative z-10">
         <motion.div
@@ -78,11 +81,11 @@ export default function Hero5() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-12 max-w-2xl text-center"
         >
-          <span className="brand-tag">Reviews</span>
-          <h2 className="font-editorial mt-3 text-[clamp(2rem,4vw,3rem)] text-[var(--color-maroon)]">
+          <span className="brand-tag text-[var(--color-gold)]">Reviews</span>
+          <h2 className="font-editorial mt-3 text-[clamp(2rem,4vw,3rem)] text-[var(--color-cream)]">
             Real reviews from real tables.
           </h2>
-          <p className="mt-4 text-[var(--color-text-secondary)]">
+          <p className="mt-4 text-[var(--color-beige)]">
             Hover each card to see which Maithili Harvest product they love most.
           </p>
         </motion.div>
@@ -108,7 +111,7 @@ export default function Hero5() {
           transition={{ duration: 0.6 }}
           className="mt-16 flex flex-col items-center gap-6 text-center"
         >
-          <p className="font-editorial max-w-md px-2 text-lg italic text-[var(--color-text-secondary)] sm:text-xl">
+          <p className="font-editorial max-w-md px-2 text-lg italic text-[var(--color-beige)] sm:text-xl">
             Honest ingredients from Mithila — from our farms to your kitchen.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">

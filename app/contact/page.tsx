@@ -19,7 +19,7 @@ import {
   YoutubeIcon,
   InstagramIcon,
 } from "@/components/icons/SocialIcons";
-import { getDemoYouTubeEmbedUrl } from "@/components/Home/VideoBackground";
+import { getDemoYouTubeEmbedUrl } from "@/components/Home/youtubeUtils";
 import { heroDemoVideo, hero1BackgroundImage } from "@/components/Home/data";
 import WorldPresence from "@/components/WorldPresence";
 
