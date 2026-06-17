@@ -47,12 +47,6 @@ export default function ThekuaSurprise() {
   }, []);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) return;
-
     let intervalId: ReturnType<typeof setInterval>;
 
     spawnBurst();

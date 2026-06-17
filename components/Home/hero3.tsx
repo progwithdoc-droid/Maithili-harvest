@@ -41,8 +41,8 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
   return (
     <div className="relative overflow-hidden py-2.5">
       {/* Fade edges — dark tone to match bg.png */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#2a0e0e]/90 to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#2a0e0e]/90 to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-transparent to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-transparent to-transparent sm:w-24" />
 
       <InfiniteSlider speed={38} gap={14} reverse={reverse}>
         {trustedCompanies.map((company) => (
@@ -117,10 +117,9 @@ export default function Hero3() {
           src="/videos/bg.png"
           alt=""
           fill
-          className="object-cover brightness-[0.45] saturate-[1.1]"
+          className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
       </div>
 
       <div className="relative z-10">

@@ -31,12 +31,10 @@ export default function Hero1() {
           src="/videos/bg.png"
           alt=""
           fill
-          className="object-cover brightness-[0.55] saturate-[1.1]"
+          className="object-cover"
           sizes="100vw"
           priority
         />
-        {/* gradient: solid left for text, fades right for the video card */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10" />
       </div>
 
       <div
