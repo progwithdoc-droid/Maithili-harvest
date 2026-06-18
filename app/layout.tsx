@@ -54,7 +54,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="min-h-screen overflow-x-clip bg-[var(--color-cream)] pt-[var(--nav-height)] text-[var(--foreground)] antialiased"
+        className="min-h-screen overflow-x-clip bg-(--color-cream) pt-(--nav-height) text-foreground antialiased"
       >
         <Preloader />
         <ThekuaSurprise />

@@ -10,7 +10,7 @@ const pillarContent = brandPillars.map((pillar) => ({
   content: (
     <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-(--color-beige) bg-white shadow-(--shadow-md)">
       <div className="relative flex flex-1 items-center justify-center bg-(--color-cream) p-5 sm:p-8">
-        <div className="relative h-full w-full min-h-[200px] lg:min-h-[320px]">
+        <div className="relative h-full w-full min-h-50 lg:min-h-80">
           <Image
             src={pillar.image}
             alt={pillar.title}

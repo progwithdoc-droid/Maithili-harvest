@@ -23,7 +23,7 @@ import { getDemoYouTubeEmbedUrl } from "@/components/Home/youtubeUtils";
 import { heroDemoVideo, hero1BackgroundImage } from "@/components/Home/data";
 import WorldPresence from "@/components/WorldPresence";
 
-const EMAIL = "hello@maithiliharvest.com";
+const EMAIL = "support@maithiliharvest.com";
 const PHONE_DISPLAY = "+91 XXXXX XXXXX";
 const PHONE_TEL = "+91XXXXXXXXXX";
 
@@ -60,9 +60,9 @@ const contactCards = [
 
 const socialLinks = [
   { Icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/maithiliharvest" },
-  { Icon: LinkedinIcon, label: "LinkedIn", href: "https://in.linkedin.com/in/amit-kumar-6a23a5184" },
+  { Icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/amitkumar1009/" },
   { Icon: YoutubeIcon, label: "YouTube", href: "https://youtube.com/@maithiliharvest" },
-  { Icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/maithiliharvest" },
+  { Icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/startupwithamit.in" },
 ];
 
 const mailTopics = [
@@ -126,7 +126,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mt-5 max-w-lg text-lg text-[var(--color-beige)]"
+            className="mt-5 max-w-lg text-lg text-(--color-beige)"
           >
             No forms, no waiting — tap your email app and write to us directly.
           </motion.p>
@@ -143,7 +143,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5 }}
           >
             <p className="brand-tag mb-3">Write To Us</p>
-            <h2 className="font-editorial mb-6 text-3xl text-[var(--color-maroon)] sm:text-4xl">
+            <h2 className="font-editorial mb-6 text-3xl text-(--color-maroon) sm:text-4xl">
               One tap to our inbox.
             </h2>
 
@@ -164,11 +164,11 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-[var(--color-beige)] bg-white p-8 shadow-(--shadow-md)">
-              <p className="brand-tag mb-2 text-[var(--color-text-muted)]">
+            <div className="overflow-hidden rounded-2xl border border-(--color-beige) bg-white p-8 shadow-(--shadow-md)">
+              <p className="brand-tag mb-2 text-(--color-text-muted)">
                 Subject: {topic.subject}
               </p>
-              <p className="break-all font-editorial text-2xl text-[var(--color-maroon)] sm:text-3xl">
+              <p className="break-all font-editorial text-2xl text-(--color-maroon) sm:text-3xl">
                 {EMAIL}
               </p>
 
@@ -193,13 +193,13 @@ export default function ContactPage() {
               {contactCards.map(({ Icon, label, value, href, action }) => (
                 <div
                   key={label}
-                  className="rounded-xl border border-[var(--color-beige)] bg-white p-5"
+                  className="rounded-xl border border-(--color-beige) bg-white p-5"
                 >
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-gold)]/40 text-[var(--color-maroon)]">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-(--color-gold)/40 text-(--color-maroon)">
                     <Icon size={18} />
                   </div>
                   <p className="brand-tag mb-1">{label}</p>
-                  <p className="text-base font-medium text-[var(--color-text-primary)]">
+                  <p className="text-base font-medium text-(--color-text-primary)">
                     {value}
                   </p>
                   {href && action && (
@@ -207,7 +207,7 @@ export default function ContactPage() {
                       href={href}
                       target={label === "Address" ? "_blank" : undefined}
                       rel={label === "Address" ? "noopener noreferrer" : undefined}
-                      className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-gold-dark)] no-underline hover:text-[var(--color-maroon)]"
+                      className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-(--color-gold-dark) no-underline hover:text-(--color-maroon)"
                     >
                       {action} <ArrowUpRight size={14} />
                     </Link>
@@ -256,7 +256,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-12 w-12 items-center justify-center rounded-full border border-(--color-beige) bg-white text-(--color-maroon) transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:shadow-[var(--shadow-sm)]"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-(--color-beige) bg-white text-(--color-maroon) transition-all hover:-translate-y-0.5 hover:border-(--color-gold) hover:shadow-(--shadow-sm)"
                   >
                     <Icon size={20} />
                   </Link>

@@ -51,7 +51,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="brand-tag text-[var(--color-gold)]"
+            className="brand-tag text-(--color-gold)"
           >
             Heritage Foods of Mithila · Crafted with Authenticity
           </motion.span>
@@ -61,10 +61,10 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-editorial mt-4 text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] text-[var(--color-cream)] sm:mt-5"
+            className="font-editorial mt-4 text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] text-(--color-cream) sm:mt-5"
           >
             A celebration of{" "}
-            <span className="italic text-[var(--color-gold)]">
+            <span className="italic text-(--color-gold)">
               Mithila's finest
             </span>{" "}
             culinary traditions
@@ -75,7 +75,7 @@ export default function Hero1() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-[var(--color-beige)] sm:mt-5 sm:text-lg lg:mx-0 lg:max-w-md"
+            className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-(--color-beige) sm:mt-5 sm:text-lg lg:mx-0 lg:max-w-md"
           >
             From handcrafted Thekua and premium Makhana to carefully selected
             dry fruits, every Maithili Harvest product is rooted in tradition,

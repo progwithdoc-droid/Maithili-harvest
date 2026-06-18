@@ -27,10 +27,10 @@ function ReviewCard({ review }: { review: (typeof customerReviews)[0] }) {
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className="rounded-[20px] border border-[var(--color-beige)] bg-white/92 p-6 shadow-[var(--shadow-sm)] backdrop-blur-md"
+      className="rounded-[20px] border border-(--color-beige) bg-white/92 p-6 shadow-(--shadow-sm) backdrop-blur-md"
     >
       <StarRow rating={review.rating} />
-      <p className="mb-6 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+      <p className="mb-6 text-sm leading-relaxed text-(--color-text-secondary)">
         &ldquo;{review.review}&rdquo;
       </p>
       <div className="flex items-center gap-3">
@@ -46,10 +46,10 @@ function ReviewCard({ review }: { review: (typeof customerReviews)[0] }) {
           ]}
         />
         <div>
-          <p className="font-display text-sm font-semibold text-[var(--color-maroon)]">
+          <p className="font-display text-sm font-semibold text-(--color-maroon)">
             {review.name}
           </p>
-          <p className="text-xs text-[var(--color-text-muted)]">
+          <p className="text-xs text-(--color-text-muted)">
             {review.location}
           </p>
         </div>
@@ -70,7 +70,7 @@ export default function Hero5() {
           className="object-cover brightness-[0.45] saturate-[1.1]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/75" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/65 via-black/45 to-black/75" />
       </div>
 
       <div className="section-container relative z-10">
@@ -81,11 +81,11 @@ export default function Hero5() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-12 max-w-2xl text-center"
         >
-          <span className="brand-tag text-[var(--color-gold)]">Reviews</span>
-          <h2 className="font-editorial mt-3 text-[clamp(2rem,4vw,3rem)] text-[var(--color-cream)]">
+          <span className="brand-tag text-(--color-gold)">Reviews</span>
+          <h2 className="font-editorial mt-3 text-[clamp(2rem,4vw,3rem)] text-(--color-cream)">
             Real reviews from real tables.
           </h2>
-          <p className="mt-4 text-[var(--color-beige)]">
+          <p className="mt-4 text-(--color-beige)">
             Hover each card to see which Maithili Harvest product they love most.
           </p>
         </motion.div>
@@ -111,7 +111,7 @@ export default function Hero5() {
           transition={{ duration: 0.6 }}
           className="mt-16 flex flex-col items-center gap-6 text-center"
         >
-          <p className="font-editorial max-w-md px-2 text-lg italic text-[var(--color-beige)] sm:text-xl">
+          <p className="font-editorial max-w-md px-2 text-lg italic text-(--color-beige) sm:text-xl">
             Honest ingredients from Mithila — from our farms to your kitchen.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">

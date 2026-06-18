@@ -38,7 +38,7 @@ export default function Navbar({ brandName = "Maithili Harvest" }) {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 h-[var(--nav-height)] border-b border-(--color-beige) bg-(--color-cream)/95 backdrop-blur-md transition-shadow duration-300"
+        className="fixed inset-x-0 top-0 z-50 h-(--nav-height) border-b border-(--color-beige) bg-(--color-cream)/95 backdrop-blur-md transition-shadow duration-300"
         style={{ boxShadow: scrolled ? "var(--shadow-sm)" : "none" }}
       >
         <div className="section-container flex h-full items-center justify-between">

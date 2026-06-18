@@ -41,8 +41,8 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
   return (
     <div className="relative overflow-hidden py-2.5">
       {/* Fade edges — dark tone to match bg.png */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-transparent to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-transparent to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-transparent to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-transparent to-transparent sm:w-24" />
 
       <InfiniteSlider speed={38} gap={14} reverse={reverse}>
         {trustedCompanies.map((company) => (
@@ -94,7 +94,7 @@ function ProductCard({ product }: { product: (typeof featuredProducts)[0] }) {
         </h3>
         <div className="mt-3 flex items-center justify-between sm:mt-4">
           <div>
-            <span className="font-display text-base font-semibold text-[var(--color-gold-dark)] sm:text-lg">
+            <span className="font-display text-base font-semibold text-(--color-gold-dark) sm:text-lg">
               {PRODUCT_PRICE_LABEL}
             </span>
           </div>
@@ -132,7 +132,7 @@ export default function Hero3() {
         transition={{ duration: 0.55 }}
         className="mb-12 sm:mb-16"
       >
-        <p className="section-container mb-5 text-center brand-tag text-[var(--color-gold)] sm:mb-6">
+        <p className="section-container mb-5 text-center brand-tag text-(--color-gold) sm:mb-6">
           Available on leading platforms
         </p>
         <MarqueeRow reverse={false} />
@@ -145,8 +145,8 @@ export default function Hero3() {
         {/* Section header */}
         <div className="mb-8 flex flex-col gap-5 sm:mb-10 sm:gap-6 md:mb-12 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="brand-tag text-[var(--color-gold)]">Featured</span>
-            <h2 className="font-editorial mt-3 text-[clamp(1.75rem,4vw,3rem)] leading-tight text-[var(--color-cream)]">
+            <span className="brand-tag text-(--color-gold)">Featured</span>
+            <h2 className="font-editorial mt-3 text-[clamp(1.75rem,4vw,3rem)] leading-tight text-(--color-cream)">
               Beloved Mithila staples, ready to order.
             </h2>
           </div>
