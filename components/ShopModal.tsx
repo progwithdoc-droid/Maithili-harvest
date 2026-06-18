@@ -41,11 +41,11 @@ export default function ShopModal({ open, onClose }: ShopModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(28,20,16,0.7)] p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-[rgba(28,20,16,0.7)] p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="relative max-h-[90dvh] w-full max-w-[520px] overflow-y-auto rounded-xl border border-(--color-border-gold) bg-(--color-linen-white) p-6 sm:p-8"
+        className="relative max-h-[90dvh] w-full max-w-130 overflow-y-auto rounded-xl border border-(--color-border-gold) bg-(--color-linen-white) p-6 sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -58,12 +58,13 @@ export default function ShopModal({ open, onClose }: ShopModalProps) {
 
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="pt-2">
-            <p className="brand-tag">Available On</p>
+            <p className="brand-tag">Available Soon On</p>
             <h2 className="font-display mt-2 text-xl tracking-wide text-(--color-deep-cacao) sm:text-2xl">
               Shop Maithili Harvest
             </h2>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-(--color-text-muted)">
               Tap a store below to browse our products on your preferred platform.
+
             </p>
           </div>
 
@@ -83,7 +84,7 @@ export default function ShopModal({ open, onClose }: ShopModalProps) {
                     alt={`${brand.name} logo`}
                     width={140}
                     height={56}
-                    className="max-h-12 w-auto max-w-[110px] object-contain object-center sm:max-h-14 sm:max-w-[130px]"
+                    className="max-h-12 w-auto max-w-27.5 object-contain object-center sm:max-h-14 sm:max-w-32.5"
                   />
                 </div>
                 <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-(--color-text-muted) transition-colors group-hover:text-(--color-maroon)">

@@ -13,8 +13,8 @@ type Burst = {
   variant: "float" | "spin" | "pop";
 };
 
-const INTERVAL_MS = 3000;
-const VISIBLE_MS = 2600;
+const INTERVAL_MS = 10000
+const VISIBLE_MS = 26000
 
 function randomBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
