@@ -28,7 +28,7 @@ export const heroVideos = {
 
 /** Demo video — Hero1 right-side player */
 export const heroDemoVideo = {
-  url: "https://youtu.be/9OquUp6x5IU?si=Z7vA5MfE4rEAY9-j",
+  url: "https://youtu.be/27U_zfCrtCY?si=nZ5huaCJaA5lCdSj",
   title: "See how Maithili Harvest is made",
 };
 
