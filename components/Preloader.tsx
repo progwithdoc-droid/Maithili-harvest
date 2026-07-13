@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 
-const WELCOME_MS = 3200;
-const LOGO_MS = 1400;
-const FORCE_COMPLETE_MS = 8000;
+const WELCOME_MS = 1000;
+const LOGO_MS = 550;
+const FORCE_COMPLETE_MS = 2800;
 
 type Phase = "welcome" | "logo" | "closing" | "opening" | "done";
 
@@ -44,13 +44,13 @@ export default function Preloader() {
       setProgress(100);
       setPhaseSafe("closing");
 
-      window.setTimeout(() => setPhaseSafe("opening"), 650);
+      window.setTimeout(() => setPhaseSafe("opening"), 320);
 
       window.setTimeout(() => {
         setVisible(false);
         setPhaseSafe("done");
         document.body.style.overflow = "";
-      }, 1500);
+      }, 720);
     };
 
     const tryAdvance = () => {
@@ -114,7 +114,7 @@ export default function Preloader() {
 
     const interval = window.setInterval(() => {
       setWelcomeIndex((i) => (i + 1) % WELCOME_MESSAGES.length);
-    }, 1000);
+    }, 650);
 
     return () => window.clearInterval(interval);
   }, [phase]);
@@ -132,7 +132,7 @@ export default function Preloader() {
         initial={{ opacity: 1 }}
         animate={{ opacity: phase === "opening" ? 0 : 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.45, delay: phase === "opening" ? 0.35 : 0 }}
+        transition={{ duration: 0.25, delay: phase === "opening" ? 0.12 : 0 }}
       >
         <div className="preloader-grain" aria-hidden="true" />
         <div className="preloader-glow" aria-hidden="true" />
@@ -142,13 +142,13 @@ export default function Preloader() {
           className="preloader-curtain preloader-curtain--left"
           initial={{ y: "-100%" }}
           animate={{ y: topCurtainY }}
-          transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.42, ease: [0.76, 0, 0.24, 1] }}
         />
         <motion.div
           className="preloader-curtain preloader-curtain--right"
           initial={{ y: "100%" }}
           animate={{ y: bottomCurtainY }}
-          transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.42, ease: [0.76, 0, 0.24, 1] }}
         />
 
         {/* Welcome — full-screen cycling text */}
@@ -160,7 +160,7 @@ export default function Preloader() {
               initial={{ opacity: 0, scale: 1.15, filter: "blur(10px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
               <h1 className="preloader-welcome-text font-display">
                 {WELCOME_MESSAGES[welcomeIndex]}
@@ -177,7 +177,7 @@ export default function Preloader() {
               initial={{ opacity: 0, scale: 0.88, y: 24 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: -12 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="preloader-logo-wrap">
                 <div className="preloader-ring preloader-ring--outer" />
@@ -220,3 +220,4 @@ export default function Preloader() {
     </AnimatePresence>
   );
 }
+
